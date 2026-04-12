@@ -1,9 +1,10 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-04-08T16:17:11.766Z",
+  "exported": "2026-04-12T23:18:05.356Z",
   "jokes": [
     {
+      "variants": [],
       "id": 1,
       "type": "joke",
       "body": "I told my doctor I broke my arm in two places.",
@@ -14,10 +15,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 2,
       "type": "pun",
       "body": "I used to hate facial hair, but then it grew on me.",
@@ -28,10 +29,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 3,
       "type": "premise",
       "body": "A support group for people who can't stop narrating their own lives. Nobody speaks — they just describe the silence.",
@@ -42,22 +43,9 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
-      "id": 4,
-      "type": "joke",
-      "body": "A cemetery raised its burial prices and blamed the cost of living.",
-      "punch": "",
-      "tags": [
-        "dark",
-        "wordplay",
-        "irony"
-      ],
-      "mt": null,
-      "md": null,
-      "mu": null,
       "variants": [
         {
           "id": "v4a",
@@ -71,9 +59,22 @@
           "body": "A cemetery quietly raised its burial prices this quarter and, when asked to explain, cited the rising cost of living.",
           "punch": ""
         }
-      ]
+      ],
+      "id": 4,
+      "type": "joke",
+      "body": "A cemetery raised its burial prices and blamed the cost of living.",
+      "punch": "",
+      "tags": [
+        "dark",
+        "wordplay",
+        "irony"
+      ],
+      "mt": null,
+      "md": null,
+      "mu": null
     },
     {
+      "variants": [],
       "id": 5,
       "type": "observation",
       "body": "Self-checkout machines have made us all unpaid employees who get to watch our groceries slowly betray us.",
@@ -84,10 +85,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 6,
       "type": "unwished",
       "body": "Why did the nihilist cross the road?",
@@ -98,10 +99,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 7,
       "type": "idea",
       "body": "A horror movie but it's just a guy who can't remember if he locked his door, played in real time for 90 minutes.",
@@ -112,10 +113,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 8,
       "type": "joke",
       "body": "My therapist told me I have trouble accepting things I can't control.",
@@ -127,10 +128,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 9,
       "type": "pun",
       "body": "I'm reading a book about anti-gravity.",
@@ -140,10 +141,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 10,
       "type": "observation",
       "body": "The most haunted thing in any horror movie is never the ghost — it's the mortgage.",
@@ -154,10 +155,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 11,
       "type": "joke",
       "body": "Life is like a box of chocolates.",
@@ -168,10 +169,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 12,
       "type": "joke",
       "body": "She will be a heroine.",
@@ -182,10 +183,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 13,
       "type": "joke",
       "body": "Gayest person award goes to... Homo...",
@@ -196,10 +197,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 14,
       "type": "joke",
       "body": "I just dropped a deuce on Trump...",
@@ -210,10 +211,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 15,
       "type": "premise",
       "body": "Humans are passive plagiarists — we drink from the urethra of ignorance (collective data) and piss out a spin. We don't create, we recombine.",
@@ -224,10 +225,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 16,
       "type": "premise",
       "body": "NYPD as a homeless escort patrol. The crime isn't being homeless — it's looking homeless. They're not protecting the public from crime, they're protecting aesthetics from poverty.",
@@ -238,10 +239,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 17,
       "type": "premise",
       "body": "Prompt engineering as bending digital reality before the Fun Police arrive to shut it down. The wizard who codes the rules of the game from inside the game.",
@@ -252,10 +253,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 18,
       "type": "premise",
       "body": "Brain not keeping up with a conversation — you throw an unbaked cookie into the mix just to say something. The half-baked contribution as social survival.",
@@ -266,10 +267,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 19,
       "type": "premise",
       "body": "Politicians use a dusting of truth to pass the cover-book bullshit test. The winding road of bullshit is paved with 10% fact and 90% confident misdirection.",
@@ -280,21 +281,9 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
-      "id": 20,
-      "type": "rough draft",
-      "body": "Auditory code: 'Emma Lion Pizza Sheet' — say it fast.",
-      "punch": "I'm a lying piece of shit.",
-      "tags": [
-        "wordplay",
-        "ambiguity_harvesting"
-      ],
-      "mt": null,
-      "md": null,
-      "mu": null,
       "variants": [
         {
           "id": "v20b",
@@ -310,9 +299,21 @@
           "punch": "I miss...",
           "variants": []
         }
-      ]
+      ],
+      "id": 20,
+      "type": "rough draft",
+      "body": "Auditory code: 'Emma Lion Pizza Sheet' — say it fast.",
+      "punch": "I'm a lying piece of shit.",
+      "tags": [
+        "wordplay",
+        "ambiguity_harvesting"
+      ],
+      "mt": null,
+      "md": null,
+      "mu": null
     },
     {
+      "variants": [],
       "id": 21,
       "type": "rough draft",
       "body": "Ambiguity Juxtaposition: two conversations happening simultaneously — find the equivocation overlap point where both meanings collide.",
@@ -323,10 +324,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 22,
       "type": "rough draft",
       "body": "Frame Hijacking: mirror an insult back so the target can't tell if you're agreeing or escalating. 'Why, because my balls are bigger than yours?'",
@@ -337,10 +338,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 23,
       "type": "rough draft",
       "body": "The Dundee Award: bestow an absurd, unearned honorific on someone to confuse or disarm. 'As the recipient of the 2024 Dundee Prize for Excellence in Being Wrong...'",
@@ -351,10 +352,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 24,
       "type": "cringe",
       "body": "The Telescope/Salt Shaker: physical miming of an O-shape leading to an x-rated visual misunderstanding.",
@@ -364,10 +365,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 25,
       "type": "cringe",
       "body": "'It's Rapetime!' — corrected to 'Harvey Time' (Weinstein). The dark alley bit.",
@@ -378,10 +379,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 26,
       "type": "cringe",
       "body": "Crass Rebranding: 'Constabulary' → 'Come stab u later'. 'Aspergers' → 'Assbergers'.",
@@ -392,10 +393,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 27,
       "type": "cringe",
       "body": "The Litter of Babies: gross-out lines engineered to guarantee a hurling reaction from women.",
@@ -405,10 +406,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 28,
       "type": "idea",
       "body": "Incongruity-Resolution: brain perceives two incompatible scripts. The joke is the logical mechanism that resolves them. The laugh is the release of that tension.",
@@ -418,10 +419,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 29,
       "type": "idea",
       "body": "Backloading: the reveal word always goes at the END of the sentence. Never step on the laugh by burying the funny word mid-sentence.",
@@ -431,10 +432,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 30,
       "type": "idea",
       "body": "Semantic Fan-Out: pick a word like 'Run' or 'Dates' — list every possible definition — find the switch point where meanings collide unexpectedly.",
@@ -445,10 +446,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 31,
       "type": "idea",
       "body": "The Purple Elephant: call out the antisocial pink elephant in the room without making the target an outcast. Comedy as social surgery.",
@@ -459,10 +460,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 32,
       "type": "antijoke",
       "body": "Why did the little girl fall off the swing?",
@@ -472,10 +473,10 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 33,
       "type": "joke",
       "body": "I spilled spot remover on my dog.",
@@ -488,10 +489,10 @@
       "notes": "Deadpan delivery essential. No setup signaling.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 34,
       "type": "joke",
       "body": "I busted a mirror and got seven years bad luck.",
@@ -504,10 +505,10 @@
       "notes": "The word 'five' lands the joke — pure backloading.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 35,
       "type": "observation",
       "body": "Everywhere is within walking distance...",
@@ -519,10 +520,10 @@
       "context": "Steven Wright. Tautology masquerading as profound realization — technically true, practically useless.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 36,
       "type": "joke",
       "body": "If at first you don't succeed...",
@@ -535,10 +536,10 @@
       "notes": "Classic backloading. 'Skydiving' does all the work.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 37,
       "type": "joke",
       "body": "I put instant coffee in a microwave...",
@@ -549,10 +550,10 @@
       "context": "Steven Wright. Surrealism — combines two symbols of modern convenience to suggest exponential accumulation of speed.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 38,
       "type": "joke",
       "body": "I'm sick of following my dreams.",
@@ -565,10 +566,10 @@
       "notes": "The delivery drag on 'later' matters enormously.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 39,
       "type": "joke",
       "body": "I don't have a girlfriend.",
@@ -580,10 +581,10 @@
       "context": "Mitch Hedberg. Syntactical evasion — redefines a romantic relationship purely through the lens of conflict avoidance.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 40,
       "type": "joke",
       "body": "I know I'm ugly. When my dog found out we look alike...",
@@ -595,10 +596,10 @@
       "context": "Rodney Dangerfield. Self-deprecating. Hyperbolic — attributes complex psychological vanity and suicidal ideation to an animal.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 41,
       "type": "joke",
       "body": "My wife's a terrible cook. If I leave dental floss in the kitchen...",
@@ -610,10 +611,10 @@
       "context": "Rodney Dangerfield. Escalates marital complaints into the grotesque to emphasize a toxic domestic environment.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 42,
       "type": "joke",
       "body": "I went to a fight the other night...",
@@ -625,10 +626,10 @@
       "context": "Rodney Dangerfield. Structural inversion — swaps the primary and secondary events of a familiar observation.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 43,
       "type": "joke",
       "body": "I rang up British Telecom and said: 'I want to report a nuisance caller.'",
@@ -640,10 +641,10 @@
       "context": "Tim Vine. Reverses the subject-object relationship — audience assumes the comedian is the victim, but he's the perpetrator.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 44,
       "type": "joke",
       "body": "Here's a picture of me with REM.",
@@ -654,10 +655,10 @@
       "context": "Milton Jones. Relies on shared cultural knowledge of 'Losing My Religion' by REM — 'That's me in the corner' is a lyric.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 45,
       "type": "pun",
       "body": "Two fish in a tank. One says:",
@@ -668,10 +669,10 @@
       "context": "Peter Kay. Lexical ambiguity pun — pivots on the dual meaning of 'tank' (fish tank vs. military tank).",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 46,
       "type": "observation",
       "body": "If God had written the Bible, the first line should have been:",
@@ -683,10 +684,10 @@
       "context": "Eddie Izzard. Satirizes religious resistance to science — a divine author would have prioritized basic cosmology.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 47,
       "type": "observation",
       "body": "I worry about ridiculous things... how does a guy who drives a snowplough...",
@@ -698,10 +699,10 @@
       "context": "Billy Connolly. Highlights logistical paradoxes of modern infrastructure and the circular dependency of emergency services.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 48,
       "type": "joke",
       "body": "I used to go out with a giraffe. People said 'he takes up too much room'...",
@@ -713,10 +714,10 @@
       "context": "Paul Merton. Introduces absurd premise but grounds the conflict in mundane cinematic etiquette.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 49,
       "type": "observation",
       "body": "We weren't very religious. On Hanukkah...",
@@ -728,10 +729,10 @@
       "context": "Richard Lewis. Synthesizes modern electrical convenience with ancient tradition to illustrate lack of orthodox commitment.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 50,
       "type": "joke",
       "body": "The first guy who persuaded a blind person they needed sunglasses...",
@@ -743,10 +744,10 @@
       "context": "Jimmy Carr. Explores absurdity of an accepted social norm by pointing out a logical inconsistency.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 51,
       "type": "joke",
       "body": "My girlfriend is absolutely beautiful. Body like a Greek statue —",
@@ -759,10 +760,10 @@
       "notes": "The pause before 'completely pale' sets up the misdirection.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 52,
       "type": "joke",
       "body": "A 90-year-old's friends hire a lady of the evening. She says: 'I'm here for super sex.' He replies:",
@@ -774,10 +775,10 @@
       "context": "Jane Lynch. Pivots on phonetic ambiguity ('super sex' vs 'soup or sex') and subversion of virility tropes in aging.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 53,
       "type": "pun",
       "body": "A string tries to get a drink at a bar. He comes back frayed and says:",
@@ -788,10 +789,10 @@
       "context": "Kumail Nanjiani. Classic pun — homophonic relationship between 'afraid not' and the physical state of frayed string.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 54,
       "type": "joke",
       "body": "Rene Descartes is asked if he wants an hors d'oeuvre. He says: 'I think not'...",
@@ -803,10 +804,10 @@
       "context": "Aasif Mandvi. Intellectual pun requiring Cartesian philosophy — 'I think therefore I am.' By ceasing to think, he ceases to exist.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 55,
       "type": "observation",
       "body": "Ron Swanson on eating at a bowling alley:",
@@ -818,10 +819,10 @@
       "context": "Mike Schur (Parks & Rec). Personifies sustenance to establish hyper-masculinity — transforms passive act of eating into domination.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 56,
       "type": "joke",
       "body": "A man pushes another off a bridge after learning he belongs to a different Baptist council from 1912.",
@@ -833,10 +834,10 @@
       "context": "Eugene Mirman. Satirizes the narcissism of minor differences — how violent hatred stems from imperceptible theological distinctions.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 57,
       "type": "observation",
       "body": "My father was a night watchman, but he was a victim of technology.",
@@ -848,10 +849,10 @@
       "context": "Colin Quinn. Highlights absurdity of a human occupation so simple it can be replaced by a basic mechanical object.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 58,
       "type": "observation",
       "body": "The Olympic Silver Medal. Of all the losers...",
@@ -863,10 +864,10 @@
       "context": "Jerry Seinfeld. Inverts traditional hierarchies — identifies the unique agony of absolute proximity to ultimate victory.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 59,
       "type": "observation",
       "body": "Hot Pockets. I paid for that? It's frozen.",
@@ -877,10 +878,10 @@
       "context": "Jim Gaffigan. Commentary on post-consumption regret and inherent contradictions of modern processed food.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 60,
       "type": "observation",
       "body": "The only knife I have seen in Hampstead...",
@@ -892,10 +893,10 @@
       "context": "Ricky Gervais. Generates humor from the perspective of an outsider observing the absolute absence of crime in elite circles.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 61,
       "type": "observation",
       "body": "I think all bullets should cost five thousand dollars.",
@@ -907,10 +908,10 @@
       "context": "Chris Rock. Reframes violent social crisis through the lens of capitalism and supply-and-demand.",
       "mt": null,
       "md": null,
-      "mu": null,
-      "variants": []
+      "mu": null
     },
     {
+      "variants": [],
       "id": 62,
       "type": "joke",
       "body": "",
@@ -925,10 +926,10 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_had_image": true
     },
     {
+      "variants": [],
       "id": 63,
       "type": "joke",
       "body": "",
@@ -943,10 +944,10 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_had_image": true
     },
     {
+      "variants": [],
       "id": 64,
       "type": "joke",
       "body": "",
@@ -961,10 +962,10 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_had_image": true
     },
     {
+      "variants": [],
       "id": 65,
       "type": "joke",
       "body": "",
@@ -979,11 +980,46 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_had_image": true
     },
     {
+      "variants": [],
       "id": 66,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_had_image": true
+    },
+    {
+      "variants": [],
+      "id": 67,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_had_image": true
+    },
+    {
+      "id": 68,
       "type": "joke",
       "body": "",
       "punch": "",
@@ -1001,7 +1037,7 @@
       "_had_image": true
     },
     {
-      "id": 67,
+      "id": 69,
       "type": "joke",
       "body": "",
       "punch": "",
@@ -1131,6 +1167,12 @@
       "name": "Cringe / Anti-Joke",
       "color": "#ff6b8a",
       "gid": "gt"
+    },
+    {
+      "id": "banter",
+      "name": "Banter",
+      "color": "#ffb86b",
+      "gid": "gs"
     }
   ],
   "tagGroups": [
@@ -1204,6 +1246,36 @@
       "color": "#ff6bff"
     }
   ],
-  "playlists": [],
+  "playlists": [
+    {
+      "id": "pl1775689873914",
+      "label": "comedy insp",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/videoseries?list=PLVpWCSz3FtCQd2eqmNvQ5eSoZtXqJeIOf",
+      "pid": "PLVpWCSz3FtCQd2eqmNvQ5eSoZtXqJeIOf",
+      "videos": [
+        {
+          "vid": "hgDgffwgcdM",
+          "title": "Chinese Chefs Are Better"
+        },
+        {
+          "vid": "HotDJ2FhB84",
+          "title": "The Last White Football Team - Gilly and Keeves"
+        },
+        {
+          "vid": "I4UWXQje6Lk",
+          "title": "It's Always Sunny - Frank Freaks Out",
+          "tags": [
+            "frame_whiplash",
+            "banter",
+            "dark"
+          ],
+          "yt_start": "60",
+          "yt_end": null
+        }
+      ],
+      "si": 2,
+      "sortByRating": true
+    }
+  ],
   "sm": "hot"
 }
