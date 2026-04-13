@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-04-12T23:18:05.356Z",
+  "exported": "2026-04-13T11:47:33.197Z",
   "jokes": [
     {
       "variants": [],
@@ -1019,6 +1019,7 @@
       "_had_image": true
     },
     {
+      "variants": [],
       "id": 68,
       "type": "joke",
       "body": "",
@@ -1033,10 +1034,10 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_had_image": true
     },
     {
+      "variants": [],
       "id": 69,
       "type": "joke",
       "body": "",
@@ -1051,8 +1052,477 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_had_image": true
+    },
+    {
+      "id": 70,
+      "type": "joke",
+      "body": "A lot of people don't like bumper stickers. I don't mind bumper stickers. To me a bumper sticker is a shortcut.",
+      "punch": "It's like a little sign that says 'Hey, let's never hang out.'",
+      "tags": [
+        "deadpan",
+        "dry",
+        "observation"
+      ],
+      "context": "Demetri Martin. Reframes a decorative object as a social screening tool — the joke lands on the word 'shortcut' then pays it off.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 71,
+      "type": "joke",
+      "body": "I bought some batteries,",
+      "punch": "but they weren't included.",
+      "tags": [
+        "deadpan",
+        "wordplay",
+        "misdirection"
+      ],
+      "context": "Jimmy Carr. Exploits the familiar packaging phrase 'batteries not included' by reversing the context — the batteries ARE the purchase.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 72,
+      "type": "joke",
+      "body": "My mother always used to say: The older you get, the better you get.",
+      "punch": "Unless you're a banana.",
+      "tags": [
+        "deadpan",
+        "dry",
+        "misdirection"
+      ],
+      "context": "Anthony Jeselnik. Classic paraprosdokian — warm maternal wisdom undercut by a single absurd exception that reframes everything.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 73,
+      "type": "observation",
+      "body": "It says here in this history book that luckily, the good guys have won every single time.",
+      "punch": "What are the odds?",
+      "tags": [
+        "deadpan",
+        "irony",
+        "dry"
+      ],
+      "context": "Norm Macdonald. Deadpan skewering of historical revisionism — history is always written by the winners, so the outcome is 100% predictable.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 74,
+      "type": "joke",
+      "body": "I'm not a fatalist,",
+      "punch": "but even if I were, what could I do about it?",
+      "tags": [
+        "surreal",
+        "absurd",
+        "dry"
+      ],
+      "context": "Emo Philips. Philosophical trap — denying fatalism while structurally demonstrating it. The punchline is the proof of the premise.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 75,
+      "type": "observation",
+      "body": "A day without sunshine is like,",
+      "punch": "you know, night.",
+      "tags": [
+        "surreal",
+        "dry",
+        "deadpan"
+      ],
+      "context": "Steve Martin. Subverts the inspirational cliché by completing it with an obvious, literal answer — the emptiness is the point.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 76,
+      "type": "joke",
+      "body": "Before you criticize someone, you should walk a mile in their shoes. That way when you criticize them,",
+      "punch": "you are a mile away from them and you have their shoes.",
+      "tags": [
+        "surreal",
+        "absurd",
+        "misdirection"
+      ],
+      "context": "Jack Handey. Takes the empathy cliché literally and extracts a tactical advantage — the punchline is logistical, not moral.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 77,
+      "type": "observation",
+      "body": "Guns don't kill people, people kill people.",
+      "punch": "And monkeys do too (if they have a gun).",
+      "tags": [
+        "surreal",
+        "absurd",
+        "dark"
+      ],
+      "context": "Eddie Izzard. Adds a technically accurate exception to a political platitude — the absurdity of the qualifier exposes the absurdity of the original.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 78,
+      "type": "joke",
+      "body": "I have a lot of growing up to do.",
+      "punch": "I realized that the other day inside my fort.",
+      "tags": [
+        "surreal",
+        "self_deprecating",
+        "dry"
+      ],
+      "context": "Zach Galifianakis. Self-deprecation via setting — the revelation of immaturity happens in the least mature possible location.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 79,
+      "type": "observation",
+      "body": "I'm a vegetarian. I'm not strict,",
+      "punch": "I eat pork, beef, and chicken. But I'm not a strict vegetarian.",
+      "tags": [
+        "surreal",
+        "wordplay",
+        "dry"
+      ],
+      "context": "Jay London. Hollow self-labeling — the qualifier 'strict' is used to absorb the entire contradiction rather than resolve it.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 80,
+      "type": "joke",
+      "body": "I told my psychiatrist that everyone hates me.",
+      "punch": "He said I was being ridiculous — everyone hasn't met me yet.",
+      "tags": [
+        "self_deprecating",
+        "dry",
+        "irony"
+      ],
+      "context": "Rodney Dangerfield. The therapist's correction makes things worse — reframes the universal rejection as not yet complete.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 81,
+      "type": "joke",
+      "body": "A study says that having a lot of friends makes you live longer.",
+      "punch": "Which explains why I'm going to die on Thursday.",
+      "tags": [
+        "self_deprecating",
+        "deadpan",
+        "irony"
+      ],
+      "context": "Conan O'Brien. Applies a statistical finding to a specific personal timeline — the precision of 'Thursday' sells it.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 82,
+      "type": "joke",
+      "body": "I don't exercise.",
+      "punch": "If God had wanted me to bend over, he would have put diamonds on the floor.",
+      "tags": [
+        "self_deprecating",
+        "irony",
+        "dry"
+      ],
+      "context": "Joan Rivers. Theological justification for laziness — elevates personal sloth to a matter of divine intent.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 83,
+      "type": "observation",
+      "body": "I'm in my late thirties, which is the age where you have to start doing things like 'taking care of your body'",
+      "punch": "because otherwise, you die.",
+      "tags": [
+        "self_deprecating",
+        "observational",
+        "dry"
+      ],
+      "context": "Mike Birbiglia. Strips away euphemism — the vague cultural pressure to 'take care of yourself' is bluntly literalized as survival.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 84,
+      "type": "joke",
+      "body": "I want my children to have all the things I couldn't afford.",
+      "punch": "Then I want to move in with them.",
+      "tags": [
+        "self_deprecating",
+        "dark",
+        "irony"
+      ],
+      "context": "Phyllis Diller. Generational sacrifice reframed as a long-game financial strategy — parental love as delayed self-interest.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 85,
+      "type": "observation",
+      "body": "I'm at that age where my friends are either getting married or getting DUIs, and it's like, which path am I going down?",
+      "punch": "Obviously neither, I'm staying inside.",
+      "tags": [
+        "self_deprecating",
+        "observational",
+        "dry"
+      ],
+      "context": "Taylor Tomlinson. Sets up a binary life choice then rejects both — the third option is social withdrawal, delivered as contentment.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 86,
+      "type": "joke",
+      "body": "Outside of a dog, a book is man's best friend.",
+      "punch": "Inside of a dog, it's too dark to read.",
+      "tags": [
+        "misdirection",
+        "wordplay",
+        "absurd"
+      ],
+      "context": "Groucho Marx. Classic paraprosdokian — 'outside of' is idiomatic in the setup but then taken spatially/literally in the punchline.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 87,
+      "type": "pun",
+      "body": "I'm giving up acting to become a monk.",
+      "punch": "I've had it with this habit.",
+      "tags": [
+        "misdirection",
+        "wordplay"
+      ],
+      "context": "Gary Delaney. 'Habit' does double duty — monastic robe and a thing one is fed up with. The decision to become a monk generates the punchline word.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 88,
+      "type": "pun",
+      "body": "I decided to sell my Hoover.",
+      "punch": "Well, it was just collecting dust.",
+      "tags": [
+        "misdirection",
+        "wordplay",
+        "dry"
+      ],
+      "context": "Tim Vine. 'Collecting dust' is both the literal failure of a vacuum cleaner and the idiom for abandonment — the punchline is the reason and the joke simultaneously.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 89,
+      "type": "joke",
+      "body": "I used to be a plastic surgeon.",
+      "punch": "Which just goes to show, you never know what someone is made of.",
+      "tags": [
+        "misdirection",
+        "wordplay",
+        "irony"
+      ],
+      "context": "Stewart Francis. 'What someone is made of' is idiomatic (character/resolve) but here cashed out literally — a plastic surgeon knows exactly what people are made of.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 90,
+      "type": "joke",
+      "body": "About a month before he died, my grandfather covered his back with lard.",
+      "punch": "After that, he went downhill fast.",
+      "tags": [
+        "misdirection",
+        "dark",
+        "wordplay"
+      ],
+      "context": "Milton Jones. 'Went downhill fast' is idiomatic (deteriorated quickly) but the lard on the back generates a literal physical image of lubricated downward momentum.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 91,
+      "type": "joke",
+      "body": "To err is human,",
+      "punch": "but it feels divine.",
+      "tags": [
+        "misdirection",
+        "wordplay",
+        "irony"
+      ],
+      "context": "Mae West. Inverts Pope's 'To err is human, to forgive divine' — strips the moral imperative and replaces it with sensual pleasure. The pivot is on 'divine' shifting from theological to hedonistic.",
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "variants": []
+    },
+    {
+      "id": 92,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0101_dnpw6z.webp",
+      "mu_is_image": true,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 93,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://player.cloudinary.com/embed/?cloud_name=danshatdk&public_id=ssstwitter.com_1774391887627_a3clit",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 94,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0206_s54lr0.jpg",
+      "mu_is_image": true,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 95,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0113_fizgdj.jpg",
+      "mu_is_image": true,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 96,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0199_nx1ygz.jpg",
+      "mu_is_image": true,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 97,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0194_bkysaw.webp",
+      "mu_is_image": true,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 98,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0105_quh3wi.webp",
+      "mu_is_image": true,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
     }
   ],
   "ratings": {
@@ -1173,6 +1643,36 @@
       "name": "Banter",
       "color": "#ffb86b",
       "gid": "gs"
+    },
+    {
+      "id": "observational",
+      "name": "Observational",
+      "color": "#7bc8ff",
+      "gid": "gc"
+    },
+    {
+      "id": "deadpan",
+      "name": "Deadpan / One-Liner",
+      "color": "#d0d0ff",
+      "gid": "gc"
+    },
+    {
+      "id": "self_deprecating",
+      "name": "Self-Deprecating",
+      "color": "#ffb0c8",
+      "gid": "gc"
+    },
+    {
+      "id": "surreal",
+      "name": "Surreal / Absurdist",
+      "color": "#c8b0ff",
+      "gid": "gc"
+    },
+    {
+      "id": "misdirection",
+      "name": "Misdirection / Paraprosdokian",
+      "color": "#b0ffd0",
+      "gid": "gc"
     }
   ],
   "tagGroups": [
