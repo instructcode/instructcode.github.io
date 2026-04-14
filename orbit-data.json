@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-04-13T22:05:15.264Z",
+  "exported": "2026-04-14T11:59:26.905Z",
   "jokes": [
     {
       "variants": [],
@@ -930,132 +930,6 @@
     },
     {
       "variants": [],
-      "id": 63,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": null,
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_had_image": true
-    },
-    {
-      "variants": [],
-      "id": 64,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": null,
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_had_image": true
-    },
-    {
-      "variants": [],
-      "id": 65,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": null,
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_had_image": true
-    },
-    {
-      "variants": [],
-      "id": 66,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": null,
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_had_image": true
-    },
-    {
-      "variants": [],
-      "id": 67,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": null,
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_had_image": true
-    },
-    {
-      "variants": [],
-      "id": 68,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": null,
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_had_image": true
-    },
-    {
-      "variants": [],
-      "id": 69,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": null,
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_had_image": true
-    },
-    {
-      "variants": [],
       "id": 70,
       "type": "joke",
       "body": "A lot of people don't like bumper stickers. I don't mind bumper stickers. To me a bumper sticker is a shortcut.",
@@ -1407,122 +1281,310 @@
     },
     {
       "variants": [],
-      "id": 92,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
+      "id": 99,
+      "_sample": true,
+      "type": "observation",
+      "body": "Animals are not here for us to do as we please with. We are not their superiors, we are their equals. We are their family. Be kind to them.",
+      "punch": "Also, they are delicious.",
+      "tags": [
+        "observational",
+        "irony",
+        "misdirection"
+      ],
+      "context": "Ricky Gervais. Classic paraprosdokian — warm moral argument completely undercut by the final clause. The punchline doesn't contradict the sentiment, it just complicates it.",
       "mt": null,
-      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0101_dnpw6z.webp",
-      "mu_is_image": true,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null
+      "md": null,
+      "mu": null
     },
     {
       "variants": [],
-      "id": 93,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
+      "id": 100,
+      "_sample": true,
+      "type": "observation",
+      "body": "I see a lot of people saying, 'I'm spiritual, I don't believe in organized religion.'",
+      "punch": "That just means you want to sleep in on Sundays.",
+      "tags": [
+        "observational",
+        "irony",
+        "dry"
+      ],
+      "context": "Ricky Gervais. Deflates a self-congratulatory identity claim to its bare practical motivation.",
       "mt": null,
-      "mu": "https://player.cloudinary.com/embed/?cloud_name=danshatdk&public_id=ssstwitter.com_1774391887627_a3clit",
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null
+      "md": null,
+      "mu": null
     },
     {
       "variants": [],
-      "id": 94,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
+      "id": 101,
+      "_sample": true,
+      "type": "observation",
+      "body": "If you don't want to hear the answer, don't ask the question.",
+      "punch": "Especially if the question is, 'Does my bum look big in this?'",
+      "tags": [
+        "observational",
+        "dry",
+        "misdirection"
+      ],
+      "context": "Ricky Gervais. Universal principle made vivid by the most universally dreaded specific case.",
       "mt": null,
-      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0206_s54lr0.jpg",
-      "mu_is_image": true,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null
+      "md": null,
+      "mu": null
     },
     {
       "variants": [],
-      "id": 95,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
+      "id": 102,
+      "_sample": true,
+      "type": "observation",
+      "body": "Everything is amazing right now and nobody's happy. People come back from flights and tell you their story: 'It was the worst day of my life. We sat on the runway for forty minutes.'",
+      "punch": "Oh, really? Did you fly through the air incredibly, like a bird? Did you partake in the miracle of human flight, you non-contributing zero?!",
+      "tags": [
+        "observational",
+        "irony",
+        "dark"
+      ],
+      "context": "Louis C.K. Gratitude deficit — scales a trivial complaint against the backdrop of technological miracle to expose how comprehensively ungrateful modern life is.",
+      "notes": "The escalation to 'non-contributing zero' is the key — it's not gentle.",
       "mt": null,
-      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0113_fizgdj.jpg",
-      "mu_is_image": true,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null
+      "md": null,
+      "mu": null
     },
     {
       "variants": [],
-      "id": 96,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
+      "id": 103,
+      "_sample": true,
+      "type": "observation",
+      "body": "I have a lot of beliefs... and I live by none of them. That's just the way I am. They are just my beliefs.",
+      "punch": "I just like believing them. They are my little believies.",
+      "tags": [
+        "observational",
+        "self_deprecating",
+        "dry"
+      ],
+      "context": "Louis C.K. Honest confession of moral hypocrisy delivered without shame. 'Believies' is the comic diminutive that transforms conviction into a comfort object.",
       "mt": null,
-      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0199_nx1ygz.jpg",
-      "mu_is_image": true,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null
+      "md": null,
+      "mu": null
     },
     {
       "variants": [],
-      "id": 97,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
+      "id": 104,
+      "_sample": true,
+      "type": "observation",
+      "body": "'I'm bored' is a useless thing to say. You live in a great, big, vast world that you've seen none of. Even the inside of your own mind is endless.",
+      "punch": "The fact that you're alive is amazing, so you don't get to say 'I'm bored.'",
+      "tags": [
+        "observational",
+        "irony",
+        "dark"
+      ],
+      "context": "Louis C.K. Existential rebuke — frames boredom not as an emotion but as an act of ingratitude against the sheer improbability of consciousness.",
       "mt": null,
-      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0194_bkysaw.webp",
-      "mu_is_image": true,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null
+      "md": null,
+      "mu": null
     },
     {
       "variants": [],
-      "id": 98,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
+      "id": 105,
+      "_sample": true,
+      "type": "observation",
+      "body": "I went to the bank and the teller said, 'Your account is overdrawn, you have negative ten dollars.'",
+      "punch": "How can I have negative money? That means I don't even have no money. I have less than nothing. If a guy with no money walks in here, he's ten dollars richer than me.",
+      "tags": [
+        "observational",
+        "self_deprecating",
+        "absurd"
+      ],
+      "context": "Louis C.K. Financial absurdism — follows the logic of negative numbers to their existential conclusion. Poverty is reframed as a philosophical condition.",
       "mt": null,
-      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0105_quh3wi.webp",
-      "mu_is_image": true,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 106,
+      "_sample": true,
+      "type": "observation",
+      "body": "I don't have a gun, but if I did,",
+      "punch": "I would shoot the radio every time they play the '1-877-Kars-4-Kids' commercial.",
+      "tags": [
+        "observational",
+        "dark",
+        "dry"
+      ],
+      "context": "Louis C.K. Extreme escalation from reasonable irritation — the violence is disproportionate but anyone who has heard that jingle understands the impulse completely.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 107,
+      "_sample": true,
+      "type": "joke",
+      "body": "I get no respect. The way my luck is running,",
+      "punch": "if I was a politician I would be honest.",
+      "tags": [
+        "self_deprecating",
+        "deadpan",
+        "irony"
+      ],
+      "context": "Rodney Dangerfield. The 'no respect' frame is flipped — here honesty in politics is framed as a curse, implying integrity is the worst possible electoral strategy.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 108,
+      "_sample": true,
+      "type": "joke",
+      "body": "I told my doctor, 'Every time I look in the mirror, I feel like throwing up. What's wrong with me?'",
+      "punch": "He said, 'I don't know, but your eyesight is perfect.'",
+      "tags": [
+        "self_deprecating",
+        "deadpan",
+        "dry"
+      ],
+      "context": "Rodney Dangerfield. The doctor's response validates the complaint while turning it into a compliment — perfect eyesight as a backhanded insult.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 109,
+      "_sample": true,
+      "type": "joke",
+      "body": "My wife and I were happy for twenty years.",
+      "punch": "Then we met.",
+      "tags": [
+        "self_deprecating",
+        "deadpan",
+        "misdirection"
+      ],
+      "context": "Rodney Dangerfield. Ultra-compressed paraprosdokian — reverses the expected timeline. The punchline implies the happiness was the illusion and meeting was the disaster.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 110,
+      "_sample": true,
+      "type": "joke",
+      "body": "When I was a kid my parents moved a lot,",
+      "punch": "but I always found them.",
+      "tags": [
+        "self_deprecating",
+        "deadpan",
+        "misdirection"
+      ],
+      "context": "Rodney Dangerfield. The setup implies instability/poverty; the punchline flips it — the tragedy isn't that they moved, it's that they were trying to lose him.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 111,
+      "_sample": true,
+      "type": "joke",
+      "body": "I looked up my family tree",
+      "punch": "and found out I was the sap.",
+      "tags": [
+        "self_deprecating",
+        "wordplay",
+        "deadpan"
+      ],
+      "context": "Rodney Dangerfield. Wordplay — 'sap' means both the fluid in a tree and a gullible fool. The genealogy metaphor earns the double meaning.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 112,
+      "_sample": true,
+      "type": "joke",
+      "body": "I get no respect. I played hide and seek.",
+      "punch": "They wouldn't even look for me.",
+      "tags": [
+        "self_deprecating",
+        "deadpan",
+        "dark"
+      ],
+      "context": "Rodney Dangerfield. The 'no respect' formula at its most purely desolate — abandonment reframed as a game mechanic.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 113,
+      "_sample": true,
+      "type": "joke",
+      "body": "They say that if you're afraid of something, you should face it.",
+      "punch": "But what if you're afraid of a guy with a baseball bat?",
+      "tags": [
+        "deadpan",
+        "absurd",
+        "misdirection"
+      ],
+      "context": "Norm Macdonald. Takes the therapeutic cliché and finds the edge case where it becomes catastrophically bad advice. The specificity of 'baseball bat' is key.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 114,
+      "_sample": true,
+      "type": "joke",
+      "body": "In my opinion, if you're going to fight the War on Terror,",
+      "punch": "a good place to start would be the Haunted House.",
+      "tags": [
+        "deadpan",
+        "absurd",
+        "irony"
+      ],
+      "context": "Norm Macdonald. Deflates geopolitical rhetoric by relocating it to a seasonal attraction. The earnest delivery makes it land as if it might actually be a policy proposal.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 115,
+      "_sample": true,
+      "type": "joke",
+      "body": "I'm not one for giving advice, but if you're ever feeling down, just remember:",
+      "punch": "you could be a moth.",
+      "tags": [
+        "deadpan",
+        "absurd",
+        "dry"
+      ],
+      "context": "Norm Macdonald. Anti-inspirational — the consolation is so low it functions as a kind of existential floor. Being a moth is presented as the worst possible condition.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "id": 116,
+      "_sample": true,
+      "type": "joke",
+      "body": "My favorite disease is the one where you forget everything.",
+      "punch": "I forgot what it's called.",
+      "tags": [
+        "deadpan",
+        "wordplay",
+        "dry"
+      ],
+      "context": "Norm Macdonald. Perfect self-referential loop — the joke performs its own subject matter. The delivery had to be bone-dry or the structure collapses.",
+      "mt": null,
+      "md": null,
+      "mu": null
     }
   ],
   "ratings": {
@@ -1685,6 +1747,12 @@
       "name": "Meditation",
       "color": "#a8c8ff",
       "gid": "gc"
+    },
+    {
+      "id": "notes",
+      "name": "Notes",
+      "color": "#ffe066",
+      "gid": "gc"
     }
   ],
   "tagGroups": [
@@ -1696,6 +1764,11 @@
     {
       "id": "gt",
       "name": "Tone",
+      "cl": false
+    },
+    {
+      "id": "gc",
+      "name": "Category",
       "cl": false
     }
   ],
@@ -1756,6 +1829,62 @@
         "absurd"
       ],
       "color": "#ff6bff"
+    },
+    {
+      "id": "l6",
+      "lbl": "Observational",
+      "tags": [
+        "observational"
+      ],
+      "color": "#7bc8ff"
+    },
+    {
+      "id": "l7",
+      "lbl": "Deadpan",
+      "tags": [
+        "deadpan"
+      ],
+      "color": "#d0d0ff"
+    },
+    {
+      "id": "l8",
+      "lbl": "Self-Deprecating",
+      "tags": [
+        "self_deprecating"
+      ],
+      "color": "#ffb0c8"
+    },
+    {
+      "id": "l9",
+      "lbl": "Surreal",
+      "tags": [
+        "surreal"
+      ],
+      "color": "#c8b0ff"
+    },
+    {
+      "id": "l10",
+      "lbl": "Misdirection",
+      "tags": [
+        "misdirection"
+      ],
+      "color": "#b0ffd0"
+    },
+    {
+      "id": "l11",
+      "lbl": "🎲 Riff Lab",
+      "tags": [
+        "riff"
+      ],
+      "color": "#ffdd6b"
+    },
+    {
+      "id": "l12",
+      "lbl": "🌀 Meditations",
+      "tags": [
+        "meditation"
+      ],
+      "color": "#a8c8ff"
     }
   ],
   "playlists": [
