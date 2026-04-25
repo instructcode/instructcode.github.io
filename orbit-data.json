@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-04-24T13:15:59.632Z",
+  "exported": "2026-04-25T23:43:05.714Z",
   "jokes": [
     {
       "variants": [],
@@ -3901,6 +3901,116 @@
       "notes": null,
       "image": null,
       "_remapped_from": 118
+    },
+    {
+      "variants": [],
+      "id": 287,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 288,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 289,
+      "type": "video",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "riff"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 290,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "riff"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": "https://x.com/gianl1974/status/2047908857746190336?s=46",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 291,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "riff"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": "https://x.com/damaan4u33/status/2048103469203017810?s=46",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "id": 292,
+      "type": "video",
+      "body": "shane gillis",
+      "punch": "",
+      "tags": [
+        "riff"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": "https://www.tiktok.com/@shanegillis168/video/7624561240769137950?_r=1&_t=ZP-95qW1GmN56E",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
     }
   ],
   "ratings": {
