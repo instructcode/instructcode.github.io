@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-04-25T23:43:05.714Z",
+  "exported": "2026-04-26T18:29:22.627Z",
   "jokes": [
     {
       "variants": [],
@@ -3994,6 +3994,7 @@
       "image": null
     },
     {
+      "variants": [],
       "id": 292,
       "type": "video",
       "body": "shane gillis",
@@ -4009,8 +4010,7 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null,
-      "variants": []
+      "image": null
     }
   ],
   "ratings": {
@@ -4362,10 +4362,59 @@
           ],
           "yt_start": "60",
           "yt_end": null
+        },
+        {
+          "vid": "oXDJBM2p07A",
+          "title": "Tim Dillon on the 2008 Mortgage Crisis"
+        },
+        {
+          "vid": "dC-CNJvQxGg",
+          "title": "Tim Dillon - Selling Subprime Mortgages To Idiots"
+        },
+        {
+          "vid": "BLiIzTpkCBU",
+          "title": "America in Transition: George Friedman on Trump’s First 50 Days"
+        },
+        {
+          "vid": "JZ9UWvn__g4",
+          "title": "Tim Dillon Funniest Moments on the Early Days pt 2"
+        },
+        {
+          "vid": "ctwQtTOLULo",
+          "title": "Tim Dillon Funniest Moments on the Early Days pt.1"
+        },
+        {
+          "vid": "zPdudE4egdU",
+          "title": "Nikki Glaser’s Best Roast Comebacks 🔥"
+        },
+        {
+          "vid": "c8y2zOnqbkA",
+          "title": "Shane Gillis Loves Donald Trump!!!🤣🤣🤣#shanegillis #snl #mssp #comedy #saturdaynightlive #standup"
+        },
+        {
+          "vid": "fs70OJw5vFs",
+          "title": "Caitlin Clark Rant"
+        },
+        {
+          "vid": "nWDkJjx1Kr8",
+          "title": "How to Keep Your Man Happy"
+        },
+        {
+          "vid": "HwM91HXrpOI",
+          "title": "Shane Gillis Hilarious Airplane Sketch🤣🤣🤣#shanegillis #mattandshanessecretpodcast #comedy #snl"
+        },
+        {
+          "vid": "xG2VrvhWDF8",
+          "title": "Colin Sucks Off The Internet🌐 Colin Robinson  🦇 What We Do in the Shadows #shorts #funny"
+        },
+        {
+          "vid": "6-_xSDCJNFg",
+          "title": "Joe Rogan Explains Energy Vampire Mentality"
         }
       ],
       "si": 2,
-      "sortByRating": true
+      "sortByRating": true,
+      "videosFetched": true
     }
   ],
   "sm": "hot"
