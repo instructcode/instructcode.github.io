@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-04-26T18:29:22.627Z",
+  "exported": "2026-04-27T13:56:25.712Z",
   "jokes": [
     {
       "variants": [],
@@ -4011,6 +4011,23 @@
       "context": null,
       "notes": null,
       "image": null
+    },
+    {
+      "id": 293,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": "https://www.tiktok.com/@user91260110916/video/7627064657739615519?_r=1&_t=ZP-95tDrnzJae7",
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
     }
   ],
   "ratings": {
@@ -4245,7 +4262,8 @@
       "id": "l1",
       "lbl": "All",
       "tags": [],
-      "color": "#7b6fff"
+      "color": "#7b6fff",
+      "si": 0
     },
     {
       "id": "l2",
@@ -4253,7 +4271,8 @@
       "tags": [
         "dark"
       ],
-      "color": "#ff6b8a"
+      "color": "#ff6b8a",
+      "si": 0
     },
     {
       "id": "l3",
@@ -4261,7 +4280,8 @@
       "tags": [
         "wordplay"
       ],
-      "color": "#6bffcc"
+      "color": "#6bffcc",
+      "si": 0
     },
     {
       "id": "l4",
@@ -4270,7 +4290,8 @@
         "dark",
         "irony"
       ],
-      "color": "#ffb86b"
+      "color": "#ffb86b",
+      "si": 0
     },
     {
       "id": "l5",
@@ -4278,7 +4299,8 @@
       "tags": [
         "absurd"
       ],
-      "color": "#ff6bff"
+      "color": "#ff6bff",
+      "si": 0
     },
     {
       "id": "l6",
@@ -4286,7 +4308,8 @@
       "tags": [
         "observational"
       ],
-      "color": "#7bc8ff"
+      "color": "#7bc8ff",
+      "si": 0
     },
     {
       "id": "l7",
@@ -4294,7 +4317,8 @@
       "tags": [
         "deadpan"
       ],
-      "color": "#d0d0ff"
+      "color": "#d0d0ff",
+      "si": 0
     },
     {
       "id": "l8",
@@ -4302,7 +4326,8 @@
       "tags": [
         "self_deprecating"
       ],
-      "color": "#ffb0c8"
+      "color": "#ffb0c8",
+      "si": 0
     },
     {
       "id": "l9",
@@ -4310,7 +4335,8 @@
       "tags": [
         "surreal"
       ],
-      "color": "#c8b0ff"
+      "color": "#c8b0ff",
+      "si": 0
     },
     {
       "id": "l10",
@@ -4318,7 +4344,8 @@
       "tags": [
         "misdirection"
       ],
-      "color": "#b0ffd0"
+      "color": "#b0ffd0",
+      "si": 0
     },
     {
       "id": "l11",
@@ -4326,7 +4353,8 @@
       "tags": [
         "riff"
       ],
-      "color": "#ffdd6b"
+      "color": "#ffdd6b",
+      "si": 0
     },
     {
       "id": "l_mimic",
@@ -4334,7 +4362,8 @@
       "tags": [],
       "color": "#ff9fc8",
       "isMimic": true,
-      "mimicJids": []
+      "mimicJids": [],
+      "si": 0
     }
   ],
   "playlists": [
