@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-04-28T19:35:52.090Z",
+  "exported": "2026-04-28T19:49:14.270Z",
   "jokes": [
     {
       "variants": [],
@@ -984,7 +984,7 @@
       ],
       "context": "Jerry Seinfeld. Reframes a mundane daily activity (picking up dog waste) to invert the assumed power dynamic between owner and pet.",
       "mt": "image",
-      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404908/m0oukhkk0vklut2h8tf2.webp",
+      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777405742/xbt9r8lta9nedon9jkpm.webp",
       "mu": null
     },
     {
@@ -1000,7 +1000,7 @@
       ],
       "context": "John Mulaney. Hyperbolic comparison that validates universal social anxiety — the relief of cancellation is pharmacological in intensity.",
       "mt": "image",
-      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404909/qzprtgypvz7uqupnwlji.jpg",
+      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777405743/rinwnagsgtgqfiwfd1j2.jpg",
       "mu": null
     },
     {
@@ -1016,7 +1016,7 @@
       ],
       "context": "George Carlin. Exposes the self-centered nature of human perception — everyone's own speed is the rational norm.",
       "mt": "image",
-      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404910/nda2uzemalngczxd5tgz.webp",
+      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777405744/qnwrecax1ylu5n09dqyx.webp",
       "mu": null
     },
     {
@@ -1032,7 +1032,7 @@
       ],
       "context": "Jim Gaffigan. Defends personal food autonomy with mock philosophical conviction — exposes how 'we' is used to normalize food theft.",
       "mt": "image",
-      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404911/anwafjcctheydnwf2sea.webp",
+      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777405745/oh31g2h74y4dqc1sidue.webp",
       "mu": null
     },
     {
@@ -1048,7 +1048,7 @@
       ],
       "context": "Brian Regan. Self-deprecating observational loop — the solution requires the skill it's meant to teach.",
       "mt": "video",
-      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1777404912/tbwywhw8gjtfoi9nli9o.mp4",
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1777405745/ijiabjigtswbin621eue.mp4",
       "mu": null
     },
     {
@@ -1065,7 +1065,7 @@
       ],
       "context": "Wanda Sykes. Theological irony — uses divine attribution to land a pointed class critique.",
       "mt": "video",
-      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1777404913/owhxdgxgasnmgjspuecv.mp4",
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1777405747/tcenbxg8jlo15aw1ugz8.mp4",
       "mu": null
     },
     {
@@ -4130,6 +4130,40 @@
       "context": null,
       "notes": null,
       "image": null
+    },
+    {
+      "id": 300,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777405748/qndxhvrcvwrsjxswao9v.jpg",
+      "mt": "image",
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 301,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [],
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1777405749/injgfrkvxt4pcuexxvw7.mp4",
+      "mt": "video",
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
     }
   ],
   "ratings": {
