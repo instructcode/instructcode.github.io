@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-05-19T21:03:52.263Z",
+  "exported": "2026-05-19T21:08:36.104Z",
   "jokes": [
     {
       "variants": [],
@@ -5098,7 +5098,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 167
+      "si": 99
     },
     {
       "id": "l2",
@@ -5198,9 +5198,10 @@
       "color": "#ff9fc8",
       "isMimic": true,
       "mimicJids": [
-        304
+        304,
+        314
       ],
-      "si": 0
+      "si": 1
     }
   ],
   "playlists": [
@@ -7163,6 +7164,12 @@
           "jids": []
         },
         {
+          "id": "ol_wip_ambiguity",
+          "lbl": "🔀 Ambiguity Harvest",
+          "_autoType": "ambiguity",
+          "jids": []
+        },
+        {
           "id": "ol_wip_rewrites",
           "lbl": "🔄 Rewrites & Replays",
           "_autoType": "scenarios",
@@ -7178,12 +7185,6 @@
           "id": "ol_wip_drafts",
           "lbl": "⚠ Rough Drafts",
           "_autoType": "drafts",
-          "jids": []
-        },
-        {
-          "id": "ol_wip_ambiguity",
-          "lbl": "🔀 Ambiguity Harvest",
-          "_autoType": "ambiguity",
           "jids": []
         },
         {
@@ -7466,6 +7467,18 @@
           "id": "ol_hum_sat",
           "lbl": "📰 Satire",
           "_autoType": "humor_satire",
+          "jids": []
+        }
+      ]
+    },
+    {
+      "id": "orb1779224741289",
+      "name": "AmbiguityHarvest",
+      "color": "#ff6b8a",
+      "lanes": [
+        {
+          "id": "ol1779224741289",
+          "lbl": "All",
           "jids": []
         }
       ]
