@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-05-19T21:08:36.104Z",
+  "exported": "2026-05-31T15:05:56.499Z",
   "jokes": [
     {
       "variants": [],
@@ -4862,7 +4862,9 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": []
+      "variants": [],
+      "links": [],
+      "_sample": false
     }
   ],
   "ratings": {
@@ -5098,7 +5100,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 99
+      "si": 247
     },
     {
       "id": "l2",
@@ -6721,6 +6723,60 @@
         }
       ],
       "videosFetched": false
+    },
+    {
+      "id": "pl1780239906794",
+      "label": "comedy new",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/videoseries?list=PLVpWCSz3FtCTzwUGb2HPRKu-wQcb5hGGj",
+      "pid": "PLVpWCSz3FtCTzwUGb2HPRKu-wQcb5hGGj",
+      "si": 0,
+      "videos": [
+        {
+          "vid": "AWvryF9sI50",
+          "title": "[Deleted video]"
+        },
+        {
+          "vid": "5pUJCQa0QWM",
+          "title": "Deadbeat Shane #comedy #shanegillis"
+        },
+        {
+          "vid": "mrazaNEjEp0",
+          "title": "Theo Von Breaks Katt Williams🤣😂#standup #standupcomedy #comedy #comedyshow #theovon"
+        },
+        {
+          "vid": "DHua3AuNebU",
+          "title": "Katt Williams Can’t Believe Theo Von 🤣"
+        },
+        {
+          "vid": "_5kYd6M34sw",
+          "title": "Katt Williams On The Two Types Of Drunk People!!! 🤣🤣🤣"
+        },
+        {
+          "vid": "2P4Fpln3l4E",
+          "title": "Larry David - Even the Stupid Ones? #youtubeshorts #larrydavid #hancock"
+        },
+        {
+          "vid": "BUHFtSYQFE8",
+          "title": "Katt Williams Wasn't Ready for Theo Von"
+        },
+        {
+          "vid": "hfs0Vi_K2rI",
+          "title": "Katt Williams Can't Handle Theo Von 😂"
+        },
+        {
+          "vid": "g5YTTHxi4Cc",
+          "title": "Theo making Druski laugh uncontrollably @TheoVon"
+        },
+        {
+          "vid": "gQPym0sH3sw",
+          "title": "Katt Williams DESTROYED Kevin Hart 😂😂 #shorts"
+        },
+        {
+          "vid": "jEGdOTJdRXg",
+          "title": "KATT WILLIAMS ARRIVES TO THE #KevinHartRoast"
+        }
+      ],
+      "videosFetched": false
     }
   ],
   "vocab": [
@@ -7114,6 +7170,18 @@
       ]
     },
     {
+      "id": "orb1779224741289",
+      "name": "AmbiguityHarvest",
+      "color": "#ff6b8a",
+      "lanes": [
+        {
+          "id": "ol1779224741289",
+          "lbl": "All",
+          "jids": []
+        }
+      ]
+    },
+    {
       "id": "orb_jokes",
       "name": "🎤 Jokes Only",
       "color": "#6bffcc",
@@ -7164,12 +7232,6 @@
           "jids": []
         },
         {
-          "id": "ol_wip_ambiguity",
-          "lbl": "🔀 Ambiguity Harvest",
-          "_autoType": "ambiguity",
-          "jids": []
-        },
-        {
           "id": "ol_wip_rewrites",
           "lbl": "🔄 Rewrites & Replays",
           "_autoType": "scenarios",
@@ -7185,6 +7247,12 @@
           "id": "ol_wip_drafts",
           "lbl": "⚠ Rough Drafts",
           "_autoType": "drafts",
+          "jids": []
+        },
+        {
+          "id": "ol_wip_ambiguity",
+          "lbl": "🔀 Ambiguity Harvest",
+          "_autoType": "ambiguity",
           "jids": []
         },
         {
@@ -7467,18 +7535,6 @@
           "id": "ol_hum_sat",
           "lbl": "📰 Satire",
           "_autoType": "humor_satire",
-          "jids": []
-        }
-      ]
-    },
-    {
-      "id": "orb1779224741289",
-      "name": "AmbiguityHarvest",
-      "color": "#ff6b8a",
-      "lanes": [
-        {
-          "id": "ol1779224741289",
-          "lbl": "All",
           "jids": []
         }
       ]
