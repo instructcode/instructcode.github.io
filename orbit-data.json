@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-13T23:54:58.406Z",
+  "exported": "2026-06-13T23:55:59.863Z",
   "jokes": [
     {
       "variants": [],
@@ -5200,7 +5200,7 @@
       "notes": null,
       "image": null,
       "_sample": false,
-      "iconId": "ico1781380873497",
+      "iconId": "ico1781394939467",
       "gestureCat": "duh"
     },
     {
@@ -5664,7 +5664,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 174
+      "si": 169
     },
     {
       "id": "l2",
@@ -5682,7 +5682,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 19
+      "si": 39
     },
     {
       "id": "l4",
@@ -5701,7 +5701,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 5
+      "si": 17
     },
     {
       "id": "l6",
@@ -5710,7 +5710,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 18
+      "si": 10
     },
     {
       "id": "l7",
@@ -5719,7 +5719,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 19
+      "si": 16
     },
     {
       "id": "l8",
@@ -5728,7 +5728,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 2
+      "si": 17
     },
     {
       "id": "l9",
@@ -5737,7 +5737,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 14
+      "si": 6
     },
     {
       "id": "l10",
@@ -5746,7 +5746,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 24
+      "si": 8
     },
     {
       "id": "l11",
@@ -5755,7 +5755,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 6
+      "si": 2
     },
     {
       "id": "l_mimic",
