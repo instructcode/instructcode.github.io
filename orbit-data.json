@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-05-31T15:05:56.499Z",
+  "exported": "2026-06-13T23:54:58.406Z",
   "jokes": [
     {
       "variants": [],
@@ -2672,6 +2672,527 @@
     {
       "variants": [],
       "links": [],
+      "id": 146,
+      "_sample": true,
+      "type": "joke",
+      "body": "I went to the General store, they wouldn't let me buy anything specific.",
+      "punch": "",
+      "tags": [
+        "absurd",
+        "wordplay"
+      ],
+      "context": "Steven Wright. Semantic redefinition of 'general' vs 'specific.'",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 147,
+      "_sample": true,
+      "type": "joke",
+      "body": "It doesn't matter what temperature the room is, it's always room temperature.",
+      "punch": "",
+      "tags": [
+        "absurd"
+      ],
+      "context": "Steven Wright. Logical paradox — the term defines itself.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 148,
+      "_sample": true,
+      "type": "joke",
+      "body": "Sometimes I wish that my first word was 'quote,' that way on my death bed my last words could be 'end quote.'",
+      "punch": "",
+      "tags": [
+        "absurd",
+        "wordplay"
+      ],
+      "context": "Steven Wright. Metalinguistic inversion bookending a life.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 149,
+      "_sample": true,
+      "type": "bit",
+      "body": "I like an escalator because an escalator can never break — it can only become stairs.",
+      "punch": "There would never be an 'escalator temporarily out of order' sign, only 'escalator temporarily stairs. Sorry for the convenience.'",
+      "tags": [
+        "absurd",
+        "observational"
+      ],
+      "context": "Mitch Hedberg. Reframing inconvenience — the second half reverses the premise of the first.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 150,
+      "_sample": true,
+      "type": "joke",
+      "body": "I don't have a girlfriend. But I do know a woman who would be real mad if she heard me say that.",
+      "punch": "",
+      "tags": [
+        "observational"
+      ],
+      "context": "Mitch Hedberg. Dual-interpretation shift held to the final clause.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 151,
+      "_sample": true,
+      "type": "bit",
+      "body": "I wanna hang a map of the world in my house. Then I'm gonna put pins in all the locations I've traveled to.",
+      "punch": "But first I'm gonna have to travel to the top two corners of the map so it won't fall down.",
+      "tags": [
+        "absurd"
+      ],
+      "context": "Mitch Hedberg. Pragmatic absurdity — literalizing the logistics.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 152,
+      "_sample": true,
+      "type": "joke",
+      "body": "I've spent the past two years looking for my ex-girlfriend's killer… but no one will do it.",
+      "punch": "",
+      "tags": [
+        "dark"
+      ],
+      "context": "Anthony Jeselnik. Dark moral inversion — the request flips on the last word.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 153,
+      "_sample": true,
+      "type": "joke",
+      "body": "Yesterday I accidentally hit a little kid with my car. It wasn't serious — nobody saw me.",
+      "punch": "",
+      "tags": [
+        "dark"
+      ],
+      "context": "Anthony Jeselnik. Syntactic misdirection: 'serious' reinterpreted.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 154,
+      "_sample": true,
+      "type": "joke",
+      "body": "My girlfriend makes me want to be a better person… so I can get a better girlfriend.",
+      "punch": "",
+      "tags": [
+        "dark"
+      ],
+      "context": "Anthony Jeselnik. Interpersonal contrast — the cliché weaponized.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 155,
+      "_sample": true,
+      "type": "bit",
+      "body": "I've got a kid in Africa that I feed, that I clothe, that I school, that I inoculate for 75 cents a day.",
+      "punch": "Which is practically nothing compared to what it cost to send him there.",
+      "tags": [
+        "dark"
+      ],
+      "context": "Anthony Jeselnik. Subverting philanthropy.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 156,
+      "_sample": true,
+      "type": "bit",
+      "body": "When I finished high school I wanted to take my graduation money and buy a motorcycle. But my mom said no.",
+      "punch": "She had a brother who died in a horrible motorcycle accident when he was 18. And I could just have his motorcycle.",
+      "tags": [
+        "dark"
+      ],
+      "context": "Anthony Jeselnik. Maternal-expectation subversion.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 157,
+      "_sample": true,
+      "type": "joke",
+      "body": "My mother always said don't marry for money… divorce for money.",
+      "punch": "",
+      "tags": [
+        "wordplay"
+      ],
+      "context": "Wendy Liebman. Late-stage linguistic modifier.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 158,
+      "_sample": true,
+      "type": "joke",
+      "body": "My husband wanted one of those big-screen TVs for his birthday. So I just moved his chair closer to the one we have already.",
+      "punch": "",
+      "tags": [
+        "observational"
+      ],
+      "context": "Wendy Liebman. Domestic-expectation inversion.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 159,
+      "_sample": true,
+      "type": "joke",
+      "body": "Once I was with two men in one night. But I could never do it again — I could hardly walk afterward. Two dinners? That's a lot of food.",
+      "punch": "",
+      "tags": [
+        "wordplay"
+      ],
+      "context": "Sarah Silverman. Late-stage noun shift reframes the whole setup.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 160,
+      "_sample": true,
+      "type": "joke",
+      "body": "I was such an ugly kid. When I played in the sandbox the cat kept trying to cover me up.",
+      "punch": "",
+      "tags": [
+        "self-deprecating"
+      ],
+      "context": "Rodney Dangerfield. Self-deprecating hyperbole.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 161,
+      "_sample": true,
+      "type": "joke",
+      "body": "I told my wife the truth — I told her I was seeing a psychiatrist. Then she told me the truth: that she was seeing a psychiatrist, two plumbers, and a bartender.",
+      "punch": "",
+      "tags": [
+        "self-deprecating"
+      ],
+      "context": "Rodney Dangerfield. Cynical relationship contrast via list escalation.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 162,
+      "_sample": true,
+      "type": "bit",
+      "body": "There's a horse loose in a hospital.",
+      "punch": "No one knows what the horse is going to do next, least of all the horse. It has never been in a hospital before.",
+      "tags": [
+        "absurd"
+      ],
+      "context": "John Mulaney. Conceptual analogy sustained as an extended metaphor.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 163,
+      "_sample": true,
+      "type": "joke",
+      "body": "I used to drink. Then I drank too much, and I had to stop.",
+      "punch": "",
+      "tags": [
+        "observational"
+      ],
+      "context": "John Mulaney. Flat declarative pacing — minimalist structuralism.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 164,
+      "_sample": true,
+      "type": "joke",
+      "body": "My father drank so heavily, when he blew on the birthday cake he lit the candles.",
+      "punch": "",
+      "tags": [
+        "absurd"
+      ],
+      "context": "Les Dawson. Hyperbolic literalism.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 165,
+      "_sample": true,
+      "type": "joke",
+      "body": "Crime in multi-storey car parks. That is wrong on so many different levels.",
+      "punch": "",
+      "tags": [
+        "pun",
+        "wordplay"
+      ],
+      "context": "Tim Vine. Double-entendre pun on 'levels.'",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 166,
+      "_sample": true,
+      "type": "joke",
+      "body": "I rang up British Telecom and said: 'I want to report a nuisance caller.' He said: 'Not you again.'",
+      "punch": "",
+      "tags": [
+        "wordplay"
+      ],
+      "context": "Tim Vine. Conversational misdirection.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 167,
+      "_sample": true,
+      "type": "joke",
+      "body": "Gay Republicans — what do they know that we don't?",
+      "punch": "",
+      "tags": [
+        "observational"
+      ],
+      "context": "Rory Scovel. Immediate conceptual framing, no setup fat.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 168,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "Funniest word last.",
+      "punch": "The exact word that triggers the cognitive shift goes at the absolute END of the punchline. Any word after it forces the audience to process noise during the laugh — it steps on the laugh and flattens the reaction.",
+      "tags": [
+        "comedy_technique"
+      ],
+      "context": "Syntactic pacing. The setup builds a predictable trajectory; the final word detonates it.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 169,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "Cut the syntactic fat.",
+      "punch": "Every word in a setup must earn its place. Conversational fillers, throat-clearing adjectives, and late qualifiers dilute the incongruity. Comedic impact rises as redundancy falls.",
+      "tags": [
+        "comedy_technique"
+      ],
+      "context": "Comedic impact is proportional to cognitive incongruity over syntactic redundancy.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 170,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "Hard plosives hit harder.",
+      "punch": "Words with /p/, /b/, /k/ register with more comedic force — the sharp stop-and-release punctuates the punchline. 'Buick' lands harder than 'Nissan.' Choose percussive nouns for the payload.",
+      "tags": [
+        "comedy_technique"
+      ],
+      "context": "Phonetic selection. The plosive physically marks the beat of the joke.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 171,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "Deliver dark slow, with a pleasant face.",
+      "punch": "For mean, cynical, or shocking premises: slow the delivery and keep a warm expression. It softens the moral threat so the audience engages the structure instead of shutting down.",
+      "tags": [
+        "comedy_technique",
+        "dark"
+      ],
+      "context": "Tension management. Let them play with the absurdity rather than recoil from the topic.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 172,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "Perspective-switch a stuck joke.",
+      "punch": "When a joke won't crack, redraft it from another point of view — another person, an animal, an object, a younger or older you. The shift exposes comedic pathways the default angle hides.",
+      "tags": [
+        "comedy_technique"
+      ],
+      "context": "Creative problem-solving for structural blockages.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 173,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "Symmetrical escalation for longform.",
+      "punch": "Build a clear systematic pattern — taxonomic divisions, administrative steps, escalating stakes — then tighten the logic relentlessly until one final structural break shatters it. (Emo Philips' bridge joke; Gulman's state abbreviations.)",
+      "tags": [
+        "comedy_technique"
+      ],
+      "context": "Narrative architecture: tension accumulates through pattern, releases through the break.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 174,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "Empathy-reversal structure.",
+      "punch": "Open on a high-empathy scene (diagnosis, accident, charity) so the audience braces for sympathy. Then deliver a clean semantic reversal revealing indifference, absurd self-interest, or a benign literal reading. (Jeselnik.)",
+      "tags": [
+        "comedy_technique",
+        "dark"
+      ],
+      "context": "Misdirection: prime the moral expectation, then break it on a single turn.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 175,
+      "_sample": true,
+      "type": "comedy tip",
+      "body": "The shaggy-dog payoff.",
+      "punch": "Wrap a tiny, almost anti-comedic punchline inside a long, detailed, melancholy narrative. The humor is the disproportion between the gloom of the setup and the simplicity of the resolution. (Norm's moth joke: 'because the light was on.')",
+      "tags": [
+        "comedy_technique"
+      ],
+      "context": "Tension-and-release scaled across minutes, not seconds.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 176,
+      "_sample": true,
+      "type": "meditation",
+      "body": "Performer-first comedy leans on charisma, body, and voice — strip the delivery and the text often collapses. Pure joke-writing is the opposite: a self-contained logical machine that still fires when read silently on a page. Robin Williams and Jim Carrey dazzle live; Steven Wright, Mitch Hedberg, Emo Philips, Rodney Dangerfield survive the transcript. Neither is better — but if you want material that travels across mediums and outlives the room, build the machine. Charisma is rented. Structure is owned.",
+      "punch": "",
+      "tags": [
+        "comedy_technique"
+      ],
+      "context": "Performance charisma vs structural textualism — know which you're writing.",
+      "mt": null,
+      "md": null,
+      "mu": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9001,
+      "_sample": true,
+      "type": "sfx",
+      "body": "Scream",
+      "label": "Scream",
+      "punch": "",
+      "tags": [
+        "sfx"
+      ],
+      "mt": "audio",
+      "md": null,
+      "mu": null,
+      "hot": 5,
+      "_builtinSfx": true,
+      "sfxGroup": "scream"
+    },
+    {
+      "variants": [],
+      "links": [],
       "id": 305,
       "_sample": true,
       "type": "free_association",
@@ -3190,7 +3711,8 @@
       "body": "The Litter of Babies: gross-out lines engineered to guarantee a hurling reaction from women.",
       "punch": "",
       "tags": [
-        "cringe"
+        "cringe",
+        "dark"
       ],
       "mt": null,
       "md": null,
@@ -3947,7 +4469,8 @@
       "tags": [
         "surreal",
         "absurd",
-        "dry"
+        "dry",
+        "self_deprecating"
       ],
       "context": "Emo Philips. Philosophical trap — denying fatalism while structurally demonstrating it. The punchline is the proof of the premise.",
       "mt": null,
@@ -4467,7 +4990,9 @@
       "type": "joke",
       "body": "",
       "punch": "",
-      "tags": [],
+      "tags": [
+        "surreal"
+      ],
       "md": null,
       "mt": null,
       "mu": "https://www.tiktok.com/@user91260110916/video/7627064657739615519?_r=1&_t=ZP-95tDrnzJae7",
@@ -4562,7 +5087,9 @@
       "type": "joke",
       "body": "",
       "punch": "",
-      "tags": [],
+      "tags": [
+        "t1781356251323"
+      ],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404919/iqg26cpqgivfml6qf18v.gif",
       "mt": "image",
       "mu": null,
@@ -4599,7 +5126,9 @@
       "type": "joke",
       "body": "",
       "punch": "",
-      "tags": [],
+      "tags": [
+        "surreal"
+      ],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777405748/qndxhvrcvwrsjxswao9v.jpg",
       "mt": "image",
       "mu": null,
@@ -4658,7 +5187,9 @@
       "type": "joke",
       "body": "",
       "punch": "",
-      "tags": [],
+      "tags": [
+        "t1781356251323"
+      ],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777422275/jmepk0pdohc8ugxkxztx.jpg",
       "mt": "image",
       "mu": null,
@@ -4668,7 +5199,9 @@
       "context": null,
       "notes": null,
       "image": null,
-      "_sample": false
+      "_sample": false,
+      "iconId": "ico1781380873497",
+      "gestureCat": "duh"
     },
     {
       "id": 304,
@@ -4865,6 +5398,25 @@
       "variants": [],
       "links": [],
       "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9002,
+      "type": "video",
+      "body": "YouTube video",
+      "punch": "",
+      "tags": [],
+      "mu": "https://youtube.com/shorts/oxF0zVyCcH4?si=3aeAP0eI58XTMA27",
+      "mu_is_image": false,
+      "mt": null,
+      "md": null,
+      "yt_start": null,
+      "yt_end": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "_needsReview": true
     }
   ],
   "ratings": {
@@ -4923,7 +5475,8 @@
       "irony": 8,
       "dark": 7,
       "dark|irony": 9
-    }
+    },
+    "118": {}
   },
   "tags": [
     {
@@ -5057,6 +5610,17 @@
       "name": "Experiment",
       "color": "#ff9fc8",
       "gid": "gc"
+    },
+    {
+      "id": "sfx",
+      "name": "sfx",
+      "color": "#6bffcc",
+      "gid": "gc"
+    },
+    {
+      "id": "t1781356251323",
+      "name": "gesture",
+      "color": "#c8a0ff"
     }
   ],
   "tagGroups": [
@@ -5100,7 +5664,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 247
+      "si": 174
     },
     {
       "id": "l2",
@@ -5118,7 +5682,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 4
+      "si": 19
     },
     {
       "id": "l4",
@@ -5137,7 +5701,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 0
+      "si": 5
     },
     {
       "id": "l6",
@@ -5146,7 +5710,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 0
+      "si": 18
     },
     {
       "id": "l7",
@@ -5155,7 +5719,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 0
+      "si": 19
     },
     {
       "id": "l8",
@@ -5164,7 +5728,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 0
+      "si": 2
     },
     {
       "id": "l9",
@@ -5173,7 +5737,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 0
+      "si": 14
     },
     {
       "id": "l10",
@@ -5182,7 +5746,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 0
+      "si": 24
     },
     {
       "id": "l11",
@@ -5191,7 +5755,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 0
+      "si": 6
     },
     {
       "id": "l_mimic",
@@ -5204,6 +5768,48 @@
         314
       ],
       "si": 1
+    },
+    {
+      "id": "l1781215015340",
+      "lbl": "🔊 Sound Effects",
+      "tags": [
+        "sfx"
+      ],
+      "color": "#6bffcc",
+      "si": 0,
+      "isSfxLane": true,
+      "so": [
+        {
+          "variants": [],
+          "links": [],
+          "id": 9001,
+          "_sample": true,
+          "type": "sfx",
+          "body": "Scream",
+          "label": "Scream",
+          "punch": "",
+          "tags": [
+            "sfx"
+          ],
+          "mt": "audio",
+          "md": null,
+          "mu": null,
+          "hot": 5,
+          "_builtinSfx": true,
+          "sfxGroup": "scream"
+        }
+      ]
+    },
+    {
+      "id": "l1781356251323",
+      "lbl": "🎭 Gestures",
+      "tags": [
+        "t1781356251323"
+      ],
+      "color": "#c8a0ff",
+      "si": 0,
+      "isGestureLane": true,
+      "so": []
     }
   ],
   "playlists": [
