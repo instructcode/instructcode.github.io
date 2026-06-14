@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-14T14:54:54.845Z",
+  "exported": "2026-06-14T15:52:24.975Z",
   "jokes": [
     {
       "variants": [],
@@ -5429,11 +5429,14 @@
         "sfx"
       ],
       "mt": "audio",
-      "md": null,
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1781448911/dyug6lhn04alaskozkaz.wav",
       "mu": null,
       "sfxCat": null,
       "image": null,
-      "variants": []
+      "variants": [],
+      "links": [],
+      "_sample": false,
+      "mu_is_image": false
     },
     {
       "id": 9004,
@@ -5445,11 +5448,48 @@
         "sfx"
       ],
       "mt": "audio",
-      "md": null,
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1781448911/jxgfiqtsbcbb1nsyycw8.wav",
       "mu": null,
       "sfxCat": "ick",
       "image": null,
-      "variants": []
+      "variants": [],
+      "links": [],
+      "_sample": false,
+      "mu_is_image": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9005,
+      "type": "sfx",
+      "body": "Cartman laughs at a midget South Park",
+      "label": "Cartman laughs at a midget South Park",
+      "punch": "",
+      "tags": [
+        "sfx"
+      ],
+      "mt": "audio",
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1781452335/gzjndlieiosiuuk6exka.wav",
+      "mu": null,
+      "sfxCat": "laugh",
+      "image": null
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9006,
+      "type": "sfx",
+      "body": "Cartman laughs at a midget South Park",
+      "label": "Cartman laughs at a midget South Park",
+      "punch": "",
+      "tags": [
+        "sfx"
+      ],
+      "mt": "audio",
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1781452337/mikjseiq1pi39shd9uq7.wav",
+      "mu": null,
+      "sfxCat": "laugh",
+      "image": null
     }
   ],
   "ratings": {
@@ -5697,7 +5737,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 208
+      "si": 51
     },
     {
       "id": "l2",
@@ -5715,7 +5755,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 25
+      "si": 48
     },
     {
       "id": "l4",
@@ -5734,7 +5774,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 8
+      "si": 34
     },
     {
       "id": "l6",
@@ -5743,7 +5783,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 41
+      "si": 26
     },
     {
       "id": "l7",
@@ -5752,7 +5792,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 5
+      "si": 28
     },
     {
       "id": "l8",
@@ -5761,7 +5801,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 19
+      "si": 29
     },
     {
       "id": "l9",
@@ -5770,7 +5810,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 4
+      "si": 15
     },
     {
       "id": "l10",
@@ -5779,7 +5819,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 12
+      "si": 11
     },
     {
       "id": "l11",
@@ -5788,7 +5828,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 0
+      "si": 6
     },
     {
       "id": "l_mimic",
@@ -5840,7 +5880,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 1,
+      "si": 0,
       "isGestureLane": true,
       "so": []
     }
