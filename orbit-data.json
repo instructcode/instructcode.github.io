@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-13T23:55:59.863Z",
+  "exported": "2026-06-14T14:54:54.845Z",
   "jokes": [
     {
       "variants": [],
@@ -5416,7 +5416,40 @@
       "image": null,
       "context": "",
       "notes": "",
-      "_needsReview": true
+      "_needsReview": true,
+      "_sample": false
+    },
+    {
+      "id": 9003,
+      "type": "sfx",
+      "body": "Patrice ONeal Was The Best Hater - Kevin Hart",
+      "label": "Patrice ONeal Was The Best Hater - Kevin Hart",
+      "punch": "",
+      "tags": [
+        "sfx"
+      ],
+      "mt": "audio",
+      "md": null,
+      "mu": null,
+      "sfxCat": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 9004,
+      "type": "sfx",
+      "body": "Patrice ONeal Was The Best Hater - Kevin Hart",
+      "label": "Patrice ONeal Was The Best Hater - Kevin Hart",
+      "punch": "",
+      "tags": [
+        "sfx"
+      ],
+      "mt": "audio",
+      "md": null,
+      "mu": null,
+      "sfxCat": "ick",
+      "image": null,
+      "variants": []
     }
   ],
   "ratings": {
@@ -5664,7 +5697,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 169
+      "si": 208
     },
     {
       "id": "l2",
@@ -5682,7 +5715,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 39
+      "si": 25
     },
     {
       "id": "l4",
@@ -5692,7 +5725,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 0
+      "si": 1
     },
     {
       "id": "l5",
@@ -5701,7 +5734,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 17
+      "si": 8
     },
     {
       "id": "l6",
@@ -5710,7 +5743,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 10
+      "si": 41
     },
     {
       "id": "l7",
@@ -5719,7 +5752,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 16
+      "si": 5
     },
     {
       "id": "l8",
@@ -5728,7 +5761,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 17
+      "si": 19
     },
     {
       "id": "l9",
@@ -5737,7 +5770,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 6
+      "si": 4
     },
     {
       "id": "l10",
@@ -5746,7 +5779,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 8
+      "si": 12
     },
     {
       "id": "l11",
@@ -5755,7 +5788,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 2
+      "si": 0
     },
     {
       "id": "l_mimic",
@@ -5807,7 +5840,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 0,
+      "si": 1,
       "isGestureLane": true,
       "so": []
     }
