@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-15T12:05:52.243Z",
+  "exported": "2026-06-17T11:17:49.169Z",
   "jokes": [
     {
       "variants": [],
@@ -5513,6 +5513,24 @@
       "image": null,
       "_sample": false,
       "mu_is_image": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9008,
+      "type": "joke",
+      "body": "thats the dumbest shit ever.  if you thought about it you’d realise it but tragically your dumb so you'll never think about it",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null
     }
   ],
   "ratings": {
@@ -5760,7 +5778,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 58
+      "si": 136
     },
     {
       "id": "l2",
@@ -5769,7 +5787,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 0
+      "si": 30
     },
     {
       "id": "l3",
@@ -5778,7 +5796,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 12
+      "si": 24
     },
     {
       "id": "l4",
@@ -5788,7 +5806,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 1
+      "si": 0
     },
     {
       "id": "l5",
@@ -5797,7 +5815,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 19
+      "si": 5
     },
     {
       "id": "l6",
@@ -5806,7 +5824,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 8
+      "si": 20
     },
     {
       "id": "l7",
@@ -5815,7 +5833,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 27
+      "si": 28
     },
     {
       "id": "l8",
@@ -5824,7 +5842,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 7
+      "si": 4
     },
     {
       "id": "l9",
@@ -5833,7 +5851,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 11
+      "si": 0
     },
     {
       "id": "l10",
@@ -5842,7 +5860,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 21
+      "si": 23
     },
     {
       "id": "l11",
@@ -5851,7 +5869,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 7
+      "si": 2
     },
     {
       "id": "l_mimic",
