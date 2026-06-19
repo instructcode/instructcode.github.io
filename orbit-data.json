@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-17T11:17:49.169Z",
+  "exported": "2026-06-19T15:32:55.839Z",
   "jokes": [
     {
       "variants": [],
@@ -5530,7 +5530,77 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null
+      "image": null,
+      "iconId": "ico1781394939467",
+      "_sample": false
+    },
+    {
+      "id": 9009,
+      "type": "joke",
+      "body": "suffering from ape brain",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 9010,
+      "type": "joke",
+      "body": "bangmaid",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 9011,
+      "type": "joke",
+      "body": "bangmaid",
+      "punch": "bangmaid",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
+    },
+    {
+      "id": 9012,
+      "type": "joke",
+      "body": "bangmaid.  apebrain.  godbrain.  this is ur brain in abrahamic religion or on koolaid.  ur lost in the sauce",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": []
     }
   ],
   "ratings": {
@@ -5778,7 +5848,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 136
+      "si": 7
     },
     {
       "id": "l2",
@@ -5787,7 +5857,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 30
+      "si": 34
     },
     {
       "id": "l3",
@@ -5796,7 +5866,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 24
+      "si": 51
     },
     {
       "id": "l4",
@@ -5815,7 +5885,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 5
+      "si": 24
     },
     {
       "id": "l6",
@@ -5824,7 +5894,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 20
+      "si": 33
     },
     {
       "id": "l7",
@@ -5833,7 +5903,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 28
+      "si": 27
     },
     {
       "id": "l8",
@@ -5842,7 +5912,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 4
+      "si": 29
     },
     {
       "id": "l9",
@@ -5851,7 +5921,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 0
+      "si": 6
     },
     {
       "id": "l10",
@@ -5860,7 +5930,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 23
+      "si": 14
     },
     {
       "id": "l11",
@@ -5869,7 +5939,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 2
+      "si": 0
     },
     {
       "id": "l_mimic",
@@ -7823,6 +7893,13 @@
     {
       "id": "v1778946795585",
       "word": "playing grabass",
+      "type": "word",
+      "notes": "",
+      "examples": []
+    },
+    {
+      "id": "v1781883152724",
+      "word": "bangmaid",
       "type": "word",
       "notes": "",
       "examples": []
