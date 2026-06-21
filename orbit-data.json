@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-19T15:32:55.839Z",
+  "exported": "2026-06-21T18:44:24.208Z",
   "jokes": [
     {
       "variants": [],
@@ -5549,7 +5549,9 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": []
+      "variants": [],
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9010,
@@ -5566,7 +5568,9 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": []
+      "variants": [],
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9011,
@@ -5583,7 +5587,9 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": []
+      "variants": [],
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9012,
@@ -5600,7 +5606,27 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": []
+      "variants": [],
+      "links": [],
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9013,
+      "type": "joke",
+      "body": "wanna hit a brick wall?  yeah lets hit a brick wall!  with our heads?  yeaaaaah wiith our heads.  my dudes were idiots. (describing rng)",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null
     }
   ],
   "ratings": {
@@ -5848,7 +5874,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 7
+      "si": 8
     },
     {
       "id": "l2",
@@ -5857,7 +5883,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 34
+      "si": 23
     },
     {
       "id": "l3",
@@ -5866,7 +5892,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 51
+      "si": 24
     },
     {
       "id": "l4",
@@ -5876,7 +5902,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 0
+      "si": 2
     },
     {
       "id": "l5",
@@ -5885,7 +5911,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 24
+      "si": 19
     },
     {
       "id": "l6",
@@ -5894,7 +5920,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 33
+      "si": 1
     },
     {
       "id": "l7",
@@ -5903,7 +5929,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 27
+      "si": 23
     },
     {
       "id": "l8",
@@ -5912,7 +5938,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 29
+      "si": 0
     },
     {
       "id": "l9",
@@ -5921,7 +5947,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 6
+      "si": 4
     },
     {
       "id": "l10",
@@ -5930,7 +5956,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 14
+      "si": 23
     },
     {
       "id": "l11",
@@ -5939,7 +5965,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 0
+      "si": 2
     },
     {
       "id": "l_mimic",
