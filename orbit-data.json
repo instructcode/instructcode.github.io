@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-27T14:37:59.992Z",
+  "exported": "2026-06-27T21:55:11.362Z",
   "jokes": [
     {
       "variants": [],
@@ -5645,7 +5645,8 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null
+      "image": null,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5663,7 +5664,8 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null
+      "image": null,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5681,7 +5683,8 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null
+      "image": null,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5699,7 +5702,8 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null
+      "image": null,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5717,7 +5721,8 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null
+      "image": null,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5735,7 +5740,8 @@
       "yt_end": null,
       "context": null,
       "notes": null,
-      "image": null
+      "image": null,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5755,7 +5761,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "id": 9021,
@@ -5774,7 +5781,221 @@
       "image": null,
       "variants": [],
       "_wip": false,
+      "_shower": false,
+      "links": [],
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9022,
+      "type": "joke",
+      "body": "gotta be quick with finding parallel meanings and riffing off it for jokes.  be clear.  cant be garbling words like ur garbling cum off ur boyfriends cock okay",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
       "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9023,
+      "type": "joke",
+      "body": "year 38 day twenty on this torture simulator.  planet earth, black person. fuck me",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9024,
+      "type": "joke",
+      "body": "clearing the gunk out yo mind.  gays not gross.  humans are gross.  why would u want to screw around in someones sewage zone.  piss and shit smell horrible.  sexual attraction just disables the natural disgust feeling ud have doing that stuff.  so people feel about gays what they woupd naturally feel if they werent sexual attracted.  mistaken biological programming.  also absurd god would create this.  another thing men and women they basically the same but some visual features stir attraction.  rather arbitrary",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9025,
+      "type": "joke",
+      "body": "focus on sideways interpretation thinking.  ambiguity harvesting.  develop and inkling to do that semantic search on the spot.  then riff off it.  cause thatsnur comedic goldmind u want to tap mine and cultivate",
+      "punch": "",
+      "tags": [
+        "meditation"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9026,
+      "type": "observation",
+      "body": "a comedian riffs off built up abstraction they previously thought up like logic real world labrinth.  when they riff or vomment improntu they arent talking about the thing present so much as an internal logic map thats sorta related to the thing but based more on their own experiences and previous thought.  ohhhhhh lightbulb.  so build that internal map.  focus on humerous insight and mapping that and that plus comedy mechanics that make people actually laugh will get u half way there",
+      "punch": "",
+      "tags": [
+        "meditation"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "id": 9027,
+      "type": "video",
+      "body": "YouTube video",
+      "punch": "",
+      "tags": [],
+      "mu": "https://youtube.com/shorts/ahuSoRrHrGc?si=7nzcG2K7LGlQAul2",
+      "mu_is_image": false,
+      "mt": null,
+      "md": null,
+      "yt_start": null,
+      "yt_end": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9028,
+      "type": "joke",
+      "body": "X / Twitter post",
+      "punch": "",
+      "tags": [],
+      "mu": "https://x.com/Anna1431018/status/2068752174893674793?s=20",
+      "mu_is_image": false,
+      "mt": null,
+      "md": null,
+      "yt_start": null,
+      "yt_end": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9029,
+      "type": "video",
+      "body": "YouTube video",
+      "punch": "",
+      "tags": [],
+      "mu": "https://youtu.be/AKN1Q5SjbeI",
+      "mu_is_image": false,
+      "mt": null,
+      "md": null,
+      "yt_start": null,
+      "yt_end": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9030,
+      "type": "joke",
+      "body": "X / Twitter post",
+      "punch": "",
+      "tags": [],
+      "mu": "https://x.com/TheTNHoller/status/2069241733397832154?s=20",
+      "mu_is_image": false,
+      "mt": null,
+      "md": null,
+      "yt_start": null,
+      "yt_end": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9031,
+      "type": "joke",
+      "body": "X / Twitter post",
+      "punch": "",
+      "tags": [],
+      "mu": "https://x.com/JoeRoganRecaps/status/2069927182458335532?s=20",
+      "mu_is_image": false,
+      "mt": null,
+      "md": null,
+      "yt_start": null,
+      "yt_end": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9032,
+      "type": "video",
+      "body": "YouTube video",
+      "punch": "",
+      "tags": [],
+      "mu": "https://youtube.com/shorts/3_9mPIrkeRs?si=OfBM12KGEWaYkllB",
+      "mu_is_image": false,
+      "mt": null,
+      "md": null,
+      "yt_start": null,
+      "yt_end": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
     }
   ],
   "ratings": {
@@ -6022,7 +6243,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 8
+      "si": 0
     },
     {
       "id": "l2",
