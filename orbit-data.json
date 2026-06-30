@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-27T21:55:11.362Z",
+  "exported": "2026-06-30T12:03:19.569Z",
   "jokes": [
     {
       "variants": [],
@@ -5803,7 +5803,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5823,7 +5824,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5843,7 +5845,8 @@
       "notes": null,
       "image": null,
       "_wip": true,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5865,7 +5868,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "variants": [],
@@ -5887,7 +5891,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "id": 9027,
@@ -5905,7 +5910,9 @@
       "context": "",
       "notes": "",
       "variants": [],
-      "_needsReview": true
+      "_needsReview": true,
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9028,
@@ -5923,7 +5930,9 @@
       "context": "",
       "notes": "",
       "variants": [],
-      "_needsReview": true
+      "_needsReview": true,
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9029,
@@ -5941,7 +5950,9 @@
       "context": "",
       "notes": "",
       "variants": [],
-      "_needsReview": true
+      "_needsReview": true,
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9030,
@@ -5959,7 +5970,9 @@
       "context": "",
       "notes": "",
       "variants": [],
-      "_needsReview": true
+      "_needsReview": true,
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9031,
@@ -5977,7 +5990,9 @@
       "context": "",
       "notes": "",
       "variants": [],
-      "_needsReview": true
+      "_needsReview": true,
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9032,
@@ -5995,7 +6010,89 @@
       "context": "",
       "notes": "",
       "variants": [],
-      "_needsReview": true
+      "_needsReview": true,
+      "links": [],
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9033,
+      "type": "joke",
+      "body": "study this technique:  how to insult people with british grace:  C’mon, look it up. If English isn’t your native language I assume you would look up the word, so guessing you’re just stupid.    that was rough to witness. u just called em stupid in the most round about way.  either ur this this this or stupid.  *dude does mental check list: im not this this or this, so that leaves… stooopid?!??!? /raises eyebrow.  stoopid.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9034,
+      "type": "joke",
+      "body": "baby food palbum, what is it called for politicians to dustractingly feed dufiouses.  whike they reach around.  america the free the great thats ur plabum whike the politicians secure deals to enrich corporate interests create laws protectingbthem at the expense of the people.  so why obey these rukes laws?!? okay nope",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9035,
+      "type": "joke",
+      "body": "fodder creativity fodder.  nobody wants some dumbie hanging onto them, says a big dumby that many people try to shake off",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9036,
+      "type": "joke",
+      "body": "whats up with life.  do people get it?  people are in a rush to go where though?  rushing off a cliff.  dont get it.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
     }
   ],
   "ratings": {
