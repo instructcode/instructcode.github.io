@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-06-30T12:03:19.569Z",
+  "exported": "2026-06-30T12:52:41.585Z",
   "jokes": [
     {
       "variants": [],
@@ -239,7 +239,8 @@
       ],
       "mt": null,
       "md": null,
-      "mu": null
+      "mu": null,
+      "_shower": true
     },
     {
       "variants": [],
@@ -4046,7 +4047,9 @@
       "body": "Two fish in a tank. One says:",
       "punch": "'How do you drive this thing?'",
       "tags": [
-        "wordplay"
+        "wordplay",
+        "dark",
+        "irony"
       ],
       "context": "Peter Kay. Lexical ambiguity pun — pivots on the dual meaning of 'tank' (fish tank vs. military tank).",
       "mt": null,
@@ -6093,6 +6096,44 @@
       "image": null,
       "_wip": false,
       "_shower": false
+    },
+    {
+      "id": 9037,
+      "type": "observation",
+      "body": "meditational habit.  get into the habit of making funny bite size commentary for any given situation.  but its sort of a mind frame.  work on it to become habitual.  rxample u keep seeing big boobs.  translated.  where others sees a bright young women.  i see jugs (booobs)",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "id": 9038,
+      "type": "joke",
+      "body": "u keep seeing big boobs. translated. where others sees a bright young women. i see jugs (booobs)\n\nsome people get into relationship with people.  i get into relationships with boobs",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": false,
+      "_shower": false
     }
   ],
   "ratings": {
@@ -6340,7 +6381,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 0
+      "si": 23
     },
     {
       "id": "l2",
@@ -6349,7 +6390,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 23
+      "si": 26
     },
     {
       "id": "l3",
@@ -6358,7 +6399,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 24
+      "si": 38
     },
     {
       "id": "l4",
@@ -6368,7 +6409,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 2
+      "si": 1
     },
     {
       "id": "l5",
@@ -6377,7 +6418,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 19
+      "si": 7
     },
     {
       "id": "l6",
@@ -6386,7 +6427,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 1
+      "si": 20
     },
     {
       "id": "l7",
@@ -6395,7 +6436,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 23
+      "si": 6
     },
     {
       "id": "l8",
@@ -6404,7 +6445,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 0
+      "si": 16
     },
     {
       "id": "l9",
@@ -6413,7 +6454,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 4
+      "si": 6
     },
     {
       "id": "l10",
@@ -6422,7 +6463,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 23
+      "si": 5
     },
     {
       "id": "l11",
@@ -6431,7 +6472,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 2
+      "si": 3
     },
     {
       "id": "l_mimic",
@@ -6483,7 +6524,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 1,
+      "si": 0,
       "isGestureLane": true,
       "so": []
     }
