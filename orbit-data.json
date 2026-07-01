@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-07-01T17:30:40.449Z",
+  "exported": "2026-07-01T17:32:45.382Z",
   "jokes": [
     {
       "variants": [],
@@ -6167,7 +6167,7 @@
     {
       "id": 9040,
       "type": "bit",
-      "body": "omg theres a bit here.  how ireland devolved from eyeland because of a person with a speech impediment.  isleland->eyeland->island->ireland.  it eventually in the future will become arrrrland",
+      "body": "omg theres a bit here.  how ireland devolved from eyeland because of a person with a speech impediment.  isleland->eyeland->island->ireland.  it eventually in the future will become arrrrland.\n\nsome brit who originally met the first irish had a speech impediment when he told the british of the irish people.  them the brits invaded and took over and told the irish the people of the isleland you are irrrrland.   the audacity",
       "punch": "",
       "tags": [],
       "md": null,
@@ -6429,7 +6429,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 58
+      "si": 11
     },
     {
       "id": "l2",
@@ -6438,7 +6438,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 29
+      "si": 51
     },
     {
       "id": "l3",
@@ -6447,7 +6447,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 52
+      "si": 26
     },
     {
       "id": "l4",
@@ -6466,7 +6466,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 31
+      "si": 15
     },
     {
       "id": "l6",
@@ -6475,7 +6475,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 20
+      "si": 14
     },
     {
       "id": "l7",
@@ -6484,7 +6484,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 0
+      "si": 10
     },
     {
       "id": "l8",
@@ -6493,7 +6493,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 21
+      "si": 17
     },
     {
       "id": "l9",
@@ -6502,7 +6502,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 13
+      "si": 7
     },
     {
       "id": "l10",
@@ -6511,7 +6511,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 21
+      "si": 3
     },
     {
       "id": "l11",
@@ -6520,7 +6520,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 5
+      "si": 4
     },
     {
       "id": "l_mimic",
