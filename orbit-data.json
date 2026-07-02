@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-07-01T17:32:45.382Z",
+  "exported": "2026-07-02T01:00:29.549Z",
   "jokes": [
     {
       "variants": [],
@@ -6181,6 +6181,86 @@
       "image": null,
       "variants": [],
       "_wip": false,
+      "_shower": false,
+      "links": [],
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9041,
+      "type": "joke",
+      "body": "ultimate ironic bit.  the idea is to complain in a sympathetic way from anunreliable narrative.  an example is a serial killer complaining why people dont like him. but it has to be suble so its not obvious to everyone.  it really takes advantage of peoples people pleasing and the new to virtue signal to lure them into a trap. adopt this and practice this persona.  example is the weiss russlander.  er hat gessagt why do ingles gesprecherinnen get so butt hurt when u korreckten ihnen.  lol dude really.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9042,
+      "type": "joke",
+      "body": "oh yeah this girl is checking me out.  nope shes just starring at me to make sure i dont steal her stuff.  the blacklife.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "id": 9043,
+      "type": "joke",
+      "body": "the cereal killer, david, this guys shows up in ur kitchen in the morning.  keep him away from ur lucky charms itll be gone",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "id": 9044,
+      "type": "comedy tip",
+      "body": "timing timing timing. make ur point while the previous point is still in the focus of brain slot.  be pithy concise and point to point.  when u rely on irony or talking about something incidentally being in that time frame or window is even more important else the reader wont be able to connect the implicit point which drives the joke",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": false,
       "_shower": false
     }
   ],
@@ -6429,7 +6509,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 11
+      "si": 116
     },
     {
       "id": "l2",
@@ -6438,7 +6518,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 51
+      "si": 42
     },
     {
       "id": "l3",
@@ -6447,7 +6527,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 26
+      "si": 19
     },
     {
       "id": "l4",
@@ -6457,7 +6537,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 0
+      "si": 2
     },
     {
       "id": "l5",
@@ -6466,7 +6546,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 15
+      "si": 32
     },
     {
       "id": "l6",
@@ -6475,7 +6555,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 14
+      "si": 3
     },
     {
       "id": "l7",
@@ -6484,7 +6564,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 10
+      "si": 23
     },
     {
       "id": "l8",
@@ -6493,7 +6573,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 17
+      "si": 4
     },
     {
       "id": "l9",
@@ -6502,7 +6582,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 7
+      "si": 5
     },
     {
       "id": "l10",
@@ -6572,7 +6652,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 1,
+      "si": 0,
       "isGestureLane": true,
       "so": []
     }
@@ -8481,6 +8561,13 @@
     {
       "id": "v1781883152724",
       "word": "bangmaid",
+      "type": "word",
+      "notes": "",
+      "examples": []
+    },
+    {
+      "id": "v1782941243079",
+      "word": "boobie creatures and dick monsters",
       "type": "word",
       "notes": "",
       "examples": []
