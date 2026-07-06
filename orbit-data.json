@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-07-02T01:00:29.549Z",
+  "exported": "2026-07-06T16:22:37.262Z",
   "jokes": [
     {
       "variants": [],
@@ -6203,7 +6203,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "variants": [],
@@ -6223,7 +6224,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "id": 9043,
@@ -6242,7 +6244,9 @@
       "image": null,
       "variants": [],
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9044,
@@ -6261,7 +6265,48 @@
       "image": null,
       "variants": [],
       "_wip": false,
-      "_shower": false
+      "_shower": false,
+      "links": [],
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9045,
+      "type": "joke",
+      "body": "dunno why people want to have sex with other people.  its digusting ur really just laying around in filth.  like one hole is the poop hole and the other is thebpiss hole.  its like going into a sewer and just rolling around on the ground like a pig and licking the ground.  u could say well we cleaned the sewer out yesterday or this morning.  like but it still smells.  or u could say we thoroughly sanitized the sewer and freshened it up.  but there will be some liquid discharge with a little bit of toilet drainage.  dont worry if theres poo in it, itll be massivley diluted, sorta like swimming in a public pool with people with irretible bowel syndrone.  thats what its like to have fun time in a pee or poo outflow hole.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": true
+    },
+    {
+      "id": 9046,
+      "type": "joke",
+      "body": "these best food award isnunbelievable.  everyone has this.  its like sports statistics makingup a new best statistic every minute espn is great at.  most freethrows made in five minutes at a summer finale game in by an opposing team.  like what?  well whats the most free throws made in five minutes without the extra contextual wrapper l.  oh its four times that bullshit statistic go figure.  any way.  these best restaurant awards is like some fat greasy potmocked faced guy looks a bit like fat bastard says i was ten times awarded sexiest man alive.  by who? mrs. bastard.  whos that?  my mom.  ohhhh okay.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": false,
+      "_shower": true
     }
   ],
   "ratings": {
@@ -6509,7 +6554,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 116
+      "si": 285
     },
     {
       "id": "l2",
@@ -6518,7 +6563,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 42
+      "si": 2
     },
     {
       "id": "l3",
@@ -6527,7 +6572,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 19
+      "si": 1
     },
     {
       "id": "l4",
@@ -6546,7 +6591,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 32
+      "si": 21
     },
     {
       "id": "l6",
@@ -6564,7 +6609,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 23
+      "si": 26
     },
     {
       "id": "l8",
@@ -6573,7 +6618,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 4
+      "si": 10
     },
     {
       "id": "l9",
@@ -6582,7 +6627,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 5
+      "si": 11
     },
     {
       "id": "l10",
@@ -6591,7 +6636,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 3
+      "si": 4
     },
     {
       "id": "l11",
@@ -6600,7 +6645,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 4
+      "si": 2
     },
     {
       "id": "l_mimic",
@@ -6652,7 +6697,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 0,
+      "si": 1,
       "isGestureLane": true,
       "so": []
     }
@@ -8570,6 +8615,115 @@
       "word": "boobie creatures and dick monsters",
       "type": "word",
       "notes": "",
+      "examples": []
+    },
+    {
+      "id": "v1783072018201",
+      "word": "pre coffee brain",
+      "type": "catchphrase",
+      "notes": "pre coffee brain",
+      "examples": []
+    }
+  ],
+  "ambiguityPairs": [
+    {
+      "id": "amb1",
+      "words": [
+        "Cereal",
+        "Serial"
+      ],
+      "notes": "Homophones — the classic starter. Great for a misdirection setup that flips hard on the reveal.",
+      "examples": [
+        "The great cereal killer.",
+        "Covid killed Lucky Charms.",
+        "She chased the Corona — had to grab the beer, man."
+      ]
+    },
+    {
+      "id": "amb1783333950296_0",
+      "words": [
+        "Prophet",
+        "Profit"
+      ],
+      "notes": "Meaning A: a spiritual seer / divine messenger. Meaning B: financial gain. Friction: mega-churches, sketchy life coaches, or a Wall Street trader claiming divine intervention.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_1",
+      "words": [
+        "Patience",
+        "Patients"
+      ],
+      "notes": "Meaning A: the ability to wait calmly. Meaning B: people receiving medical care. Friction: Dr. Frankenstein types, terrible hospital waiting rooms, or an incredibly irritable surgeon.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_2",
+      "words": [
+        "Presence",
+        "Presents"
+      ],
+      "notes": "Meaning A: being physically there / aura. Meaning B: holiday or birthday gifts. Friction: disappointed kids on Christmas, a ghost who just wants attention, or an egocentric partner.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_3",
+      "words": [
+        "Mourning",
+        "Morning"
+      ],
+      "notes": "Meaning A: grieving a major loss. Meaning B: the AM hours of the day. Friction: people who absolutely hate waking up early — treating a 6am alarm like a literal tragedy.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_4",
+      "words": [
+        "Bizarre",
+        "Bazaar"
+      ],
+      "notes": "Meaning A: extremely strange. Meaning B: a market or street fair. Friction: the single worst flea market imaginable, or aggressively weird customer service.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_5",
+      "words": [
+        "Execution"
+      ],
+      "notes": "Polysemic word. Context A (everyday/low stakes): finishing a task or running a piece of code. Context B (high stakes): capital punishment. Friction: corporate jargon (\"Great execution on that project, team!\") applied to a firing squad, or vice versa.",
+      "examples": [
+        "My boss told me he loved my execution style today. Which is a weird compliment, because all I did was fire the intern and clear my desk with a broadsword."
+      ]
+    },
+    {
+      "id": "amb1783333950296_6",
+      "words": [
+        "Grave"
+      ],
+      "notes": "Polysemic word. Context A: a serious or solemn tone. Context B: a literal burial plot. Friction: misunderstanding the mood at a party, or a goth kid talking about mundane chores.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_7",
+      "words": [
+        "Bar"
+      ],
+      "notes": "Polysemic word. Context A: a place to order a cocktail. Context B: the legal licensing exam. Friction: a lawyer who takes \"passing the bar\" way too literally and just walks past a pub.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_8",
+      "words": [
+        "Draft"
+      ],
+      "notes": "Polysemic word. Context A: a cold breeze from a window. Context B: conscription into the military. Friction: being incredibly dramatic about an air-conditioned room.",
+      "examples": []
+    },
+    {
+      "id": "amb1783333950296_9",
+      "words": [
+        "Stalk"
+      ],
+      "notes": "Polysemic word. Context A: a piece of celery. Context B: creepily tracking someone. Friction: an overly intense vegetarian, or a private investigator tasked with watching a garden.",
       "examples": []
     }
   ],
