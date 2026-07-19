@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-07-19T19:01:12.017Z",
+  "exported": "2026-07-19T19:02:38.241Z",
   "jokes": [
     {
       "variants": [],
@@ -3193,24 +3193,6 @@
     },
     {
       "variants": [],
-      "links": [],
-      "id": 305,
-      "_sample": true,
-      "type": "free_association",
-      "body": "FREE ASSOCIATION CHAIN — 30 second exercise\n\nSeed: UMBRELLA → rain → petrichor → grief smells like that → what does joy smell like → sunscreen → summer → boredom → ten years old → ice cream truck → pavlovian → Ivan Pavlov had a good dog → all dogs deserve tenure → academia is a dog whistle → dog whistle → politicians → what do politicians smell like → old carpet and ambition → ambition is a cologne nobody admits to wearing → Axe body spray but for power → power suits → suits with actual power → Magneto in a boardroom → 'I need those reports by Friday' with metal hands → jazz hands → free jazz is the free association of music → full circle\n\nUMBRELLA to JAZZ in 20 hops. Any two adjacent items are a possible premise.\n\nPractice: pick any word, set 30 seconds, do not stop, do not filter.",
-      "punch": "",
-      "tags": [
-        "wordplay",
-        "free_association",
-        "comedy_technique"
-      ],
-      "notes": "Free association is how you find the weird thing. The first 10 hops are logical. After 10 it gets interesting. Train for hops 10-20.",
-      "mt": null,
-      "md": null,
-      "mu": null
-    },
-    {
-      "variants": [],
       "id": 201,
       "type": "joke",
       "body": "I told my doctor I broke my arm in two places.",
@@ -3712,8 +3694,7 @@
       "body": "The Litter of Babies: gross-out lines engineered to guarantee a hurling reaction from women.",
       "punch": "",
       "tags": [
-        "cringe",
-        "dark"
+        "cringe"
       ],
       "mt": null,
       "md": null,
@@ -4047,9 +4028,7 @@
       "body": "Two fish in a tank. One says:",
       "punch": "'How do you drive this thing?'",
       "tags": [
-        "wordplay",
-        "dark",
-        "irony"
+        "wordplay"
       ],
       "context": "Peter Kay. Lexical ambiguity pun — pivots on the dual meaning of 'tank' (fish tank vs. military tank).",
       "mt": null,
@@ -4387,6 +4366,174 @@
       "variants": [],
       "id": 263,
       "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "deadpan",
+        "dry",
+        "observation"
+      ],
+      "context": null,
+      "mt": "image",
+      "md": null,
+      "mu": null,
+      "mu_is_image": false,
+      "_remapped_from": 63,
+      "links": [],
+      "_sample": false,
+      "yt_start": null,
+      "yt_end": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 264,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "deadpan",
+        "wordplay",
+        "misdirection"
+      ],
+      "context": null,
+      "mt": "image",
+      "md": null,
+      "mu": null,
+      "mu_is_image": false,
+      "_remapped_from": 64,
+      "links": [],
+      "_sample": false,
+      "yt_start": null,
+      "yt_end": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 265,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "deadpan",
+        "dry",
+        "misdirection"
+      ],
+      "context": null,
+      "mt": "image",
+      "md": null,
+      "mu": null,
+      "mu_is_image": false,
+      "_remapped_from": 65,
+      "links": [],
+      "_sample": false,
+      "yt_start": null,
+      "yt_end": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 266,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "deadpan",
+        "irony",
+        "dry"
+      ],
+      "context": null,
+      "mt": "video",
+      "md": null,
+      "mu": null,
+      "mu_is_image": false,
+      "_remapped_from": 66,
+      "links": [],
+      "_sample": false,
+      "yt_start": null,
+      "yt_end": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 267,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "surreal",
+        "absurd",
+        "dry"
+      ],
+      "context": null,
+      "mt": "video",
+      "md": null,
+      "mu": null,
+      "mu_is_image": false,
+      "_remapped_from": 67,
+      "links": [],
+      "_sample": false,
+      "yt_start": null,
+      "yt_end": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 268,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "surreal",
+        "dry",
+        "deadpan"
+      ],
+      "context": null,
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "mu_is_image": false,
+      "_remapped_from": 68,
+      "links": [],
+      "_sample": false,
+      "yt_start": null,
+      "yt_end": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 269,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "surreal",
+        "absurd",
+        "misdirection"
+      ],
+      "context": null,
+      "mt": null,
+      "md": null,
+      "mu": null,
+      "mu_is_image": false,
+      "_remapped_from": 69,
+      "links": [],
+      "_sample": false,
+      "yt_start": null,
+      "yt_end": null,
+      "notes": null,
+      "image": null
+    },
+    {
+      "variants": [],
+      "id": 270,
+      "type": "joke",
       "body": "A lot of people don't like bumper stickers. I don't mind bumper stickers. To me a bumper sticker is a shortcut.",
       "punch": "It's like a little sign that says 'Hey, let's never hang out.'",
       "tags": [
@@ -4405,7 +4552,7 @@
     },
     {
       "variants": [],
-      "id": 264,
+      "id": 271,
       "type": "joke",
       "body": "I bought some batteries,",
       "punch": "but they weren't included.",
@@ -4425,7 +4572,7 @@
     },
     {
       "variants": [],
-      "id": 265,
+      "id": 272,
       "type": "joke",
       "body": "My mother always used to say: The older you get, the better you get.",
       "punch": "Unless you're a banana.",
@@ -4445,7 +4592,7 @@
     },
     {
       "variants": [],
-      "id": 266,
+      "id": 273,
       "type": "observation",
       "body": "It says here in this history book that luckily, the good guys have won every single time.",
       "punch": "What are the odds?",
@@ -4465,15 +4612,14 @@
     },
     {
       "variants": [],
-      "id": 267,
+      "id": 274,
       "type": "joke",
       "body": "I'm not a fatalist,",
       "punch": "but even if I were, what could I do about it?",
       "tags": [
         "surreal",
         "absurd",
-        "dry",
-        "self_deprecating"
+        "dry"
       ],
       "context": "Emo Philips. Philosophical trap — denying fatalism while structurally demonstrating it. The punchline is the proof of the premise.",
       "mt": null,
@@ -4486,7 +4632,7 @@
     },
     {
       "variants": [],
-      "id": 268,
+      "id": 275,
       "type": "observation",
       "body": "A day without sunshine is like,",
       "punch": "you know, night.",
@@ -4506,7 +4652,7 @@
     },
     {
       "variants": [],
-      "id": 269,
+      "id": 276,
       "type": "joke",
       "body": "Before you criticize someone, you should walk a mile in their shoes. That way when you criticize them,",
       "punch": "you are a mile away from them and you have their shoes.",
@@ -4526,7 +4672,7 @@
     },
     {
       "variants": [],
-      "id": 270,
+      "id": 277,
       "type": "observation",
       "body": "Guns don't kill people, people kill people.",
       "punch": "And monkeys do too (if they have a gun).",
@@ -4546,7 +4692,7 @@
     },
     {
       "variants": [],
-      "id": 271,
+      "id": 278,
       "type": "joke",
       "body": "I have a lot of growing up to do.",
       "punch": "I realized that the other day inside my fort.",
@@ -4566,7 +4712,7 @@
     },
     {
       "variants": [],
-      "id": 272,
+      "id": 279,
       "type": "observation",
       "body": "I'm a vegetarian. I'm not strict,",
       "punch": "I eat pork, beef, and chicken. But I'm not a strict vegetarian.",
@@ -4586,7 +4732,7 @@
     },
     {
       "variants": [],
-      "id": 273,
+      "id": 280,
       "type": "joke",
       "body": "I told my psychiatrist that everyone hates me.",
       "punch": "He said I was being ridiculous — everyone hasn't met me yet.",
@@ -4606,7 +4752,7 @@
     },
     {
       "variants": [],
-      "id": 274,
+      "id": 281,
       "type": "joke",
       "body": "A study says that having a lot of friends makes you live longer.",
       "punch": "Which explains why I'm going to die on Thursday.",
@@ -4626,7 +4772,7 @@
     },
     {
       "variants": [],
-      "id": 275,
+      "id": 282,
       "type": "joke",
       "body": "I don't exercise.",
       "punch": "If God had wanted me to bend over, he would have put diamonds on the floor.",
@@ -4646,7 +4792,7 @@
     },
     {
       "variants": [],
-      "id": 276,
+      "id": 283,
       "type": "observation",
       "body": "I'm in my late thirties, which is the age where you have to start doing things like 'taking care of your body'",
       "punch": "because otherwise, you die.",
@@ -4666,7 +4812,7 @@
     },
     {
       "variants": [],
-      "id": 277,
+      "id": 284,
       "type": "joke",
       "body": "I want my children to have all the things I couldn't afford.",
       "punch": "Then I want to move in with them.",
@@ -4686,7 +4832,7 @@
     },
     {
       "variants": [],
-      "id": 278,
+      "id": 285,
       "type": "observation",
       "body": "I'm at that age where my friends are either getting married or getting DUIs, and it's like, which path am I going down?",
       "punch": "Obviously neither, I'm staying inside.",
@@ -4695,18 +4841,22 @@
         "observational",
         "dry"
       ],
-      "context": "Taylor Tomlinson. Sets up a binary life choice then rejects both — the third option is social withdrawal, delivered as contentment.",
-      "mt": null,
       "md": null,
-      "mu": null,
+      "mt": null,
+      "mu": "https://www.tiktok.com/t/ZP8gH8XtS/",
       "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": "Taylor Tomlinson. Sets up a binary life choice then rejects both — the third option is social withdrawal, delivered as contentment.",
+      "notes": null,
+      "image": null,
       "_remapped_from": 85,
       "links": [],
       "_sample": false
     },
     {
       "variants": [],
-      "id": 279,
+      "id": 286,
       "type": "joke",
       "body": "Outside of a dog, a book is man's best friend.",
       "punch": "Inside of a dog, it's too dark to read.",
@@ -4715,18 +4865,22 @@
         "wordplay",
         "absurd"
       ],
-      "context": "Groucho Marx. Classic paraprosdokian — 'outside of' is idiomatic in the setup but then taken spatially/literally in the punchline.",
-      "mt": null,
       "md": null,
-      "mu": null,
+      "mt": null,
+      "mu": "https://www.tiktok.com/t/ZP8gH8XtS/",
       "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": "Groucho Marx. Classic paraprosdokian — 'outside of' is idiomatic in the setup but then taken spatially/literally in the punchline.",
+      "notes": null,
+      "image": null,
       "_remapped_from": 86,
       "links": [],
       "_sample": false
     },
     {
       "variants": [],
-      "id": 280,
+      "id": 287,
       "type": "pun",
       "body": "I'm giving up acting to become a monk.",
       "punch": "I've had it with this habit.",
@@ -4734,18 +4888,22 @@
         "misdirection",
         "wordplay"
       ],
-      "context": "Gary Delaney. 'Habit' does double duty — monastic robe and a thing one is fed up with. The decision to become a monk generates the punchline word.",
-      "mt": null,
       "md": null,
-      "mu": null,
+      "mt": null,
+      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
       "mu_is_image": false,
-      "_remapped_from": 87,
+      "yt_start": null,
+      "yt_end": null,
+      "context": "Gary Delaney. 'Habit' does double duty — monastic robe and a thing one is fed up with. The decision to become a monk generates the punchline word.",
+      "notes": null,
+      "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 87
     },
     {
       "variants": [],
-      "id": 281,
+      "id": 288,
       "type": "pun",
       "body": "I decided to sell my Hoover.",
       "punch": "Well, it was just collecting dust.",
@@ -4754,18 +4912,22 @@
         "wordplay",
         "dry"
       ],
-      "context": "Tim Vine. 'Collecting dust' is both the literal failure of a vacuum cleaner and the idiom for abandonment — the punchline is the reason and the joke simultaneously.",
-      "mt": null,
       "md": null,
-      "mu": null,
+      "mt": null,
+      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
       "mu_is_image": false,
-      "_remapped_from": 88,
+      "yt_start": null,
+      "yt_end": null,
+      "context": "Tim Vine. 'Collecting dust' is both the literal failure of a vacuum cleaner and the idiom for abandonment — the punchline is the reason and the joke simultaneously.",
+      "notes": null,
+      "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 88
     },
     {
       "variants": [],
-      "id": 282,
+      "id": 289,
       "type": "joke",
       "body": "I used to be a plastic surgeon.",
       "punch": "Which just goes to show, you never know what someone is made of.",
@@ -4774,18 +4936,22 @@
         "wordplay",
         "irony"
       ],
-      "context": "Stewart Francis. 'What someone is made of' is idiomatic (character/resolve) but here cashed out literally — a plastic surgeon knows exactly what people are made of.",
-      "mt": null,
       "md": null,
-      "mu": null,
+      "mt": null,
+      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
       "mu_is_image": false,
-      "_remapped_from": 89,
+      "yt_start": null,
+      "yt_end": null,
+      "context": "Stewart Francis. 'What someone is made of' is idiomatic (character/resolve) but here cashed out literally — a plastic surgeon knows exactly what people are made of.",
+      "notes": null,
+      "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 89
     },
     {
       "variants": [],
-      "id": 283,
+      "id": 290,
       "type": "joke",
       "body": "About a month before he died, my grandfather covered his back with lard.",
       "punch": "After that, he went downhill fast.",
@@ -4794,18 +4960,22 @@
         "dark",
         "wordplay"
       ],
-      "context": "Milton Jones. 'Went downhill fast' is idiomatic (deteriorated quickly) but the lard on the back generates a literal physical image of lubricated downward momentum.",
-      "mt": null,
       "md": null,
-      "mu": null,
+      "mt": null,
+      "mu": "https://x.com/gianl1974/status/2047908857746190336?s=46",
       "mu_is_image": false,
-      "_remapped_from": 90,
+      "yt_start": null,
+      "yt_end": null,
+      "context": "Milton Jones. 'Went downhill fast' is idiomatic (deteriorated quickly) but the lard on the back generates a literal physical image of lubricated downward momentum.",
+      "notes": null,
+      "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 90
     },
     {
       "variants": [],
-      "id": 284,
+      "id": 291,
       "type": "joke",
       "body": "To err is human,",
       "punch": "but it feels divine.",
@@ -4814,178 +4984,40 @@
         "wordplay",
         "irony"
       ],
-      "context": "Mae West. Inverts Pope's 'To err is human, to forgive divine' — strips the moral imperative and replaces it with sensual pleasure. The pivot is on 'divine' shifting from theological to hedonistic.",
-      "mt": null,
-      "md": null,
-      "mu": null,
-      "mu_is_image": false,
-      "_remapped_from": 91,
-      "links": [],
-      "_sample": false
-    },
-    {
-      "variants": [],
-      "id": 285,
-      "type": "joke",
-      "body": "https://www.tiktok.com/t/ZP8gH8XtS/",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": "https://www.tiktok.com/t/ZP8gH8XtS/",
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_remapped_from": 117,
-      "links": [],
-      "_sample": false
-    },
-    {
-      "variants": [],
-      "id": 286,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [
-        "riff"
-      ],
-      "md": null,
-      "mt": null,
-      "mu": "https://www.tiktok.com/t/ZP8gH8XtS/",
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "_remapped_from": 118,
-      "links": [],
-      "_sample": false
-    },
-    {
-      "variants": [],
-      "id": 287,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "links": [],
-      "_sample": false
-    },
-    {
-      "variants": [],
-      "id": 288,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [],
-      "md": null,
-      "mt": null,
-      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "links": [],
-      "_sample": false
-    },
-    {
-      "variants": [],
-      "id": 289,
-      "type": "video",
-      "body": "",
-      "punch": "",
-      "tags": [
-        "riff"
-      ],
-      "md": null,
-      "mt": null,
-      "mu": "https://x.com/gigabaseddad/status/2047827937609592844?s=46",
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "links": [],
-      "_sample": false
-    },
-    {
-      "variants": [],
-      "id": 290,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [
-        "riff"
-      ],
-      "md": null,
-      "mt": null,
-      "mu": "https://x.com/gianl1974/status/2047908857746190336?s=46",
-      "mu_is_image": false,
-      "yt_start": null,
-      "yt_end": null,
-      "context": null,
-      "notes": null,
-      "image": null,
-      "links": [],
-      "_sample": false
-    },
-    {
-      "variants": [],
-      "id": 291,
-      "type": "joke",
-      "body": "",
-      "punch": "",
-      "tags": [
-        "riff"
-      ],
       "md": null,
       "mt": null,
       "mu": "https://x.com/damaan4u33/status/2048103469203017810?s=46",
       "mu_is_image": false,
       "yt_start": null,
       "yt_end": null,
-      "context": null,
+      "context": "Mae West. Inverts Pope's 'To err is human, to forgive divine' — strips the moral imperative and replaces it with sensual pleasure. The pivot is on 'divine' shifting from theological to hedonistic.",
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 91
     },
     {
       "variants": [],
       "id": 292,
-      "type": "video",
-      "body": "shane gillis",
+      "type": "joke",
+      "body": "",
       "punch": "",
       "tags": [
         "riff"
       ],
       "md": null,
       "mt": null,
-      "mu": "https://www.tiktok.com/@shanegillis168/video/7624561240769137950?_r=1&_t=ZP-95qW1GmN56E",
-      "mu_is_image": false,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0101_dnpw6z.webp",
+      "mu_is_image": true,
       "yt_start": null,
       "yt_end": null,
       "context": null,
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 92
     },
     {
       "variants": [],
@@ -4998,7 +5030,7 @@
       ],
       "md": null,
       "mt": null,
-      "mu": "https://www.tiktok.com/@user91260110916/video/7627064657739615519?_r=1&_t=ZP-95tDrnzJae7",
+      "mu": "https://player.cloudinary.com/embed/?cloud_name=danshatdk&public_id=ssstwitter.com_1774391887627_a3clit",
       "mu_is_image": false,
       "yt_start": null,
       "yt_end": null,
@@ -5006,7 +5038,8 @@
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 93
     },
     {
       "variants": [],
@@ -5017,15 +5050,16 @@
       "tags": [],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404915/q5l5r0bqngt4fgnhwcgm.webp",
       "mt": "image",
-      "mu": null,
-      "mu_is_image": false,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0206_s54lr0.jpg",
+      "mu_is_image": true,
       "yt_start": null,
       "yt_end": null,
       "context": null,
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 94
     },
     {
       "variants": [],
@@ -5036,15 +5070,16 @@
       "tags": [],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404916/o0sieuejzes8i12nnzns.webp",
       "mt": "image",
-      "mu": null,
-      "mu_is_image": false,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0113_fizgdj.jpg",
+      "mu_is_image": true,
       "yt_start": null,
       "yt_end": null,
       "context": null,
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 95
     },
     {
       "variants": [],
@@ -5055,15 +5090,16 @@
       "tags": [],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404917/oohwgqjxwnaf12oe1wig.jpg",
       "mt": "image",
-      "mu": null,
-      "mu_is_image": false,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0199_nx1ygz.jpg",
+      "mu_is_image": true,
       "yt_start": null,
       "yt_end": null,
       "context": null,
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 96
     },
     {
       "variants": [],
@@ -5074,15 +5110,16 @@
       "tags": [],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404918/kupgfhfmjhegfgxdouhh.gif",
       "mt": "image",
-      "mu": null,
-      "mu_is_image": false,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0194_bkysaw.webp",
+      "mu_is_image": true,
       "yt_start": null,
       "yt_end": null,
       "context": null,
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 97
     },
     {
       "variants": [],
@@ -5095,21 +5132,39 @@
       ],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777404919/iqg26cpqgivfml6qf18v.gif",
       "mt": "image",
-      "mu": null,
-      "mu_is_image": false,
+      "mu": "https://res.cloudinary.com/danshatdk/image/upload/IMG_0105_quh3wi.webp",
+      "mu_is_image": true,
       "yt_start": null,
       "yt_end": null,
       "context": null,
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 98
     },
     {
-      "variants": [],
+      "variants": [
+        {
+          "id": "v1776097862631",
+          "lbl": "new variant",
+          "body": "What’s up doctor",
+          "punch": "Suck it",
+          "context": "",
+          "mode": "replay"
+        },
+        {
+          "id": "v1776097874446",
+          "lbl": "new variant",
+          "body": "What’s up doc",
+          "punch": "Get er done",
+          "context": "",
+          "mode": "variant"
+        }
+      ],
       "id": 299,
-      "type": "joke",
-      "body": "",
+      "type": "rewrite",
+      "body": "What’s up doc",
       "punch": "",
       "tags": [],
       "md": null,
@@ -5122,19 +5177,20 @@
       "notes": null,
       "image": null,
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 99
     },
     {
       "id": 300,
       "type": "joke",
-      "body": "",
+      "body": "https://www.tiktok.com/t/ZP8gH8XtS/",
       "punch": "",
       "tags": [
         "surreal"
       ],
       "md": "https://res.cloudinary.com/danshatdk/image/upload/v1777405748/qndxhvrcvwrsjxswao9v.jpg",
       "mt": "image",
-      "mu": null,
+      "mu": "https://www.tiktok.com/t/ZP8gH8XtS/",
       "mu_is_image": false,
       "yt_start": null,
       "yt_end": null,
@@ -5143,7 +5199,26 @@
       "image": null,
       "variants": [],
       "links": [],
-      "_sample": false
+      "_sample": false,
+      "_remapped_from": 117
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 305,
+      "_sample": true,
+      "type": "free_association",
+      "body": "FREE ASSOCIATION CHAIN — 30 second exercise\n\nSeed: UMBRELLA → rain → petrichor → grief smells like that → what does joy smell like → sunscreen → summer → boredom → ten years old → ice cream truck → pavlovian → Ivan Pavlov had a good dog → all dogs deserve tenure → academia is a dog whistle → dog whistle → politicians → what do politicians smell like → old carpet and ambition → ambition is a cologne nobody admits to wearing → Axe body spray but for power → power suits → suits with actual power → Magneto in a boardroom → 'I need those reports by Friday' with metal hands → jazz hands → free jazz is the free association of music → full circle\n\nUMBRELLA to JAZZ in 20 hops. Any two adjacent items are a possible premise.\n\nPractice: pick any word, set 30 seconds, do not stop, do not filter.",
+      "punch": "",
+      "tags": [
+        "wordplay",
+        "free_association",
+        "comedy_technique"
+      ],
+      "notes": "Free association is how you find the weird thing. The first 10 hops are logical. After 10 it gets interesting. Train for hops 10-20.",
+      "mt": null,
+      "md": null,
+      "mu": null
     },
     {
       "id": 301,
@@ -6316,7 +6391,7 @@
       "links": [],
       "id": 9047,
       "type": "joke",
-      "body": "pile on\nu tried ur funny comment on danny.  impression of insulting proposition guy.  u should have followed through.  its about riffing and going forward.  gotta build that up.  ie pile on like a gangbang.  pile on the the first comment with snother and another.  build the habits.  that is the way",
+      "body": "Insulting proposition guy number two.  Heeey uhh why don’t u go suck this guys dick so he can let me party with him.  And then I ditch u.  How about that?!?  Hey I’m ceo and u do all the work and I get paid all the dividends and I take all the glory.  Glory galore aka galore",
       "punch": "",
       "tags": [
         "meditation",
@@ -6331,7 +6406,7 @@
       "context": null,
       "notes": null,
       "image": null,
-      "_wip": false,
+      "_wip": true,
       "_shower": false,
       "_sample": false
     },
@@ -6531,6 +6606,8 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9057,
       "type": "joke",
       "body": "im from cincinnati but im not really a bengals fan.  u have to reluctantly support them i guess.  but what me and more hardcore bengals friends have in unison is our love of hating everything cleveland including the browns.  but u know who the biggest browns haters are?  browns (fans).  northeast ohio is capital of self deprecation",
@@ -6547,7 +6624,6 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_wip": true,
       "_shower": false
     }
@@ -6797,7 +6873,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 261
+      "si": 137
     },
     {
       "id": "l2",
@@ -6806,7 +6882,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 3
+      "si": 35
     },
     {
       "id": "l3",
@@ -6815,7 +6891,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 33
+      "si": 48
     },
     {
       "id": "l4",
@@ -6825,7 +6901,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 1
+      "si": 3
     },
     {
       "id": "l5",
@@ -6834,7 +6910,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 29
+      "si": 20
     },
     {
       "id": "l6",
@@ -6843,7 +6919,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 41
+      "si": 39
     },
     {
       "id": "l7",
@@ -6861,7 +6937,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 28
+      "si": 1
     },
     {
       "id": "l9",
@@ -6870,7 +6946,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 14
+      "si": 3
     },
     {
       "id": "l10",
@@ -6879,7 +6955,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 21
+      "si": 6
     },
     {
       "id": "l11",
@@ -6888,7 +6964,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 5
+      "si": 2
     },
     {
       "id": "l_mimic",
@@ -6909,7 +6985,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 3,
+      "si": 0,
       "isSfxLane": true,
       "so": [
         {
@@ -6943,6 +7019,421 @@
       "si": 1,
       "isGestureLane": true,
       "so": []
+    },
+    {
+      "id": "l1776528660253",
+      "lbl": "Test",
+      "tags": [],
+      "color": "rgb(107, 186, 255)",
+      "si": 320,
+      "so": [
+        {
+          "variants": [
+            {
+              "id": "v4a",
+              "lbl": "shorter",
+              "body": "Cemeteries raised burial prices. Blamed cost of living.",
+              "punch": ""
+            },
+            {
+              "id": "v4b",
+              "lbl": "extended",
+              "body": "A cemetery quietly raised its burial prices this quarter and, when asked to explain, cited the rising cost of living.",
+              "punch": ""
+            }
+          ],
+          "id": 4,
+          "type": "joke",
+          "body": "A cemetery raised its burial prices and blamed the cost of living.",
+          "punch": "",
+          "tags": [
+            "dark",
+            "wordplay",
+            "irony"
+          ],
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 10,
+          "type": "observation",
+          "body": "The most haunted thing in any horror movie is never the ghost — it's the mortgage.",
+          "punch": "",
+          "tags": [
+            "irony",
+            "dark"
+          ],
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 8,
+          "type": "joke",
+          "body": "My therapist told me I have trouble accepting things I can't control.",
+          "punch": "We'll see about that.",
+          "tags": [
+            "dark",
+            "irony",
+            "dry"
+          ],
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "id": 102,
+          "_sample": true,
+          "type": "observation",
+          "body": "Everything is amazing right now and nobody's happy. People come back from flights and tell you their story: 'It was the worst day of my life. We sat on the runway for forty minutes.'",
+          "punch": "Oh, really? Did you fly through the air incredibly, like a bird? Did you partake in the miracle of human flight, you non-contributing zero?!",
+          "tags": [
+            "observational",
+            "irony",
+            "dark"
+          ],
+          "context": "Louis C.K. Gratitude deficit — scales a trivial complaint against the backdrop of technological miracle to expose how comprehensively ungrateful modern life is.",
+          "notes": "The escalation to 'non-contributing zero' is the key — it's not gentle.",
+          "mt": null,
+          "md": null,
+          "mu": null,
+          "variants": []
+        },
+        {
+          "id": 100,
+          "_sample": true,
+          "type": "observation",
+          "body": "I see a lot of people saying, 'I'm spiritual, I don't believe in organized religion.'",
+          "punch": "That just means you want to sleep in on Sundays.",
+          "tags": [
+            "observational",
+            "irony",
+            "dry"
+          ],
+          "context": "Ricky Gervais. Deflates a self-congratulatory identity claim to its bare practical motivation.",
+          "mt": null,
+          "md": null,
+          "mu": null,
+          "variants": []
+        },
+        {
+          "variants": [],
+          "id": 84,
+          "type": "joke",
+          "body": "I want my children to have all the things I couldn't afford.",
+          "punch": "Then I want to move in with them.",
+          "tags": [
+            "self_deprecating",
+            "dark",
+            "irony"
+          ],
+          "context": "Phyllis Diller. Generational sacrifice reframed as a long-game financial strategy — parental love as delayed self-interest.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 56,
+          "type": "joke",
+          "body": "A man pushes another off a bridge after learning he belongs to a different Baptist council from 1912.",
+          "punch": "",
+          "tags": [
+            "dark",
+            "irony"
+          ],
+          "context": "Eugene Mirman. Satirizes the narcissism of minor differences — how violent hatred stems from imperceptible theological distinctions.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 5,
+          "type": "observation",
+          "body": "Self-checkout machines have made us all unpaid employees who get to watch our groceries slowly betray us.",
+          "punch": "",
+          "tags": [
+            "irony",
+            "dry"
+          ],
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 82,
+          "type": "joke",
+          "body": "I don't exercise.",
+          "punch": "If God had wanted me to bend over, he would have put diamonds on the floor.",
+          "tags": [
+            "self_deprecating",
+            "irony",
+            "dry"
+          ],
+          "context": "Joan Rivers. Theological justification for laziness — elevates personal sloth to a matter of divine intent.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "id": 114,
+          "_sample": true,
+          "type": "joke",
+          "body": "In my opinion, if you're going to fight the War on Terror,",
+          "punch": "a good place to start would be the Haunted House.",
+          "tags": [
+            "deadpan",
+            "absurd",
+            "irony"
+          ],
+          "context": "Norm Macdonald. Deflates geopolitical rhetoric by relocating it to a seasonal attraction. The earnest delivery makes it land as if it might actually be a policy proposal.",
+          "mt": null,
+          "md": null,
+          "mu": null,
+          "variants": []
+        },
+        {
+          "variants": [],
+          "id": 46,
+          "type": "observation",
+          "body": "If God had written the Bible, the first line should have been:",
+          "punch": "'It's round.'",
+          "tags": [
+            "irony",
+            "dark"
+          ],
+          "context": "Eddie Izzard. Satirizes religious resistance to science — a divine author would have prioritized basic cosmology.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 81,
+          "type": "joke",
+          "body": "A study says that having a lot of friends makes you live longer.",
+          "punch": "Which explains why I'm going to die on Thursday.",
+          "tags": [
+            "self_deprecating",
+            "deadpan",
+            "irony"
+          ],
+          "context": "Conan O'Brien. Applies a statistical finding to a specific personal timeline — the precision of 'Thursday' sells it.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 57,
+          "type": "observation",
+          "body": "My father was a night watchman, but he was a victim of technology.",
+          "punch": "He was replaced by a lock.",
+          "tags": [
+            "dry",
+            "irony"
+          ],
+          "context": "Colin Quinn. Highlights absurdity of a human occupation so simple it can be replaced by a basic mechanical object.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 80,
+          "type": "joke",
+          "body": "I told my psychiatrist that everyone hates me.",
+          "punch": "He said I was being ridiculous — everyone hasn't met me yet.",
+          "tags": [
+            "self_deprecating",
+            "dry",
+            "irony"
+          ],
+          "context": "Rodney Dangerfield. The therapist's correction makes things worse — reframes the universal rejection as not yet complete.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 89,
+          "type": "joke",
+          "body": "I used to be a plastic surgeon.",
+          "punch": "Which just goes to show, you never know what someone is made of.",
+          "tags": [
+            "misdirection",
+            "wordplay",
+            "irony"
+          ],
+          "context": "Stewart Francis. 'What someone is made of' is idiomatic (character/resolve) but here cashed out literally — a plastic surgeon knows exactly what people are made of.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 50,
+          "type": "joke",
+          "body": "The first guy who persuaded a blind person they needed sunglasses...",
+          "punch": "...he must have been a hell of a salesman.",
+          "tags": [
+            "observation",
+            "irony"
+          ],
+          "context": "Jimmy Carr. Explores absurdity of an accepted social norm by pointing out a logical inconsistency.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "id": 107,
+          "_sample": true,
+          "type": "joke",
+          "body": "I get no respect. The way my luck is running,",
+          "punch": "if I was a politician I would be honest.",
+          "tags": [
+            "self_deprecating",
+            "deadpan",
+            "irony"
+          ],
+          "context": "Rodney Dangerfield. The 'no respect' frame is flipped — here honesty in politics is framed as a curse, implying integrity is the worst possible electoral strategy.",
+          "mt": null,
+          "md": null,
+          "mu": null,
+          "variants": []
+        },
+        {
+          "variants": [],
+          "id": 61,
+          "type": "observation",
+          "body": "I think all bullets should cost five thousand dollars.",
+          "punch": "'Man, I was mad, but not five-thousand-dollar mad.'",
+          "tags": [
+            "dark",
+            "irony"
+          ],
+          "context": "Chris Rock. Reframes violent social crisis through the lens of capitalism and supply-and-demand.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "id": 104,
+          "_sample": true,
+          "type": "observation",
+          "body": "'I'm bored' is a useless thing to say. You live in a great, big, vast world that you've seen none of. Even the inside of your own mind is endless.",
+          "punch": "The fact that you're alive is amazing, so you don't get to say 'I'm bored.'",
+          "tags": [
+            "observational",
+            "irony",
+            "dark"
+          ],
+          "context": "Louis C.K. Existential rebuke — frames boredom not as an emotion but as an act of ingratitude against the sheer improbability of consciousness.",
+          "mt": null,
+          "md": null,
+          "mu": null,
+          "variants": []
+        },
+        {
+          "variants": [],
+          "id": 58,
+          "type": "observation",
+          "body": "The Olympic Silver Medal. Of all the losers...",
+          "punch": "...you came in first! You're the number one loser!",
+          "tags": [
+            "observation",
+            "irony"
+          ],
+          "context": "Jerry Seinfeld. Inverts traditional hierarchies — identifies the unique agony of absolute proximity to ultimate victory.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 34,
+          "type": "joke",
+          "body": "I busted a mirror and got seven years bad luck.",
+          "punch": "But my lawyer thinks he can get me five.",
+          "tags": [
+            "irony",
+            "dry"
+          ],
+          "context": "Steven Wright. Blends folklore/superstition with banality of the modern legal system.",
+          "notes": "The word 'five' lands the joke — pure backloading.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 91,
+          "type": "joke",
+          "body": "To err is human,",
+          "punch": "but it feels divine.",
+          "tags": [
+            "misdirection",
+            "wordplay",
+            "irony"
+          ],
+          "context": "Mae West. Inverts Pope's 'To err is human, to forgive divine' — strips the moral imperative and replaces it with sensual pleasure. The pivot is on 'divine' shifting from theological to hedonistic.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        },
+        {
+          "variants": [],
+          "id": 73,
+          "type": "observation",
+          "body": "It says here in this history book that luckily, the good guys have won every single time.",
+          "punch": "What are the odds?",
+          "tags": [
+            "deadpan",
+            "irony",
+            "dry"
+          ],
+          "context": "Norm Macdonald. Deadpan skewering of historical revisionism — history is always written by the winners, so the outcome is 100% predictable.",
+          "mt": null,
+          "md": null,
+          "mu": null
+        }
+      ]
+    },
+    {
+      "id": "l1781289972092",
+      "lbl": "🔊 Sound Effects",
+      "tags": [
+        "sfx"
+      ],
+      "color": "#6bffcc",
+      "si": 3,
+      "isSfxLane": true,
+      "so": [
+        {
+          "variants": [],
+          "links": [],
+          "id": 9001,
+          "_sample": true,
+          "type": "sfx",
+          "body": "Scream",
+          "label": "Scream",
+          "punch": "",
+          "tags": [
+            "sfx"
+          ],
+          "mt": "audio",
+          "md": null,
+          "mu": null,
+          "hot": 5,
+          "_builtinSfx": true,
+          "sfxGroup": "scream"
+        }
+      ]
     }
   ],
   "playlists": [
