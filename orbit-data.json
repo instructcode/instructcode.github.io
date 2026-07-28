@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-07-25T13:31:23.854Z",
+  "exported": "2026-07-28T14:51:32.203Z",
   "jokes": [
     {
       "variants": [],
@@ -6652,7 +6652,71 @@
       "image": null,
       "variants": [],
       "_wip": false,
+      "_shower": false,
+      "links": [],
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9059,
+      "type": "joke",
+      "body": "ai translate gotta watch it in a medical sense.  doctor speaks to translator saying u have notmal diarhea.  patient goes pale.  translator told patient he had butt ebola",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
       "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9060,
+      "type": "joke",
+      "body": "person says my ideas are pure idiocacy.  he mischaracterizes my ideas and projects his preconceived ideas on my ideas before i even start to present them.  i call him an idiot for this.  he gets annoyed.  im already annoyed.  he mansplains to me theres a difference between directly calling someone an idiot and saying their ideas are idiotic.  im like oh great u think playing a language game of morenindirectly tactfully calling someone an idiot from more directly calling them an idiot matters. its just an artificial convention.  u are indeed the idiot. guess this comes from christianity.  more reason to consider that book idiotic.  someone who calls a brother a fool will not go to heaven.  what a dumb thing to say.  like someone has an axe to grind cause theyre preaching rubbish and getting called fool constantly so they enshrine in holy literature for their fellow koolaid drinkers to adopt",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": true
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9061,
+      "type": "observation",
+      "body": "Jesus christ dealing with humans is like dealing with uncontained psychiatric disorders.  worse is im barely getting a grip on my own disorders and its upsetting me to deal with others.  /joke.   anyway dealt with this guy who demonstrated low tact to comment how my ideas are idiotic.  he also previously openly stated nigger.  so guys a social idiot.  but anyway i respond to him by calling him an idiot.  he tells me careful theres a difference between saying someones an idiot and saying what they are doing is idiotic.  well um first he mischaracteriszed and projected his own ideas for what my ideas were before letting me finish.  so he was being idiotic.  second well idiots feel better when someone in a roundabout way calls em an idiot instead of directly.  how many people go about thinkingnthey are an idiot but dont say it out loud.  lol i want to know.  anyway i think theres this culturual distinction because of the bible where theres a passage about calling a brother a fool and u dont go to heaven.  like umm sounds like whoever wrote that wanted their followers to soak that up because he was tired of being called a fool to claiming to know an invisibile god and his will.",
+      "punch": "",
+      "tags": [
+        "observational"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": true
     }
   ],
   "ratings": {
@@ -6900,7 +6964,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 76
+      "si": 321
     },
     {
       "id": "l2",
@@ -6909,7 +6973,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 5
+      "si": 39
     },
     {
       "id": "l3",
@@ -6918,7 +6982,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 13
+      "si": 26
     },
     {
       "id": "l4",
@@ -6928,7 +6992,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 1
+      "si": 2
     },
     {
       "id": "l5",
@@ -6937,7 +7001,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 32
+      "si": 7
     },
     {
       "id": "l6",
@@ -6946,7 +7010,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 10
+      "si": 28
     },
     {
       "id": "l7",
@@ -6955,7 +7019,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 17
+      "si": 13
     },
     {
       "id": "l8",
@@ -6964,7 +7028,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 28
+      "si": 3
     },
     {
       "id": "l9",
@@ -6973,7 +7037,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 13
+      "si": 1
     },
     {
       "id": "l10",
@@ -6982,7 +7046,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 26
+      "si": 27
     },
     {
       "id": "l11",
@@ -6991,7 +7055,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 4
+      "si": 3
     },
     {
       "id": "l_mimic",
@@ -7012,7 +7076,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 5,
+      "si": 3,
       "isSfxLane": true,
       "so": [
         {
@@ -7052,7 +7116,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 214,
+      "si": 130,
       "so": [
         {
           "variants": [
@@ -7438,7 +7502,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 3,
+      "si": 2,
       "isSfxLane": true,
       "so": [
         {
