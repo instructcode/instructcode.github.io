@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-07-28T14:51:32.203Z",
+  "exported": "2026-07-28T16:01:56.029Z",
   "jokes": [
     {
       "variants": [],
@@ -6674,7 +6674,8 @@
       "notes": null,
       "image": null,
       "_wip": true,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "variants": [],
@@ -6694,7 +6695,8 @@
       "notes": null,
       "image": null,
       "_wip": true,
-      "_shower": true
+      "_shower": true,
+      "_sample": false
     },
     {
       "variants": [],
@@ -6715,6 +6717,26 @@
       "context": null,
       "notes": null,
       "image": null,
+      "_wip": true,
+      "_shower": true,
+      "_sample": false
+    },
+    {
+      "id": 9062,
+      "type": "joke",
+      "body": "dont lose late game overwhelm to get a game over\nfame over so its game over",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
       "_wip": true,
       "_shower": true
     }
@@ -6964,7 +6986,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 321
+      "si": 101
     },
     {
       "id": "l2",
@@ -6973,7 +6995,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 39
+      "si": 5
     },
     {
       "id": "l3",
@@ -6982,7 +7004,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 26
+      "si": 28
     },
     {
       "id": "l4",
@@ -6992,7 +7014,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 2
+      "si": 11
     },
     {
       "id": "l5",
@@ -7001,7 +7023,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 7
+      "si": 8
     },
     {
       "id": "l6",
@@ -7010,7 +7032,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 28
+      "si": 35
     },
     {
       "id": "l7",
@@ -7019,7 +7041,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 13
+      "si": 12
     },
     {
       "id": "l8",
@@ -7028,7 +7050,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 3
+      "si": 4
     },
     {
       "id": "l9",
@@ -7037,7 +7059,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 1
+      "si": 3
     },
     {
       "id": "l10",
@@ -7046,7 +7068,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 27
+      "si": 16
     },
     {
       "id": "l11",
@@ -7055,7 +7077,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 3
+      "si": 2
     },
     {
       "id": "l_mimic",
@@ -7076,7 +7098,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 3,
+      "si": 0,
       "isSfxLane": true,
       "so": [
         {
@@ -7116,7 +7138,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 130,
+      "si": 92,
       "so": [
         {
           "variants": [
