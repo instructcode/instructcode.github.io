@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-08-01T14:57:18.329Z",
+  "exported": "2026-08-08T19:37:23.496Z",
   "jokes": [
     {
       "variants": [],
@@ -6804,6 +6804,85 @@
       "notes": null,
       "image": null,
       "_wip": true,
+      "_shower": false,
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9066,
+      "type": "observation",
+      "body": "i dont think anybody is an idiot.  if u can navigate this word with ramming ur head against the wall or impaling urself on a tree branch and u can put together a coherent sentence, ur not an idiot.  all these brainiacs running around who think they are so smart, well if they are so smart why havent then invented a empire ran by them or created utopia on earth?  oh u havent then ur not as smart as u think and all ur perceived intellectual abilities are vanities and useless",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": true
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9067,
+      "type": "joke",
+      "body": "hearing these lettuce and jalapeño headlines butt bug.  so irritable bowel syndrome is on the menu.  can i order some midnight bowel evacuation",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "id": 9068,
+      "type": "joke",
+      "body": "yo im getting a big man boner for this dude.  like its not even like im getting this hidden urge of i want to stick my boner in him, nah its the realization that lots of broads prolly wouldnt mind his boner stuck in them and im jelly.  like shit if i could steal his skin cover and wear it like a halloween costume thatll be dooe.  no creepy",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "id": 9069,
+      "type": "joke",
+      "body": "just got recruited not into the westside gang but the upppper westside gang.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": true,
       "_shower": false
     }
   ],
@@ -7052,7 +7131,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 80
+      "si": 96
     },
     {
       "id": "l2",
@@ -7061,7 +7140,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 50
+      "si": 1
     },
     {
       "id": "l3",
@@ -7070,7 +7149,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 52
+      "si": 46
     },
     {
       "id": "l4",
@@ -7089,7 +7168,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 11
+      "si": 27
     },
     {
       "id": "l6",
@@ -7098,7 +7177,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 25
+      "si": 31
     },
     {
       "id": "l7",
@@ -7107,7 +7186,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 6
+      "si": 15
     },
     {
       "id": "l8",
@@ -7116,7 +7195,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 6
+      "si": 3
     },
     {
       "id": "l9",
@@ -7125,7 +7204,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 6
+      "si": 12
     },
     {
       "id": "l10",
@@ -7134,7 +7213,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 9
+      "si": 22
     },
     {
       "id": "l11",
@@ -7143,7 +7222,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 6
+      "si": 7
     },
     {
       "id": "l_mimic",
@@ -7204,7 +7283,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 264,
+      "si": 268,
       "so": [
         {
           "variants": [
@@ -7590,7 +7669,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 4,
+      "si": 2,
       "isSfxLane": true,
       "so": [
         {
