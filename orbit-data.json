@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-08-08T19:37:30.803Z",
+  "exported": "2026-08-14T22:13:15.905Z",
   "jokes": [
     {
       "variants": [],
@@ -6825,7 +6825,8 @@
       "notes": null,
       "image": null,
       "_wip": false,
-      "_shower": true
+      "_shower": true,
+      "_sample": false
     },
     {
       "variants": [],
@@ -6845,7 +6846,8 @@
       "notes": null,
       "image": null,
       "_wip": true,
-      "_shower": false
+      "_shower": false,
+      "_sample": false
     },
     {
       "id": 9068,
@@ -6864,12 +6866,94 @@
       "image": null,
       "variants": [],
       "_wip": true,
-      "_shower": false
+      "_shower": false,
+      "links": [],
+      "_sample": false
     },
     {
       "id": 9069,
       "type": "joke",
       "body": "just got recruited not into the westside gang but the upppper westside gang.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": true,
+      "_shower": false,
+      "links": [],
+      "_sample": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9070,
+      "type": "joke",
+      "body": "try saying happy mondays to an employee who hates his job.  whats that like.  metaphorical equivalent",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": true
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9071,
+      "type": "joke",
+      "body": "imagine a epithet or eulogy for some one was “karma”, or karma was slow but eventually caught up to em",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": true
+    },
+    {
+      "id": 9072,
+      "type": "joke",
+      "body": "the only gen z speak i speak is yeet which i communicate in groot like manners.  yeet yeeet yeeet i am yeet.  any other genz speak me no speaketh",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "id": 9073,
+      "type": "joke",
+      "body": "is that something uncle ruckus would say.  what would be some uncle ruckus sayings",
       "punch": "",
       "tags": [],
       "md": null,
@@ -7131,7 +7215,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 96
+      "si": 260
     },
     {
       "id": "l2",
@@ -7140,7 +7224,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 1
+      "si": 16
     },
     {
       "id": "l3",
@@ -7149,7 +7233,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 46
+      "si": 43
     },
     {
       "id": "l4",
@@ -7168,7 +7252,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 27
+      "si": 30
     },
     {
       "id": "l6",
@@ -7177,7 +7261,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 31
+      "si": 35
     },
     {
       "id": "l7",
@@ -7186,7 +7270,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 15
+      "si": 17
     },
     {
       "id": "l8",
@@ -7195,7 +7279,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 3
+      "si": 6
     },
     {
       "id": "l9",
@@ -7204,7 +7288,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 12
+      "si": 0
     },
     {
       "id": "l10",
@@ -7213,7 +7297,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 22
+      "si": 1
     },
     {
       "id": "l11",
@@ -7222,7 +7306,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 7
+      "si": 5
     },
     {
       "id": "l_mimic",
@@ -7283,7 +7367,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 268,
+      "si": 246,
       "so": [
         {
           "variants": [
