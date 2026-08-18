@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Tools</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #999;
+      margin-bottom: 50px;
+      font-size: 14px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .nav-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 30px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-card:hover {
+      background: #242424;
+      border-color: #555;
+      transform: translateY(-2px);
+    }
+
+    .nav-card h2 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .nav-card p {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.4;
+    }
+
+    .nav-card .emoji {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 500px) {
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Creative Tools</h1>
+    <p class="subtitle">Choose your workspace</p>
+
+    <div class="nav-grid">
+      <a href="/comedy/" class="nav-card">
+        <div class="emoji">🎤</div>
+        <h2>Comedy</h2>
+        <p>Jokes, bits, and material management</p>
+      </a>
+
+      <a href="/bibleapp/" class="nav-card">
+        <div class="emoji">📖</div>
+        <h2>Bible</h2>
+        <p>Scripture reading and curation</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
