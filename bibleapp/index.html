@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BIBLE READER v1 — the selection surface.
+     Reads bible/<tr>/index.json + bible/<tr>/<book>.json, lets you select verses
+     (contiguous, non-contiguous, or sub-verse) and mint cards from them.
+     Cards are POINTERS + note, never text. Storage: localStorage 'bibleorbit_v1'.
+     iOS rules carried over from JokeOrbit: no onclick, no prompt(), every tap is
+     delegated touchend + 10px movement threshold so scrolling never fires a tap. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>Bible Orbit</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0616;--deep:#0e0922;--panel:#150d2c;--border:#2e2150;--dim:#3a2d60;
+  --muted:#8d7cb8;--text:#d8cdf0;--bright:#f2ecff;
+  --accent:#a98fff;
+  /* departure from JokeOrbit's violet: selection is warm — illuminated-manuscript
+     gold against the same void ground, so "chosen text" reads as gilding */
+  --gild:#e8b755;--gild-dim:#8a6c2e;--gild-wash:rgba(232,183,85,.13);
+  --ink:#e6ddc9;           /* scripture body — warm paper white, not blue-white */
+  --card-mark:#6bffcc;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--void);color:var(--text);font-family:'Space Mono',monospace;
+  height:100dvh;overflow:hidden;position:fixed;width:100%;
+  padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+#app{display:flex;flex-direction:column;height:100%}
+
+/* ── header ─────────────────────────────────────────────────────────── */
+#hdr{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:8px 10px;
+  background:linear-gradient(var(--deep),rgba(14,9,34,.86));
+  border-bottom:1px solid var(--border);backdrop-filter:blur(12px);z-index:20}
+.hbtn{padding:7px 10px;font-size:12px;border:1px solid var(--border);border-radius:3px;
+  background:rgba(21,13,44,.7);color:var(--text);white-space:nowrap}
+.hbtn:active{background:var(--panel);border-color:var(--accent)}
+#ref-btn{flex:1;text-align:left;font-size:13px;font-weight:700;color:var(--bright);
+  letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis}
+#tr-btn{color:var(--gild);border-color:var(--gild-dim);font-size:11px;letter-spacing:.06em}
+.nav{width:34px;text-align:center;font-size:15px;padding:7px 0}
+.nav[disabled]{opacity:.25}
+
+/* ── scripture ──────────────────────────────────────────────────────── */
+#scroll{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  touch-action:pan-y;padding:14px 0 180px}
+#chap-head{padding:6px 22px 18px;color:var(--muted);font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase}
+#chap-head b{display:block;font-family:'EB Garamond',serif;font-size:30px;
+  letter-spacing:0;text-transform:none;color:var(--bright);margin-top:4px;font-weight:500}
+
+/* SIGNATURE: the verse-number rail. In print, verse numbers are superscript
+   noise inside the text. Here they leave the text alone and become a fixed
+   left rail of mono numerals — the rail is the instrument you select with,
+   and it gilds as you go. Scripture itself is never marked up with UI. */
+.v{display:flex;gap:0;padding:0;position:relative}
+.v-num{flex:0 0 46px;text-align:right;padding:7px 10px 0 0;font-size:10px;
+  color:var(--dim);line-height:1;letter-spacing:.04em;user-select:none;
+  border-right:1px solid rgba(46,33,80,.55)}
+.v-txt{flex:1 1 auto;padding:3px 20px 9px 14px;font-family:'EB Garamond',serif;
+  font-size:19px;line-height:1.62;color:var(--ink);
+  -webkit-user-select:none;user-select:none}
+.v.on .v-num{color:var(--gild);font-weight:700}
+.v.on .v-txt{background:var(--gild-wash);box-shadow:inset 2px 0 0 var(--gild)}
+.v.on-first .v-txt{border-radius:3px 3px 0 0}
+.v.on-last  .v-txt{border-radius:0 0 3px 3px}
+.v.banked .v-num{color:var(--gild-dim)}
+.v.banked .v-txt{background:rgba(232,183,85,.055);box-shadow:inset 2px 0 0 var(--gild-dim)}
+.v-dot{position:absolute;left:38px;top:9px;width:4px;height:4px;border-radius:50%;
+  background:var(--card-mark);box-shadow:0 0 5px var(--card-mark)}
+.v-omit{font-style:italic;color:var(--dim);font-size:15px}
+#end-rule{margin:26px auto 0;width:40px;height:1px;background:var(--border)}
+
+/* ── selection bar ──────────────────────────────────────────────────── */
+#selbar{position:fixed;left:0;right:0;bottom:0;z-index:30;
+  padding:10px 12px calc(12px + env(safe-area-inset-bottom));
+  background:linear-gradient(rgba(14,9,34,.5),rgba(10,6,22,.97) 34%);
+  border-top:1px solid var(--gild-dim);backdrop-filter:blur(16px);
+  transform:translateY(115%);transition:transform .22s cubic-bezier(.2,.8,.3,1)}
+#selbar.on{transform:translateY(0)}
+#sel-ref{font-size:13px;font-weight:700;color:var(--gild);letter-spacing:.02em}
+#sel-meta{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.04em}
+#sel-meta .warn{color:var(--gild)}
+#sel-acts{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.act{flex:1 1 auto;padding:10px 8px;font-size:11px;text-align:center;border-radius:3px;
+  border:1px solid var(--border);background:rgba(21,13,44,.8);letter-spacing:.03em}
+.act:active{background:var(--panel)}
+.act.prime{background:var(--gild);color:#1a1204;border-color:var(--gild);font-weight:700;flex:1.4}
+.act[disabled]{opacity:.3}
+
+/* ── sheets ─────────────────────────────────────────────────────────── */
+.sheet{position:fixed;inset:0;z-index:40;background:rgba(6,3,14,.82);
+  backdrop-filter:blur(3px);display:none}
+.sheet.on{display:block}
+.sheet-in{position:absolute;left:0;right:0;bottom:0;max-height:88%;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;touch-action:pan-y;background:var(--deep);
+  border-top:1px solid var(--border);border-radius:12px 12px 0 0;
+  padding:16px 14px calc(20px + env(safe-area-inset-bottom))}
+.sheet-ttl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;display:flex;justify-content:space-between}
+.x{font-size:16px;color:var(--muted);padding:0 6px;margin-top:-4px}
+textarea,input[type=text]{width:100%;background:var(--void);color:var(--text);
+  border:1px solid var(--border);border-radius:3px;padding:10px;font-family:inherit;
+  font-size:14px;resize:vertical}
+textarea:focus,input:focus{outline:none;border-color:var(--gild)}
+.fld{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;
+  margin:14px 0 6px}
+.quote{font-family:'EB Garamond',serif;font-size:17px;line-height:1.55;color:var(--ink);
+  border-left:2px solid var(--gild);padding:8px 0 8px 12px;margin-bottom:4px;
+  max-height:180px;overflow-y:auto}
+
+/* book / chapter picker */
+.grid{display:grid;gap:5px}
+#bk-grid{grid-template-columns:repeat(2,1fr)}
+#ch-grid{grid-template-columns:repeat(6,1fr)}
+.pick{padding:11px 8px;font-size:12px;border:1px solid var(--border);border-radius:3px;
+  background:var(--panel);text-align:left;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+#ch-grid .pick{text-align:center;padding:12px 0;font-size:13px}
+.pick:active,.pick.on{border-color:var(--gild);color:var(--gild)}
+.testa{font-size:10px;letter-spacing:.2em;color:var(--dim);margin:16px 0 7px;
+  text-transform:uppercase}
+
+/* trim */
+#trim-words{line-height:2.5;margin:4px 0 8px}
+.w{font-family:'EB Garamond',serif;font-size:18px;padding:4px 3px;border-radius:2px;
+  color:var(--muted);border-bottom:1px solid transparent}
+.w.in{color:var(--ink);background:var(--gild-wash);border-bottom-color:var(--gild)}
+.w.edge{color:var(--gild);font-weight:500}
+
+
+/* ── ORBIT STAGE ────────────────────────────────────────────────────── */
+#orbit{flex:1 1 auto;display:none;flex-direction:column;position:relative;min-height:0}
+body.m-orbit #scroll{display:none}
+body.m-orbit #orbit{display:flex}
+body.m-orbit #selbar{display:none}
+#obar{flex:0 0 auto;display:flex;gap:5px;padding:7px 10px;overflow-x:auto;
+  border-bottom:1px solid var(--border);background:rgba(14,9,34,.72);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+#obar::-webkit-scrollbar{display:none}
+.ochip{flex:0 0 auto;padding:6px 11px;font-size:11px;border-radius:3px;
+  border:1px solid var(--border);background:var(--panel);color:var(--muted);white-space:nowrap}
+.ochip.on{color:var(--gild);border-color:var(--gild-dim);background:rgba(232,183,85,.09)}
+#stage{flex:1 1 auto;position:relative;overflow:hidden;touch-action:none}
+#lane-stack{position:absolute;inset:0}
+.lane{position:absolute;left:0;right:0;overflow:hidden;will-change:top,height}
+.lane-in{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.lane-lbl{position:absolute;top:5px;left:12px;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);z-index:3;pointer-events:none}
+.lane.al .lane-lbl{color:var(--gild-dim)}
+.lane-cnt{position:absolute;top:5px;right:12px;font-size:9px;color:var(--dim);z-index:3}
+.lane-empty{font-size:11px;color:var(--dim);letter-spacing:.1em}
+
+/* .jcard.c is load-bearing: the swipe engine looks for exactly this selector to
+   decide whether a vertical drag is card-scrolling or lane navigation. */
+.jcard{position:absolute;top:8px;bottom:8px;width:min(330px,calc(100vw - 64px));
+  border:1px solid var(--border);border-radius:3px;background:var(--card-bg,rgba(22,13,44,.72));
+  backdrop-filter:blur(7px);padding:10px 12px;overflow:hidden;
+  will-change:transform,opacity;transition:opacity .18s}
+.jcard.c{overflow-y:auto;-webkit-overflow-scrolling:touch;border-color:var(--gild-dim);
+  box-shadow:0 0 0 1px rgba(232,183,85,.08),0 8px 34px rgba(0,0,0,.5)}
+.c-hdr{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  margin-bottom:7px;position:sticky;top:0;background:inherit}
+.c-ref{font-size:12px;font-weight:700;color:var(--gild);letter-spacing:.02em}
+.c-tr{font-size:8.5px;color:var(--dim);letter-spacing:.14em}
+.c-scr{font-family:'EB Garamond',serif;font-size:16.5px;line-height:1.58;color:var(--ink)}
+.c-scr .vn{font-family:'Space Mono',monospace;font-size:8.5px;color:var(--gild-dim);
+  vertical-align:super;margin-right:3px}
+.c-fb{font-size:8.5px;color:var(--gild-dim);letter-spacing:.1em;margin-top:5px}
+.c-note{font-size:11.5px;line-height:1.5;color:var(--muted);margin-top:9px;
+  border-top:1px solid var(--border);padding-top:8px}
+.c-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.c-tag{font-size:8.5px;padding:2px 6px;border-radius:2px;background:rgba(169,143,255,.1);
+  color:var(--accent);letter-spacing:.06em}
+.c-chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.chip{font-size:9.5px;padding:5px 8px;border:1px solid var(--border);border-radius:2px;
+  color:var(--muted);background:rgba(10,6,22,.5)}
+.chip:active{border-color:var(--gild);color:var(--gild)}
+#lane-tag{flex:0 0 auto;display:flex;gap:5px;padding:6px 10px;
+  border-top:1px solid var(--border);background:rgba(14,9,34,.72);overflow-x:auto;
+  scrollbar-width:none}
+#lane-tag::-webkit-scrollbar{display:none}
+
+#toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(14px);
+  background:var(--panel);border:1px solid var(--gild-dim);color:var(--bright);
+  padding:9px 15px;border-radius:3px;font-size:11.5px;z-index:60;opacity:0;
+  transition:.2s;pointer-events:none;max-width:88%;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#load{padding:44px 22px;color:var(--dim);font-size:11px;letter-spacing:.16em}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="hdr">
+    <button class="hbtn nav" id="prev">‹</button>
+    <button class="hbtn" id="ref-btn">Loading…</button>
+    <button class="hbtn nav" id="next">›</button>
+    <button class="hbtn" id="tr-btn">KJV</button>
+    <button class="hbtn" id="mode-btn">◎</button>
+  </div>
+  <div id="scroll"><div id="load">LOADING SCRIPTURE…</div></div>
+  <div id="orbit">
+    <div id="obar"></div>
+    <div id="stage"><div id="lane-stack"></div></div>
+    <div id="lane-tag"></div>
+  </div>
+</div>
+
+<div id="selbar">
+  <div id="sel-ref"></div>
+  <div id="sel-meta"></div>
+  <div id="sel-acts">
+    <button class="act" id="a-clear">Clear</button>
+    <button class="act" id="a-bank">＋ Range</button>
+    <button class="act" id="a-trim">Trim</button>
+    <button class="act prime" id="a-make">Make card</button>
+  </div>
+</div>
+
+<div class="sheet" id="sh-book"><div class="sheet-in">
+  <div class="sheet-ttl"><span id="bk-ttl">Choose a book</span><button class="x" data-close>✕</button></div>
+  <div id="bk-body"></div>
+</div></div>
+
+<div class="sheet" id="sh-card"><div class="sheet-in">
+  <div class="sheet-ttl"><span>New card</span><button class="x" data-close>✕</button></div>
+  <div id="card-ref" style="font-size:13px;font-weight:700;color:var(--gild);margin-bottom:8px"></div>
+  <div class="quote" id="card-quote"></div>
+  <div class="fld">Note</div>
+  <textarea id="card-note" rows="4" placeholder="What you saw here."></textarea>
+  <div class="fld">Tags — comma separated</div>
+  <input type="text" id="card-tags" placeholder="providence, suffering">
+  <div id="sel-acts" style="display:flex;gap:6px;margin-top:16px">
+    <button class="act" data-close>Cancel</button>
+    <button class="act prime" id="card-save">Save card</button>
+  </div>
+</div></div>
+
+<div class="sheet" id="sh-trim"><div class="sheet-in">
+  <div class="sheet-ttl"><span>Trim to a phrase</span><button class="x" data-close>✕</button></div>
+  <div style="font-size:10px;color:var(--muted);letter-spacing:.04em;margin-bottom:10px">
+    Tap the first word, then the last.</div>
+  <div id="trim-words"></div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:12px" id="trim-note"></div>
+  <div style="display:flex;gap:6px">
+    <button class="act" id="trim-reset">Reset</button>
+    <button class="act prime" id="trim-ok">Use phrase</button>
+  </div>
+</div></div>
+
+<div class="sheet" id="sh-cards"><div class="sheet-in">
+  <div class="sheet-ttl"><span id="cards-ttl">Cards</span><button class="x" data-close>✕</button></div>
+  <div id="cards-body"></div>
+</div></div>
+
+<div id="toast"></div>
+
+<script src="bibleref.js"></script>
+<script>
+/* ═══ state ═══════════════════════════════════════════════════════════ */
+const LS='bibleorbit_v1';
+const ST={
+  tr:'kjv', idx:null, R:null,
+  bk:'jhn', ch:1,
+  cache:new Map(),        // "tr/book" -> book json. MEMORY ONLY, never localStorage.
+  sel:null,               // {a,b,anchor} verse range in the current chapter
+  banked:[],              // committed segments from any chapter
+  trim:null,              // {words,first,last,verse}
+  mode:'read', data:{v:1,cards:[],plans:[],nextId:1}
+};
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;};
+
+/* ═══ storage ═════════════════════════════════════════════════════════ */
+function load(){ try{const r=localStorage.getItem(LS); if(r){ST.data=JSON.parse(r); ST.data.plans=ST.data.plans||[];}}catch(e){} }
+function save(){ try{localStorage.setItem(LS,JSON.stringify(ST.data));}
+  catch(e){toast('Could not save — storage full');} }
+
+/* ═══ tap: delegated touchend + movement threshold ════════════════════
+   Straight from JokeOrbit's v176/v178 lessons. A tap only counts if the
+   finger stayed within 10px, so scrolling a chapter never selects a verse.
+   Delegated (v167) so re-rendering the chapter needs no rewiring.        */
+function tapOn(root, sel, fn){
+  let sx=0,sy=0,moved=false,last=0;
+  const fire=(e)=>{
+    const t=e.target.closest(sel); if(!t||!root.contains(t))return;
+    if(Date.now()-last<320)return; last=Date.now();
+    fn(t,e);
+  };
+  root.addEventListener('touchstart',e=>{const t=e.touches[0];sx=t.clientX;sy=t.clientY;moved=false;},{passive:true});
+  root.addEventListener('touchmove',e=>{const t=e.touches[0];
+    if(Math.abs(t.clientX-sx)>10||Math.abs(t.clientY-sy)>10)moved=true;},{passive:true});
+  root.addEventListener('touchend',e=>{if(moved)return;fire(e);});
+  root.addEventListener('click',fire);
+}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2100);}
+
+/* ═══ fetching ════════════════════════════════════════════════════════ */
+async function getIndex(tr){
+  const r=await fetch(`bible/${tr}/index.json`);
+  if(!r.ok) throw new Error('index '+r.status);
+  return r.json();
+}
+async function getBook(tr,id){
+  const k=tr+'/'+id;
+  if(ST.cache.has(k)) return ST.cache.get(k);
+  const r=await fetch(`bible/${tr}/${id}.json`);
+  if(!r.ok) throw new Error(id+' '+r.status);
+  const j=await r.json(); ST.cache.set(k,j); return j;
+}
+const cached=id=>ST.cache.get(ST.tr+'/'+id)||null;
+
+/* ═══ selection → reference ═══════════════════════════════════════════ */
+function currentRef(){
+  const r=ST.banked.slice();
+  if(ST.sel) r.push({b:ST.bk,c:ST.ch,v1:Math.min(ST.sel.a,ST.sel.b),v2:Math.max(ST.sel.a,ST.sel.b)});
+  return ST.R?ST.R.normalize(r):r;
+}
+function clearSel(){ ST.sel=null; ST.banked=[]; paintSel(); }
+
+/* ═══ render: chapter ═════════════════════════════════════════════════ */
+async function renderChapter(){
+  const sc=$('#scroll');
+  const b=ST.idx.books.find(x=>x.id===ST.bk);
+  $('#ref-btn').textContent=`${b.name} ${ST.ch}`;
+  $('#prev').disabled = (b._i===0 && ST.ch===1);
+  $('#next').disabled = false;
+  sc.innerHTML='<div id="load">LOADING…</div>';
+  let bk; try{ bk=await getBook(ST.tr,ST.bk); }
+  catch(e){ sc.innerHTML=`<div id="load">Couldn't load ${ST.bk}. Check that bible/${ST.tr}/ is deployed.</div>`; return; }
+
+  const verses=bk.ch[ST.ch-1]||[];
+  const frag=document.createDocumentFragment();
+  const head=el('div'); head.id='chap-head';
+  head.innerHTML=`${ST.tr.toUpperCase()} · CHAPTER ${ST.ch}<b>${b.name}</b>`;
+  frag.appendChild(head);
+
+  // which verses in this chapter already have cards — the gutter dot
+  const marked=new Set();
+  ST.data.cards.forEach(c=>c.ref.forEach(s=>{
+    if(s.b!==ST.bk||s.c!==ST.ch)return;
+    const v1=s.v1==null?1:s.v1, v2=s.v2==null?verses.length:s.v2;
+    for(let v=v1;v<=v2;v++)marked.add(v);
+  }));
+
+  verses.forEach((txt,i)=>{
+    const v=i+1;
+    const row=el('div','v'); row.dataset.v=v;
+    row.appendChild(el('div','v-num',String(v)));
+    const t=el('div','v-txt');
+    if(txt) t.textContent=txt;
+    else { t.className='v-txt'; t.appendChild(el('span','v-omit','— not in this translation')); }
+    row.appendChild(t);
+    if(marked.has(v)) row.appendChild(el('div','v-dot'));
+    frag.appendChild(row);
+  });
+  frag.appendChild(el('div')).id='end-rule';
+  sc.innerHTML=''; sc.appendChild(frag); sc.scrollTop=0;
+  paintSel();
+}
+
+/* ═══ render: selection state ═════════════════════════════════════════ */
+function paintSel(){
+  const lo=ST.sel?Math.min(ST.sel.a,ST.sel.b):0, hi=ST.sel?Math.max(ST.sel.a,ST.sel.b):-1;
+  const bankHere=new Set();
+  ST.banked.forEach(s=>{ if(s.b===ST.bk&&s.c===ST.ch)
+    for(let v=s.v1;v<=s.v2;v++)bankHere.add(v); });
+  document.querySelectorAll('#scroll .v').forEach(row=>{
+    const v=+row.dataset.v;
+    row.classList.toggle('on', v>=lo&&v<=hi);
+    row.classList.toggle('on-first', v===lo);
+    row.classList.toggle('on-last', v===hi);
+    row.classList.toggle('banked', bankHere.has(v)&&!(v>=lo&&v<=hi));
+  });
+
+  const ref=currentRef();
+  const bar=$('#selbar');
+  if(!ref.length){ bar.classList.remove('on'); return; }
+  bar.classList.add('on');
+  const n=ST.R.count(ref);
+  $('#sel-ref').textContent=ST.R.format(ref);
+  const dupes=ST.data.cards.filter(c=>ST.R.key(c.ref)===ST.R.key(ref)).length;
+  $('#sel-meta').innerHTML = `${n} verse${n===1?'':'s'}`
+    + (ST.banked.length?` · ${ST.banked.length+(ST.sel?1:0)} ranges`:'')
+    + (dupes?` · <span class="warn">${dupes} card${dupes===1?'':'s'} already on this</span>`:'');
+  $('#a-trim').disabled = !(n===1 && !ST.banked.length);
+  $('#a-bank').disabled = !ST.sel;
+}
+
+/* ═══ interactions ════════════════════════════════════════════════════ */
+tapOn($('#scroll'),'.v',row=>{
+  const v=+row.dataset.v;
+  if(!ST.sel){ ST.sel={a:v,b:v,anchor:v}; }
+  else if(ST.sel.a===ST.sel.b && ST.sel.anchor===v){ ST.sel=null; }   // tap again to drop
+  else { ST.sel={a:ST.sel.anchor,b:v,anchor:ST.sel.anchor}; }         // extend from anchor
+  paintSel();
+});
+tapOn($('#a-clear'),'*',()=>{clearSel();});
+tapOn($('#a-bank'),'*',()=>{
+  if(!ST.sel)return;
+  ST.banked.push({b:ST.bk,c:ST.ch,v1:Math.min(ST.sel.a,ST.sel.b),v2:Math.max(ST.sel.a,ST.sel.b)});
+  ST.sel=null; paintSel();
+  toast('Range banked — select another, they join one card');
+});
+
+/* chapter nav — walks across book boundaries */
+function step(d){
+  const bs=ST.idx.books, i=bs.findIndex(b=>b.id===ST.bk), b=bs[i];
+  let ch=ST.ch+d, bi=i;
+  if(ch<1){ bi=i-1; if(bi<0)return; ch=bs[bi].chapters; }
+  else if(ch>b.chapters){ bi=i+1; if(bi>=bs.length)return; ch=1; }
+  ST.bk=bs[bi].id; ST.ch=ch; ST.sel=null; renderChapter();
+}
+tapOn($('#prev'),'*',()=>step(-1));
+tapOn($('#next'),'*',()=>step(1));
+
+/* translation switch — cards are pointers, so every one re-renders for free */
+tapOn($('#tr-btn'),'*',async()=>{
+  ST.tr = ST.tr==='kjv'?'web':'kjv';
+  $('#tr-btn').textContent=ST.tr.toUpperCase();
+  try{ ST.idx=await getIndex(ST.tr); ST.idx.books.forEach((b,i)=>b._i=i); ST.R=BibleRef(ST.idx); }
+  catch(e){ toast('Could not load '+ST.tr.toUpperCase()); return; }
+  renderChapter(); toast(ST.tr==='kjv'?'King James':'World English Bible');
+});
+
+/* ── book picker ── */
+function openBooks(){
+  const body=$('#bk-body'); body.innerHTML=''; $('#bk-ttl').textContent='Choose a book';
+  [['Old Testament',true],['New Testament',false]].forEach(([lbl,ot])=>{
+    body.appendChild(el('div','testa',lbl));
+    const g=el('div','grid'); g.id='bk-grid';
+    ST.idx.books.filter(b=>b.ot===ot).forEach(b=>{
+      const p=el('button','pick',b.name); p.dataset.bk=b.id;
+      if(b.id===ST.bk)p.classList.add('on'); g.appendChild(p);
+    });
+    body.appendChild(g);
+  });
+  $('#sh-book').classList.add('on');
+}
+function openChapters(bid){
+  const b=ST.idx.books.find(x=>x.id===bid);
+  const body=$('#bk-body'); body.innerHTML=''; $('#bk-ttl').textContent=b.name;
+  const g=el('div','grid'); g.id='ch-grid';
+  for(let c=1;c<=b.chapters;c++){
+    const p=el('button','pick',String(c)); p.dataset.ch=c;
+    if(bid===ST.bk&&c===ST.ch)p.classList.add('on'); g.appendChild(p);
+  }
+  body.appendChild(g); body.dataset.bk=bid;
+}
+tapOn($('#ref-btn'),'*',openBooks);
+tapOn($('#bk-body'),'.pick',p=>{
+  if(p.dataset.bk){ openChapters(p.dataset.bk); return; }
+  ST.bk=$('#bk-body').dataset.bk; ST.ch=+p.dataset.ch; ST.sel=null;
+  $('#sh-book').classList.remove('on'); renderChapter();
+});
+
+/* ── trim to a phrase (sub-verse) ── */
+tapOn($('#a-trim'),'*',()=>{
+  const ref=currentRef(); if(ST.R.count(ref)!==1)return;
+  const s=ref[0], bk=cached(ST.bk); if(!bk)return;
+  const txt=(bk.ch[s.c-1]||[])[ (s.v1||1)-1 ]||'';
+  if(!txt){ toast('No text to trim in this translation'); return; }
+  const words=[]; const re=/\S+/g; let m;
+  while((m=re.exec(txt))) words.push({w:m[0],s:m.index,e:m.index+m[0].length});
+  ST.trim={words,first:null,last:null,verse:{b:s.b,c:s.c,v:s.v1||1},txt};
+  buildTrim(); paintTrim(); $('#sh-trim').classList.add('on');
+});
+/* Words are built ONCE. paintTrim only toggles classes — rebuilding the list
+   on every tap detached the very node the finger was on, so the second tap
+   landed on an orphan and the end-of-phrase never registered. */
+function buildTrim(){
+  const box=$('#trim-words'); box.innerHTML='';
+  ST.trim.words.forEach((w,i)=>{
+    const s=el('span','w',w.w); s.dataset.i=i;
+    box.appendChild(s); box.appendChild(document.createTextNode(' '));
+  });
+}
+function paintTrim(){
+  const T=ST.trim;
+  const lo=T.first==null?-1:Math.min(T.first,T.last==null?T.first:T.last);
+  const hi=T.last==null?(T.first==null?-2:T.first):Math.max(T.first,T.last);
+  $$('#trim-words .w').forEach(s=>{
+    const i=+s.dataset.i;
+    s.classList.toggle('in', i>=lo&&i<=hi);
+    s.classList.toggle('edge', i===lo||i===hi);
+  });
+  const n=(hi>=lo&&lo>=0)?hi-lo+1:0;
+  $('#trim-note').textContent = n
+    ? `${n} word${n===1?'':'s'} — kept as an excerpt so this card survives a translation switch.`
+    : 'Nothing selected yet.';
+}
+tapOn($('#trim-words'),'.w',s=>{
+  const i=+s.dataset.i, T=ST.trim;
+  if(T.first==null||T.last!=null){ T.first=i; T.last=null; } else { T.last=i; }
+  paintTrim();
+});
+tapOn($('#trim-reset'),'*',()=>{ST.trim.first=ST.trim.last=null;paintTrim();});
+tapOn($('#trim-ok'),'*',()=>{
+  const T=ST.trim; if(T.first==null){toast('Tap a word first');return;}
+  const lo=Math.min(T.first,T.last==null?T.first:T.last);
+  const hi=Math.max(T.first,T.last==null?T.first:T.last);
+  const seg=ST.R.cut(T.verse.b,T.verse.c,T.verse.v,T.words[lo].s,T.words[hi].e,T.txt,ST.tr);
+  ST.banked=[seg]; ST.sel=null;
+  $('#sh-trim').classList.remove('on'); paintSel();
+  openCard();
+});
+
+/* ── make card ── */
+function openCard(){
+  const ref=currentRef(); if(!ref.length)return;
+  $('#card-ref').textContent=ST.R.format(ref);
+  const bk=cached(ST.bk);
+  const rows=ST.R.text(ref, id=>cached(id), ST.tr);
+  const q=$('#card-quote'); q.innerHTML='';
+  rows.forEach(r=>{
+    if(r.pending){ q.appendChild(el('div',null,'…')); return; }
+    const d=el('div',null, r.t || '— not in this translation');
+    if(!r.t)d.style.cssText='color:var(--dim);font-style:italic';
+    q.appendChild(d);
+  });
+  $('#card-note').value=''; $('#card-tags').value='';
+  $('#sh-card').classList.add('on');
+}
+tapOn($('#a-make'),'*',openCard);
+tapOn($('#card-save'),'*',()=>{
+  const ref=currentRef(); if(!ref.length)return;
+  const card={
+    id:ST.data.nextId++,
+    ref,                                    // POINTERS — never the verse text
+    note:$('#card-note').value.trim(),
+    tags:$('#card-tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+    lanes:[], created:Date.now(), madeIn:ST.tr
+  };
+  ST.data.cards.push(card); save();
+  $('#sh-card').classList.remove('on');
+  clearSel(); renderChapter();
+  if(ST.mode==='orbit')rebuildOrbit();
+  toast('Card made — '+ST.R.format(ref));
+});
+
+/* ── cards list ── */
+async function openCardsSheet(){
+  $('#sh-cards').classList.add('on');
+  $('#cards-body').innerHTML='<div class="testa">Loading…</div>';
+  // A card can point anywhere in the canon, so pull in whatever books this
+  // list needs before rendering — otherwise every card outside the chapter
+  // you happen to be reading renders blank.
+  const need=[...new Set(ST.data.cards.flatMap(c=>c.ref.map(s=>s.b)))].filter(id=>!cached(id));
+  await Promise.all(need.map(id=>getBook(ST.tr,id).catch(()=>null)));
+  renderCards();
+}
+function renderCards(){
+  const body=$('#cards-body'); body.innerHTML='';
+  $('#cards-ttl').textContent=`Cards · ${ST.data.cards.length}`;
+  if(!ST.data.cards.length){
+    body.appendChild(el('div','testa','Nothing yet. Tap a verse to begin.'));
+  }
+  ST.data.cards.slice().reverse().forEach(c=>{
+    const d=el('div'); d.style.cssText='border:1px solid var(--border);border-radius:3px;padding:11px;margin-bottom:7px';
+    const h=el('div',null,ST.R.format(c.ref));
+    h.style.cssText='font-size:12px;font-weight:700;color:var(--gild);margin-bottom:5px';
+    d.appendChild(h);
+    const rows=ST.R.text(c.ref, id=>cached(id), ST.tr);
+    const t=rows.map(r=>r.pending?null:(r.t||'—')).filter(Boolean).join(' ');
+    if(t){ const p=el('div',null,t.slice(0,150)+(t.length>150?'…':''));
+      p.style.cssText='font-family:"EB Garamond",serif;font-size:15px;line-height:1.5;color:var(--ink)';
+      d.appendChild(p); }
+    if(rows.some(r=>r.fallback)){
+      const f=el('div',null,`excerpt kept from ${(rows.find(r=>r.fallback).cutIn||'').toUpperCase()}`);
+      f.style.cssText='font-size:9.5px;color:var(--gild-dim);letter-spacing:.1em;margin-top:5px';
+      d.appendChild(f); }
+    if(c.note){ const n=el('div',null,c.note);
+      n.style.cssText='font-size:12px;color:var(--muted);margin-top:7px;line-height:1.5';
+      d.appendChild(n); }
+    const del=el('button','act','Delete'); del.dataset.del=c.id;
+    del.style.cssText='margin-top:9px;padding:6px;font-size:10px;flex:0 0 auto';
+    d.appendChild(del);
+    body.appendChild(d);
+  });
+}
+tapOn($('#cards-body'),'[data-del]',b=>{
+  ST.data.cards=ST.data.cards.filter(c=>c.id!==+b.dataset.del); save();
+  renderCards(); renderChapter();
+});
+
+/* sheets close on backdrop or ✕ */
+document.querySelectorAll('.sheet').forEach(sh=>{
+  tapOn(sh,'[data-close]',()=>sh.classList.remove('on'));
+  sh.addEventListener('click',e=>{ if(e.target===sh)sh.classList.remove('on'); });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ORBIT ENGINE — ported from JOKE ORBIT v185.
+   Every constant below is lifted verbatim (lane heights, blur, opacity,
+   scale falloff, spring K/C, swipe thresholds). The payload changed from
+   jokes to passage cards; the instrument did not.
+   ═══════════════════════════════════════════════════════════════════════ */
+let AL=[];                       // active lane array
+const O={ali:0, orbit:'study', fan:new Set()};
+
+/* ── orbits ─────────────────────────────────────────────────────────── */
+const ORBITS=[
+  {id:'study', lbl:'📖 Study'},
+  {id:'books', lbl:'📚 Books'},
+  {id:'plans', lbl:'📑 Plans'},
+  {id:'recent',lbl:'🕐 Recent'},
+];
+
+function cardsAll(){
+  // defensive: one bad card from a hand-edited backup must not blank the stage
+  return (ST.data.cards||[]).filter(c=>c&&Array.isArray(c.ref)&&c.ref.length)
+    .map(c=>{ if(!Array.isArray(c.tags))c.tags=c.tags?String(c.tags).split(',').map(t=>t.trim()).filter(Boolean):[]; return c; });
+}
+function cardBooks(c){ return [...new Set(c.ref.map(s=>s.b))]; }
+
+function allLanes(){
+  const cards=cardsAll();
+  const prev={}; AL.forEach(l=>prev[l.id]=l.si||0);
+  let lanes=[];
+  if(O.orbit==='study'){
+    lanes.push({id:'l_all', lbl:'All cards', kind:'all'});
+    const tags=[...new Set(cards.flatMap(c=>c.tags))].sort();
+    tags.forEach(t=>lanes.push({id:'l_t_'+t, lbl:t, kind:'tag', tag:t}));
+    lanes.push({id:'l_untagged', lbl:'Untagged', kind:'untagged'});
+  }else if(O.orbit==='books'){
+    const seen=[...new Set(cards.flatMap(cardBooks))];
+    seen.sort((a,b)=>ST.R.book(a)._i-ST.R.book(b)._i);
+    lanes=seen.map(b=>({id:'l_b_'+b, lbl:ST.R.book(b).name, kind:'book', book:b}));
+    if(!lanes.length) lanes=[{id:'l_all', lbl:'All cards', kind:'all'}];
+  }else if(O.orbit==='plans'){
+    lanes=(ST.data.plans||[]).map(p=>({id:'l_p_'+p.id, lbl:p.name, kind:'plan', plan:p}));
+    if(!lanes.length) lanes=[{id:'l_noplan', lbl:'No plans yet', kind:'empty'}];
+  }else{
+    lanes=[{id:'l_recent', lbl:'Recent', kind:'recent'}];
+  }
+  lanes.forEach(l=>{ l.so=laneCards(l); l.si=Math.min(prev[l.id]||0, Math.max(0,l.so.length-1)); });
+  return lanes;
+}
+function laneCards(ln){
+  const c=cardsAll();
+  switch(ln.kind){
+    case 'all':      return byRef(c);
+    case 'tag':      return byRef(c.filter(x=>x.tags.includes(ln.tag)));
+    case 'untagged': return byRef(c.filter(x=>!x.tags.length));
+    case 'book':     return byRef(c.filter(x=>cardBooks(x).includes(ln.book)));
+    // PLAN ORDER IS MANUAL. Plans never pass through byRef — the ids array IS
+    // the display order, exactly like JokeOrbit lineups, so no sort can touch it.
+    case 'plan':     return ln.plan.ids.map(id=>c.find(x=>x.id===id)).filter(Boolean);
+    case 'recent':   return c.slice().sort((a,b)=>b.created-a.created).slice(0,50);
+    default:         return [];
+  }
+}
+// canonical scripture order — the natural sort for passages
+function byRef(list){
+  return list.slice().sort((a,b)=>ST.R.compare(a.ref,b.ref)||a.id-b.id);
+}
+
+/* ── geometry (v185 constants, verbatim) ────────────────────────────── */
+const stEl=()=>document.getElementById('stage');
+function stW(){return stEl()?.clientWidth||window.innerWidth||390;}
+function stH(){const e=stEl();return e?e.clientHeight:(window.innerHeight-120);}
+function _bp(){const w=stW();return w>=1100?'desk':w>=600?'ipad':'phone';}
+function lh(d){
+  if(window.innerHeight<480){return [Math.max(170,window.innerHeight-168),32,12,6][Math.min(d,3)];}
+  return {phone:[268,108,46,18], ipad:[230,130,58,22], desk:[260,148,66,26]}[_bp()][Math.min(d,3)];
+}
+function lb(d){return {phone:[0,0.7,2.0,4.5],ipad:[0,0.2,0.8,2.5],desk:[0,0.1,0.5,1.8]}[_bp()][Math.min(d,3)];}
+function lo(d){return {phone:[1,.66,.40,.16],ipad:[1,.82,.58,.28],desk:[1,.86,.62,.32]}[_bp()][Math.min(d,3)];}
+function ls(d){return [1,.82,.66,.52][Math.min(d,3)];}
+
+function offsets(){
+  const n=AL.length, ai=O.ali, sh=stH();
+  const hs=new Array(n), off=new Array(n);
+  for(let i=0;i<n;i++)hs[i]=lh(Math.abs(i-ai));
+  const stack=()=>{
+    const ah=hs[ai];
+    const cy=Math.floor(sh*(_bp()==='phone'?0.44:0.38));
+    off[ai]=cy-Math.floor(ah/2);
+    for(let i=ai-1;i>=0;i--)off[i]=off[i+1]-hs[i];
+    for(let i=ai+1;i<n;i++)off[i]=off[i-1]+hs[i-1];
+  };
+  stack();
+  // SPACE-FILL (v136/v143): lanes stack contiguously, so slack only exists above
+  // lane 0 and below lane n-1. Grow visible lanes proportionally to absorb it,
+  // iteratively, then hard-pin both edges so a void is structurally impossible.
+  if(n>0){
+    for(let pass=0;pass<3;pass++){
+      const G=Math.max(0,off[0])+Math.max(0,sh-(off[n-1]+hs[n-1]));
+      if(G<=1)break;
+      let vis=[],sum=0;
+      for(let i=0;i<n;i++)if(off[i]<sh&&off[i]+hs[i]>0){vis.push(i);sum+=hs[i];}
+      if(!sum)break;
+      vis.forEach(i=>{hs[i]+=G*hs[i]/sum;});
+      stack();
+      const up=-Math.max(0,off[0]); if(up)for(let i=0;i<n;i++)off[i]+=up;
+      const bot=sh-(off[n-1]+hs[n-1]);
+      if(bot>0.5){const shift=Math.min(bot, off[0]<0?-off[0]:bot);
+        for(let i=0;i<n;i++)off[i]+=shift;}
+    }
+    if(off[0]>0.5){const s=off[0];for(let i=0;i<n;i++)off[i]-=s;}
+    const gap=sh-(off[n-1]+hs[n-1]);
+    if(gap>0.5)hs[n-1]+=gap;
+  }
+  return {off,hs};
+}
+
+/* ── spring engine (K=190, C=21 — underdamped glide) ────────────────── */
+const _anim={items:new Map(), raf:null};
+function _springTo(el,t,h){
+  let s=_anim.items.get(el);
+  if(!s){ _anim.items.set(el,{t,h,vt:0,vh:0,tt:t,th:h});
+    el.style.top=t+'px'; el.style.height=h+'px'; return; }
+  el.style.top=s.t.toFixed(1)+'px'; el.style.height=s.h.toFixed(1)+'px';
+  s.tt=t; s.th=h; _animStart();
+}
+function _animStart(){
+  if(_anim.raf)return;
+  let last=performance.now();
+  const K=190,C=21;
+  const step=now=>{
+    const dt=Math.min(0.034,(now-last)/1000); last=now;
+    let live=false;
+    _anim.items.forEach((s,el)=>{
+      if(!el.isConnected){_anim.items.delete(el);return;}
+      s.vt+=(K*(s.tt-s.t)-C*s.vt)*dt; s.t+=s.vt*dt;
+      s.vh+=(K*(s.th-s.h)-C*s.vh)*dt; s.h+=s.vh*dt;
+      if(Math.abs(s.tt-s.t)<0.4&&Math.abs(s.vt)<3&&Math.abs(s.th-s.h)<0.4&&Math.abs(s.vh)<3){
+        s.t=s.tt;s.h=s.th;s.vt=0;s.vh=0;
+      } else live=true;
+    });
+    _reflow();   // tops derived from springing heights: never a mid-stack gap
+    _anim.items.forEach((s,el)=>{el.style.top=s.t.toFixed(1)+'px';el.style.height=s.h.toFixed(1)+'px';});
+    _anim.raf=live?requestAnimationFrame(step):null;
+  };
+  _anim.raf=requestAnimationFrame(step);
+}
+function _reflow(){
+  const st=document.getElementById('lane-stack'); if(!st)return;
+  const n=AL.length, ai=O.ali, kids=[];
+  for(let i=0;i<n;i++){const el=st.children[i]; if(!el)return;
+    const s=_anim.items.get(el); if(!s)return; kids.push(s);}
+  if(!kids[ai])return;
+  for(let i=ai-1;i>=0;i--)kids[i].t=kids[i+1].t-kids[i].h;
+  for(let i=ai+1;i<n;i++)kids[i].t=kids[i-1].t+kids[i-1].h;
+}
+
+/* ── render ─────────────────────────────────────────────────────────── */
+function renderOrbitBar(){
+  const bar=$('#obar'); bar.innerHTML='';
+  ORBITS.forEach(o=>{
+    const b=el('button','ochip'+(o.id===O.orbit?' on':''),o.lbl);
+    b.dataset.orbit=o.id; bar.appendChild(b);
+  });
+}
+function renderStage(){
+  const st=document.getElementById('lane-stack'); if(!st)return;
+  const {off,hs}=offsets();
+  st.innerHTML='';
+  AL.forEach((ln,i)=>{
+    const d=Math.abs(i-O.ali);
+    const div=el('div','lane'+(i===O.ali?' al':''));
+    div.dataset.lane=ln.id;
+    div.style.cssText=`filter:blur(${lb(d)}px);opacity:${lo(d)};z-index:${100-d}`;
+    div.appendChild(Object.assign(el('div','lane-lbl',ln.lbl),{}));
+    div.appendChild(el('div','lane-cnt', ln.so.length?`${(ln.si||0)+1}/${ln.so.length}`:'0'));
+    const inner=el('div','lane-in');
+    if(!ln.so.length){ inner.appendChild(el('div','lane-empty','— empty —')); }
+    else buildLane(inner,ln,d);
+    div.appendChild(inner);
+    st.appendChild(div);
+    _springTo(div,off[i],hs[i]);
+  });
+  $('#lane-tag').innerHTML='';
+  const cur=AL[O.ali];
+  if(cur){
+    const t=el('div',null,`${cur.lbl} · ${cur.so.length} card${cur.so.length===1?'':'s'}`);
+    t.style.cssText='font-size:10px;color:var(--muted);letter-spacing:.08em;padding:2px 0';
+    $('#lane-tag').appendChild(t);
+  }
+}
+function buildLane(inner,ln,dist){
+  const n=ln.so.length, si=((ln.si||0)%n+n)%n;
+  const R=dist===0?2:1;
+  const step=Math.min(stW()*0.82, 348);
+  for(let k=-R;k<=R;k++){
+    const idx=((si+k)%n+n)%n;
+    if(n<3&&k!==0&&Math.abs(k)>=n)continue;
+    const c=ln.so[idx];
+    const isC=k===0;
+    const card=buildCard(c,isC,ln);
+    const sc=ls(Math.abs(k));
+    card.style.transform=`translateX(${k*step}px) scale(${sc})`;
+    card.style.opacity=isC?1:(dist===0?0.5:0.34);
+    card.style.zIndex=String(10-Math.abs(k));
+    if(!isC)card.style.pointerEvents='none';
+    inner.appendChild(card);
+  }
+}
+function buildCard(c,isC,ln){
+  const card=el('div','jcard'+(isC?' c':''));
+  card.dataset.card=c.id;
+  const hdr=el('div','c-hdr');
+  hdr.appendChild(el('span','c-ref',ST.R.format(c.ref)));
+  hdr.appendChild(el('span','c-tr',(c.madeIn||'').toUpperCase()));
+  card.appendChild(hdr);
+
+  const body=el('div','c-scr');
+  const rows=ST.R.text(c.ref, id=>cached(id), ST.tr);
+  let fb=null;
+  rows.forEach(r=>{
+    if(r.pending){ body.appendChild(document.createTextNode('… ')); return; }
+    if(r.fallback)fb=r.cutIn;
+    const vn=el('span','vn',String(r.v));
+    body.appendChild(vn);
+    body.appendChild(document.createTextNode((r.t||'— not in this translation')+' '));
+  });
+  card.appendChild(body);
+  if(fb)card.appendChild(el('div','c-fb','excerpt kept from '+String(fb).toUpperCase()));
+  if(c.note)card.appendChild(el('div','c-note',c.note));
+  if(c.tags.length){
+    const tw=el('div','c-tags');
+    c.tags.forEach(t=>tw.appendChild(el('span','c-tag',t)));
+    card.appendChild(tw);
+  }
+  if(isC){
+    const ch=el('div','c-chips');
+    const mk=(lbl,act)=>{const b=el('button','chip',lbl);b.dataset.act=act;b.dataset.card=c.id;return b;};
+    if(ln.kind==='plan'){
+      ch.appendChild(mk('⬅','pl-l')); ch.appendChild(mk('➡','pl-r'));
+      ch.appendChild(mk('✕ plan','pl-out'));
+    } else ch.appendChild(mk('📑 plan','pl-in'));
+    ch.appendChild(mk('📖 read','goto'));
+    ch.appendChild(mk('🗑','del'));
+    card.appendChild(ch);
+  }
+  return card;
+}
+
+/* ── navigation ─────────────────────────────────────────────────────── */
+function navLane(d){
+  const n=AL.length; if(!n)return;
+  O.ali=((O.ali||0)+d+n)%n;
+  renderStage();
+}
+function navH(d){
+  const ln=AL[O.ali]; if(!ln)return;
+  const n=ln.so.length; if(!n)return;
+  ln.si=((ln.si||0)+d+n)%n;
+  renderStage();
+}
+function rebuildOrbit(){
+  AL=allLanes();
+  O.ali=Math.min(O.ali, Math.max(0,AL.length-1));
+  renderOrbitBar(); renderStage();
+}
+
+/* ── swipe (v185 thresholds: 4px direction lock, 22px / 0.18 commit) ── */
+let _swipeActive=false,_swipeMoving=false,_swipeCool=null;
+function _markSwipeDone(){_swipeActive=true;_swipeMoving=false;
+  clearTimeout(_swipeCool);_swipeCool=setTimeout(()=>{_swipeActive=false;},350);}
+(function initTouch(){
+  const stage=stEl(); if(!stage)return;
+  let tx0=0,ty0=0,moved=false,dir=null,cardEl=null,cardScrollable=false,vs=[];
+  const push=(x,y,t)=>{vs.push({x,y,t});if(vs.length>6)vs.shift();};
+  const vel=()=>{ if(vs.length<2)return{vx:0,vy:0};
+    const a=vs[0],b=vs[vs.length-1],dt=Math.max(b.t-a.t,1);
+    return{vx:(b.x-a.x)/dt, vy:(b.y-a.y)/dt};};
+  const skip=e=>e.target.closest('.chip')||e.target.closest('#obar');
+
+  stage.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1||skip(e))return;
+    // Scrollable centre card: a vertical drag that begins here is the CARD's
+    // scroll, never lane navigation. Long passages depend on this.
+    cardEl=e.target.closest('.lane.al .jcard.c')
+        || (e.target.closest('.lane.al') ? document.querySelector('.lane.al .jcard.c') : null);
+    cardScrollable=!!(cardEl&&cardEl.scrollHeight>cardEl.clientHeight+6);
+    const t=e.touches[0]; tx0=t.clientX; ty0=t.clientY;
+    moved=false;dir=null;vs=[];_swipeActive=false;_swipeMoving=false;
+    clearTimeout(_swipeCool);
+  },{passive:true});
+
+  stage.addEventListener('touchmove',e=>{
+    if(e.touches.length!==1||skip(e))return;
+    const t=e.touches[0], dx=t.clientX-tx0, dy=t.clientY-ty0;
+    push(t.clientX,t.clientY,Date.now());
+    if(!dir&&(Math.abs(dx)>4||Math.abs(dy)>4)){
+      moved=true; dir=Math.abs(dx)>=Math.abs(dy)?'h':'v'; _swipeMoving=true;
+    }
+    if(dir==='h'&&e.cancelable)e.preventDefault();
+  },{passive:false});
+
+  stage.addEventListener('touchend',e=>{
+    if(skip(e)||!moved||!dir)return;
+    const dx=e.changedTouches[0].clientX-tx0, dy=e.changedTouches[0].clientY-ty0;
+    const {vx,vy}=vel(), MIN_DIST=22, MIN_VEL=0.18;
+    if(dir==='h'){
+      if(Math.abs(dx)>MIN_DIST||Math.abs(vx)>MIN_VEL){
+        navH(dx<0?1:-1); if(navigator.vibrate)navigator.vibrate(6); _markSwipeDone();
+      }
+    }else{
+      if(cardScrollable){moved=false;dir=null;return;}
+      if(Math.abs(dy)>MIN_DIST||Math.abs(vy)>MIN_VEL){
+        navLane(dy<0?1:-1); if(navigator.vibrate)navigator.vibrate(6); _markSwipeDone();
+      }
+    }
+    moved=false;dir=null;
+  },{passive:true});
+
+  // swallow the synthetic click iOS fires after a swipe
+  stage.addEventListener('click',e=>{ if(_swipeActive){e.stopPropagation();e.preventDefault();} },true);
+})();
+
+/* ── card actions ───────────────────────────────────────────────────── */
+tapOn($('#stage'),'.chip',b=>{
+  const id=+b.dataset.card, act=b.dataset.act;
+  const ln=AL[O.ali], c=ST.data.cards.find(x=>x.id===id); if(!c)return;
+  if(act==='del'){ ST.data.cards=ST.data.cards.filter(x=>x.id!==id);
+    (ST.data.plans||[]).forEach(p=>p.ids=p.ids.filter(x=>x!==id));
+    save(); rebuildOrbit(); toast('Card deleted'); return; }
+  if(act==='goto'){ const s=c.ref[0]; ST.bk=s.b; ST.ch=s.c||1; setMode('read');
+    renderChapter(); return; }
+  if(act==='pl-in'){ addToPlan(id); return; }
+  if(act==='pl-out'){ ln.plan.ids=ln.plan.ids.filter(x=>x!==id); save(); rebuildOrbit(); return; }
+  if(act==='pl-l'||act==='pl-r'){
+    const ids=ln.plan.ids, i=ids.indexOf(id), j=i+(act==='pl-l'?-1:1);
+    if(i<0||j<0||j>=ids.length)return;
+    [ids[i],ids[j]]=[ids[j],ids[i]];
+    ln.si=j; save(); rebuildOrbit();
+    const l=AL.find(x=>x.id===ln.id); if(l)l.si=j; renderStage();
+  }
+});
+function addToPlan(cardId){
+  ST.data.plans=ST.data.plans||[];
+  if(!ST.data.plans.length)ST.data.plans.push({id:1,name:'Plan 1',ids:[]});
+  const p=ST.data.plans[0];
+  if(p.ids.includes(cardId)){toast('Already in '+p.name);return;}
+  p.ids.push(cardId); save();
+  toast('Added to '+p.name+' — position '+p.ids.length);
+  if(O.orbit==='plans')rebuildOrbit();
+}
+tapOn($('#obar'),'.ochip',b=>{ O.orbit=b.dataset.orbit; O.ali=0; rebuildOrbit(); });
+
+/* ── mode switch ────────────────────────────────────────────────────── */
+async function setMode(m){
+  ST.mode=m;
+  document.body.classList.toggle('m-orbit', m==='orbit');
+  $('#mode-btn').textContent = m==='orbit' ? '📖' : '◎';
+  if(m==='orbit'){
+    // cards can point anywhere in the canon — pull in every book they need
+    const need=[...new Set(ST.data.cards.flatMap(cardBooks))].filter(id=>!cached(id));
+    if(need.length)await Promise.all(need.map(id=>getBook(ST.tr,id).catch(()=>null)));
+    rebuildOrbit();
+  }
+}
+tapOn($('#mode-btn'),'*',()=>setMode(ST.mode==='orbit'?'read':'orbit'));
+window.addEventListener('resize',()=>{ if(ST.mode==='orbit')renderStage(); });
+
+
+/* ═══ boot ════════════════════════════════════════════════════════════ */
+(async function(){
+  load();
+  try{
+    ST.idx=await getIndex(ST.tr);
+    ST.idx.books.forEach((b,i)=>b._i=i);
+    ST.R=BibleRef(ST.idx);
+  }catch(e){
+    $('#scroll').innerHTML='<div id="load">Couldn\'t load bible/kjv/index.json.<br><br>'
+      +'Serve this over http, not file://, and check the bible/ folder sits next to this page.</div>';
+    return;
+  }
+  await renderChapter();
+  // exposed for console poking / harnesses
+  window.ST=ST; window.renderChapter=renderChapter; window.paintSel=paintSel;
+  window.O=O; window.AL_=()=>AL; window.openCardsSheet=openCardsSheet; window.setMode=setMode; window.rebuildOrbit=rebuildOrbit;
+  window.offsets=offsets; window.navLane=navLane; window.navH=navH;
+})();
+</script>
+</body>
+</html>
