@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-08-23T10:11:27.753Z",
+  "exported": "2026-08-29T23:30:21.243Z",
   "jokes": [
     {
       "variants": [],
@@ -7159,6 +7159,8 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9083,
       "type": "joke",
       "body": "guy is annoying to talk to.  a bunch of jibberish nonsense.  its like hey who likes sucking dick.  i like sucking dick u like sucking dick right?!?!?  and u nod no with wide eyes oh jesus eyes and pinched lips.",
@@ -7173,11 +7175,12 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_wip": false,
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9084,
       "type": "joke",
       "body": "dude asks a lazy request to find out whats on the menu.  he says why didnt u ask whats on the menu.  u do a sophisticated redirect.  ohh i dunno why past didnt ask.  maybe u can get in a time machine and ask him.  on the way to the time machine could u stop by the attendant and ask them on the menu?",
@@ -7192,11 +7195,12 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_wip": false,
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9085,
       "type": "joke",
       "body": "dont shoot the messenger. bifnthe messenger is announcing to everyone i suck dick.  yeah shoot that mofo.  shoot em twice",
@@ -7211,9 +7215,280 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_wip": false,
       "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9086,
+      "type": "joke",
+      "body": "compounding wrong (maybe give stuff labels or titles).  my stock people gonna like this.  its really idiotic its following a wrong with a worse wrong to protect ur original wrong from punishment.  its a classic mistake its like buying higher percentage debt to get urself out of ur current debt.  u see this in poloce chase videos.  where dudes get busted for misdemeanors.  like at the start of the video ur only getting a ticket or going to jail no biggee police might even let u off.  use aussie dude as style mimic here.  could add a mimic flavor html reference feature.  but later in the video as u narrate see ar this point u earnednurself a few months prison.  at this point ur compounded wrong again to a few years prison.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "id": 9087,
+      "type": "gesture",
+      "body": "IMG 3862",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9087-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9088,
+      "type": "gesture",
+      "body": "IMG 3861",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9089-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9089,
+      "type": "gesture",
+      "body": "IMG 3859",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9091-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9090,
+      "type": "gesture",
+      "body": "IMG 3860",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9093-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9091,
+      "type": "gesture",
+      "body": "IMG 3858",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9095-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9092,
+      "type": "gesture",
+      "body": "IMG 3864",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9097-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9093,
+      "type": "gesture",
+      "body": "IMG 3855",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9099-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9094,
+      "type": "gesture",
+      "body": "IMG 3856",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9101-untitled.gif",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9095,
+      "type": "gesture",
+      "body": "IMG 3857",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9103-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9096,
+      "type": "gesture",
+      "body": "IMG 3852",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9105-untitled.webp",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9097,
+      "type": "gesture",
+      "body": "IMG 3853",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9107-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9098,
+      "type": "gesture",
+      "body": "IMG 3854",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9109-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9099,
+      "type": "gesture",
+      "body": "IMG 3850",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9111-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
+    },
+    {
+      "id": 9100,
+      "type": "gesture",
+      "body": "IMG 3851",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9113-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
     }
   ],
   "ratings": {
@@ -7467,7 +7742,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 7
+      "si": 0
     },
     {
       "id": "l2",
@@ -7476,7 +7751,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 8
+      "si": 16
     },
     {
       "id": "l3",
@@ -7485,7 +7760,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 12
+      "si": 43
     },
     {
       "id": "l4",
@@ -7495,7 +7770,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 9
+      "si": 0
     },
     {
       "id": "l5",
@@ -7504,7 +7779,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 32
+      "si": 30
     },
     {
       "id": "l6",
@@ -7513,7 +7788,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 21
+      "si": 35
     },
     {
       "id": "l7",
@@ -7522,7 +7797,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 16
+      "si": 17
     },
     {
       "id": "l8",
@@ -7531,7 +7806,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 18
+      "si": 6
     },
     {
       "id": "l9",
@@ -7549,7 +7824,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 18
+      "si": 1
     },
     {
       "id": "l11",
@@ -7558,7 +7833,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 6
+      "si": 5
     },
     {
       "id": "l_mimic",
@@ -7610,7 +7885,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 0,
+      "si": 1,
       "isGestureLane": true,
       "so": []
     },
@@ -7619,7 +7894,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 81,
+      "si": 246,
       "so": [
         {
           "variants": [
@@ -10502,6 +10777,38 @@
           "id": "ol_med_img",
           "lbl": "📷 Images",
           "_autoType": "media_image",
+          "jids": []
+        },
+        {
+          "id": "ol_med_gest",
+          "lbl": "🎭 Gestures",
+          "_autoType": "gestures",
+          "jids": []
+        }
+      ]
+    },
+    {
+      "id": "orb_gestures",
+      "name": "🎭 Gestures",
+      "color": "#c8a0ff",
+      "_dynamic": true,
+      "lanes": [
+        {
+          "id": "ol_gest_all",
+          "lbl": "🎭 All Gestures",
+          "_autoType": "gestures",
+          "jids": []
+        },
+        {
+          "id": "ol_gest_gif",
+          "lbl": "✨ Animated / GIFs",
+          "_autoType": "gestures_gif",
+          "jids": []
+        },
+        {
+          "id": "ol_gest_still",
+          "lbl": "📷 Stills",
+          "_autoType": "gestures_still",
           "jids": []
         }
       ]
