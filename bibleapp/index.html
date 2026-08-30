@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BIBLE READER v1 — the selection surface.
+     Reads bible/<tr>/index.json + bible/<tr>/<book>.json, lets you select verses
+     (contiguous, non-contiguous, or sub-verse) and mint cards from them.
+     Cards are POINTERS + note, never text. Storage: localStorage 'bibleorbit_v1'.
+     iOS rules carried over from JokeOrbit: no onclick, no prompt(), every tap is
+     delegated touchend + 10px movement threshold so scrolling never fires a tap. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>Bible Orbit</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0616;--deep:#0e0922;--panel:#150d2c;--border:#2e2150;--dim:#3a2d60;
+  --muted:#8d7cb8;--text:#d8cdf0;--bright:#f2ecff;
+  --accent:#a98fff;
+  /* departure from JokeOrbit's violet: selection is warm — illuminated-manuscript
+     gold against the same void ground, so "chosen text" reads as gilding */
+  --gild:#e8b755;--gild-dim:#8a6c2e;--gild-wash:rgba(232,183,85,.13);
+  --ink:#e6ddc9;           /* scripture body — warm paper white, not blue-white */
+  --card-mark:#6bffcc;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--void);color:var(--text);font-family:'Space Mono',monospace;
+  height:100dvh;overflow:hidden;position:fixed;width:100%;
+  padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+#app{display:flex;flex-direction:column;height:100%}
+
+/* ── header ─────────────────────────────────────────────────────────── */
+/* ── LAYER LADDER ──────────────────────────────────────────
+   10 header · 30 selection bar · 200 floating lane · 500 sheets
+   600 drop map · 700 drag ghost · 800 toast
+   Lanes live inside #stage's own context and never reach this scale. */
+#hdr{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:8px 10px;
+  background:linear-gradient(var(--deep),rgba(14,9,34,.86));
+  border-bottom:1px solid var(--border);backdrop-filter:blur(12px);z-index:10}
+.hbtn{padding:7px 10px;font-size:12px;border:1px solid var(--border);border-radius:3px;
+  background:rgba(21,13,44,.7);color:var(--text);white-space:nowrap}
+.hbtn:active{background:var(--panel);border-color:var(--accent)}
+#ref-btn{flex:1;text-align:left;font-size:13px;font-weight:700;color:var(--bright);
+  letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis}
+#tr-btn{color:var(--gild);border-color:var(--gild-dim);font-size:11px;letter-spacing:.06em}
+.nav{width:34px;text-align:center;font-size:15px;padding:7px 0}
+.nav[disabled]{opacity:.25}
+
+/* ── scripture ──────────────────────────────────────────────────────── */
+#scroll{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  touch-action:pan-y;padding:14px 0 180px}
+#chap-head{padding:6px 22px 18px;color:var(--muted);font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase}
+#chap-head b{display:block;font-family:'EB Garamond',serif;font-size:30px;
+  letter-spacing:0;text-transform:none;color:var(--bright);margin-top:4px;font-weight:500}
+
+/* SIGNATURE: the verse-number rail. In print, verse numbers are superscript
+   noise inside the text. Here they leave the text alone and become a fixed
+   left rail of mono numerals — the rail is the instrument you select with,
+   and it gilds as you go. Scripture itself is never marked up with UI. */
+.v{display:flex;gap:0;padding:0;position:relative}
+.v-num{flex:0 0 46px;text-align:right;padding:7px 10px 0 0;font-size:10px;
+  color:var(--dim);line-height:1;letter-spacing:.04em;user-select:none;
+  border-right:1px solid rgba(46,33,80,.55)}
+.v-txt{flex:1 1 auto;padding:3px 20px 9px 14px;font-family:'EB Garamond',serif;
+  font-size:19px;line-height:1.62;color:var(--ink);
+  -webkit-user-select:none;user-select:none}
+.v.on .v-num{color:var(--gild);font-weight:700}
+.v.on .v-txt{background:var(--gild-wash);box-shadow:inset 2px 0 0 var(--gild)}
+.v.on-first .v-txt{border-radius:3px 3px 0 0}
+.v.on-last  .v-txt{border-radius:0 0 3px 3px}
+.v.banked .v-num{color:var(--gild-dim)}
+.v.banked .v-txt{background:rgba(232,183,85,.055);box-shadow:inset 2px 0 0 var(--gild-dim)}
+.v-dot{position:absolute;left:38px;top:9px;width:4px;height:4px;border-radius:50%;
+  background:var(--card-mark);box-shadow:0 0 5px var(--card-mark)}
+.v-omit{font-style:italic;color:var(--dim);font-size:15px}
+#end-rule{margin:26px auto 0;width:40px;height:1px;background:var(--border)}
+
+/* ── selection bar ──────────────────────────────────────────────────── */
+#selbar{position:fixed;left:0;right:0;bottom:0;z-index:30;
+  padding:10px 12px calc(12px + env(safe-area-inset-bottom));
+  background:linear-gradient(rgba(14,9,34,.5),rgba(10,6,22,.97) 34%);
+  border-top:1px solid var(--gild-dim);backdrop-filter:blur(16px);
+  transform:translateY(115%);transition:transform .22s cubic-bezier(.2,.8,.3,1)}
+#selbar.on{transform:translateY(0)}
+#sel-ref{font-size:13px;font-weight:700;color:var(--gild);letter-spacing:.02em}
+#sel-meta{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.04em}
+#sel-meta .warn{color:var(--gild)}
+#sel-acts{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.act{flex:1 1 auto;padding:10px 8px;font-size:11px;text-align:center;border-radius:3px;
+  border:1px solid var(--border);background:rgba(21,13,44,.8);letter-spacing:.03em}
+.act:active{background:var(--panel)}
+.act.prime{background:var(--gild);color:#1a1204;border-color:var(--gild);font-weight:700;flex:1.4}
+.act[disabled]{opacity:.3}
+
+/* ── sheets ─────────────────────────────────────────────────────────── */
+.sheet{position:fixed;inset:0;z-index:500;background:rgba(6,3,14,.82);
+  backdrop-filter:blur(3px);display:none}
+.sheet.on{display:block}
+.sheet-in{position:absolute;left:0;right:0;bottom:0;max-height:88%;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;touch-action:pan-y;background:var(--deep);
+  border-top:1px solid var(--border);border-radius:12px 12px 0 0;
+  padding:16px 14px calc(20px + env(safe-area-inset-bottom))}
+.sheet-ttl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;display:flex;justify-content:space-between}
+.x{font-size:16px;color:var(--muted);padding:0 6px;margin-top:-4px}
+textarea,input[type=text]{width:100%;background:var(--void);color:var(--text);
+  border:1px solid var(--border);border-radius:3px;padding:10px;font-family:inherit;
+  font-size:14px;resize:vertical}
+textarea:focus,input:focus{outline:none;border-color:var(--gild)}
+.fld{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;
+  margin:14px 0 6px}
+.quote{font-family:'EB Garamond',serif;font-size:17px;line-height:1.55;color:var(--ink);
+  border-left:2px solid var(--gild);padding:8px 0 8px 12px;margin-bottom:4px;
+  max-height:180px;overflow-y:auto}
+
+/* book / chapter picker */
+.grid{display:grid;gap:5px}
+#bk-grid{grid-template-columns:repeat(2,1fr)}
+#ch-grid{grid-template-columns:repeat(6,1fr)}
+.pick{padding:11px 8px;font-size:12px;border:1px solid var(--border);border-radius:3px;
+  background:var(--panel);text-align:left;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+#ch-grid .pick{text-align:center;padding:12px 0;font-size:13px}
+.pick:active,.pick.on{border-color:var(--gild);color:var(--gild)}
+.testa{font-size:10px;letter-spacing:.2em;color:var(--dim);margin:16px 0 7px;
+  text-transform:uppercase}
+
+/* trim */
+#trim-words{line-height:2.5;margin:4px 0 8px}
+.w{font-family:'EB Garamond',serif;font-size:18px;padding:4px 3px;border-radius:2px;
+  color:var(--muted);border-bottom:1px solid transparent}
+.w.in{color:var(--ink);background:var(--gild-wash);border-bottom-color:var(--gild)}
+.w.edge{color:var(--gild);font-weight:500}
+
+
+/* ── ORBIT STAGE ────────────────────────────────────────────────────── */
+#orbit{flex:1 1 auto;display:none;flex-direction:column;position:relative;min-height:0}
+body.m-orbit #scroll{display:none}
+body.m-orbit #orbit{display:flex}
+body.m-orbit #selbar{display:none}
+#obar{flex:0 0 auto;display:flex;gap:5px;padding:7px 10px;overflow-x:auto;
+  border-bottom:1px solid var(--border);background:rgba(14,9,34,.72);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+#obar::-webkit-scrollbar{display:none}
+.ochip{flex:0 0 auto;padding:6px 11px;font-size:11px;border-radius:3px;
+  border:1px solid var(--border);background:var(--panel);color:var(--muted);white-space:nowrap}
+.ochip.on{color:var(--gild);border-color:var(--gild-dim);background:rgba(232,183,85,.09)}
+/* z-index:0 is LOAD-BEARING: it makes #stage a stacking context so the lanes'
+   z-index (up to 100) stays inside it. Without it those lanes competed in the
+   root layer and painted straight over every sheet. */
+#stage{flex:1 1 auto;position:relative;overflow:hidden;touch-action:none;z-index:0;isolation:isolate}
+#lane-stack{position:absolute;inset:0}
+.lane{position:absolute;left:0;right:0;overflow:hidden;will-change:top,height}
+.lane-in{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.lane-lbl{position:absolute;top:5px;left:12px;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dim);z-index:3;pointer-events:none}
+.lane.al .lane-lbl{color:var(--gild-dim)}
+.lane-cnt{position:absolute;top:5px;right:12px;font-size:9px;color:var(--dim);z-index:3}
+.lane-empty{font-size:11px;color:var(--dim);letter-spacing:.1em}
+
+/* .jcard.c is load-bearing: the swipe engine looks for exactly this selector to
+   decide whether a vertical drag is card-scrolling or lane navigation. */
+.jcard{position:absolute;top:8px;bottom:8px;width:min(330px,calc(100vw - 64px));
+  border:1px solid var(--border);border-radius:3px;background:var(--card-bg,rgba(22,13,44,.72));
+  backdrop-filter:blur(7px);padding:10px 12px;overflow:hidden;
+  will-change:transform,opacity;transition:opacity .18s}
+.jcard.c{overflow-y:auto;-webkit-overflow-scrolling:touch;border-color:var(--gild-dim);
+  box-shadow:0 0 0 1px rgba(232,183,85,.08),0 8px 34px rgba(0,0,0,.5)}
+.c-hdr{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  margin-bottom:7px;position:sticky;top:0;background:inherit}
+.c-ref{font-size:12px;font-weight:700;color:var(--gild);letter-spacing:.02em}
+.c-tr{font-size:8.5px;color:var(--dim);letter-spacing:.14em}
+.c-scr{font-family:'EB Garamond',serif;font-size:16.5px;line-height:1.58;color:var(--ink)}
+.c-scr .vn{font-family:'Space Mono',monospace;font-size:8.5px;color:var(--gild-dim);
+  vertical-align:super;margin-right:3px}
+.c-fb{font-size:8.5px;color:var(--gild-dim);letter-spacing:.1em;margin-top:5px}
+.c-note{font-size:11.5px;line-height:1.5;color:var(--muted);margin-top:9px;
+  border-top:1px solid var(--border);padding-top:8px}
+.c-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.c-tag{font-size:8.5px;padding:2px 6px;border-radius:2px;background:rgba(169,143,255,.1);
+  color:var(--accent);letter-spacing:.06em}
+.c-chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.chip{font-size:9.5px;padding:5px 8px;border:1px solid var(--border);border-radius:2px;
+  color:var(--muted);background:rgba(10,6,22,.5)}
+.chip:active{border-color:var(--gild);color:var(--gild)}
+#lane-tag{flex:0 0 auto;display:flex;gap:5px;padding:6px 10px;
+  border-top:1px solid var(--border);background:rgba(14,9,34,.72);overflow-x:auto;
+  scrollbar-width:none}
+#lane-tag::-webkit-scrollbar{display:none}
+
+#q{margin-bottom:10px}
+#q-res .pick{text-align:left;margin-bottom:5px;line-height:1.35}
+.hl-row{border:1px solid var(--border);border-radius:3px;padding:9px 10px;margin-bottom:5px}
+.hl-row.on{border-color:var(--gild-dim);background:var(--gild-wash)}
+.hl-num{font-size:9px;color:var(--dim);letter-spacing:.1em;margin-bottom:3px}
+.hl-row.on .hl-num{color:var(--gild)}
+.hl-txt{font-family:'EB Garamond',serif;font-size:15.5px;line-height:1.5;color:var(--ink)}
+.hl-txt .dim{color:var(--dim)}
+.hl-txt .lit{color:var(--gild);background:rgba(232,183,85,.12)}
+.hl-chips{display:flex;gap:5px;margin-top:7px}
+.c-scr.abbr .frag{display:inline}
+.c-scr.abbr .frag .vn{margin-right:4px}
+.frag-sep{color:var(--gild-dim);margin:0 6px;font-size:12px}
+.abbr-none{color:var(--dim);font-style:italic;font-size:15px}
+.hl-badge{font-size:8.5px;color:var(--gild);letter-spacing:.1em;margin-left:6px}
+#abbr-btn{font-size:9.5px;padding:4px 9px;border:1px solid var(--border);border-radius:2px;
+  color:var(--muted);background:rgba(10,6,22,.5);margin-left:auto;flex:0 0 auto}
+#abbr-btn.on{color:var(--gild);border-color:var(--gild-dim)}
+.c-note-body{font-size:13.5px;line-height:1.6;color:var(--text);white-space:pre-wrap}
+.ln-row{display:flex;align-items:center;gap:6px;border:1px solid var(--border);
+  border-radius:3px;padding:8px 9px;margin-bottom:5px}
+.ln-row input{flex:1;border:none;background:none;font-size:12.5px;color:var(--bright);padding:0;font-family:inherit}
+.ln-row .chip{padding:4px 7px;font-size:9.5px;flex:0 0 auto}
+.ln-kind{font-size:8.5px;color:var(--dim);letter-spacing:.1em}
+#rule-body .pick{font-size:11px;padding:9px 7px}
+#drag-ghost{position:fixed;z-index:700;pointer-events:none;display:none;max-width:210px;
+  background:rgba(12,8,26,.95);border:1px solid var(--gild-dim);border-radius:8px;
+  padding:7px 10px;font-family:'Space Mono',monospace;font-size:9px;color:var(--bright);
+  line-height:1.4;box-shadow:0 8px 30px rgba(0,0,0,.7),0 0 18px rgba(232,183,85,.18);
+  transform:translate(-50%,-110%) rotate(-2deg);backdrop-filter:blur(10px);overflow:hidden}
+#drag-ghost .dg-type{font-size:7px;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--gild);margin-bottom:3px}
+#drop-map{position:fixed;right:8px;top:84px;z-index:600;display:none;
+  width:min(210px,52vw);background:rgba(12,8,26,.92);backdrop-filter:blur(18px);
+  border:1px solid var(--border);border-radius:10px;overflow:hidden;
+  box-shadow:0 14px 44px rgba(0,0,0,.65)}
+#drop-map.show{display:block}
+.dropmap-hdr{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);padding:8px 10px 6px}
+.dropmap-empty{font-size:9.5px;color:var(--dim);padding:0 10px 10px}
+.dropmap-row{display:flex;align-items:center;gap:7px;padding:9px 10px;font-size:11px;
+  color:var(--text);border-top:1px solid rgba(46,33,80,.5)}
+.dropmap-row.hot{background:var(--gild-wash);color:var(--gild)}
+.dm-dot{width:5px;height:5px;border-radius:50%;background:var(--gild-dim);flex:0 0 auto}
+.dropmap-row.hot .dm-dot{background:var(--gild)}
+.dm-lbl{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dm-kind{font-size:7.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.lane.drop-hover{outline:1px solid var(--gild);outline-offset:-1px;background:rgba(232,183,85,.06)}
+.c-grip{position:absolute;right:8px;bottom:8px;font-size:13px;color:var(--gild);
+  padding:6px 9px;letter-spacing:-1px;touch-action:none;z-index:6;
+  border:1px solid var(--gild-dim);border-radius:4px;background:rgba(10,6,22,.85);
+  backdrop-filter:blur(6px);line-height:1}
+.c-grip:active{background:var(--gild);color:#1a1204}
+.c-grip::after{content:' drag';font-family:'Space Mono',monospace;font-size:8px;
+  letter-spacing:.12em;vertical-align:1px}
+.lane-pop{position:absolute;top:3px;right:44px;font-size:10px;color:var(--dim);
+  padding:3px 6px;z-index:4;background:none;border:none}
+.lane.al .lane-pop{color:var(--gild-dim)}
+.lane-pop.on{color:var(--gild)}
+#float-lane{position:fixed;left:50%;top:110px;transform:translateX(-50%);
+  width:min(400px,calc(100vw - 20px));z-index:200;display:none;flex-direction:column;
+  background:rgba(12,8,26,.9);backdrop-filter:blur(24px) saturate(1.2);
+  border:1px solid var(--gild-dim);border-radius:14px;overflow:hidden;
+  box-shadow:0 16px 54px rgba(0,0,0,.7),0 0 26px rgba(232,183,85,.13)}
+#float-lane.show{display:flex}
+/* it is an orbit tool, and it must never sit over an open sheet */
+body:not(.m-orbit) #float-lane,
+body.sheet-open #float-lane{display:none!important}
+#float-lane.dragging{box-shadow:0 22px 70px rgba(0,0,0,.78),0 0 40px rgba(232,183,85,.22)}
+.fl-hdr{display:flex;align-items:center;gap:8px;padding:9px 11px;flex-shrink:0;
+  border-bottom:1px solid rgba(255,255,255,.07);touch-action:none;user-select:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),transparent)}
+.fl-grip{font-size:11px;color:rgba(148,148,180,.45);letter-spacing:-1px}
+.fl-title{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--bright);
+  flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fl-count{font-size:9px;color:var(--dim)}
+.fl-btn{font-size:9px;padding:4px 7px;border:1px solid var(--border);border-radius:3px;
+  color:var(--muted);background:rgba(10,6,22,.5);flex:0 0 auto}
+.fl-btn.on{color:var(--gild);border-color:var(--gild-dim)}
+.fl-strip{display:flex;gap:6px;padding:9px;overflow-x:auto;scrollbar-width:none}
+.fl-strip::-webkit-scrollbar{display:none}
+.fl-card{flex:0 0 auto;width:126px;border:1px solid var(--border);border-radius:4px;
+  padding:7px 8px;background:rgba(21,13,44,.7);position:relative}
+.fl-cgrip{position:absolute;right:4px;top:4px;font-size:10px;color:var(--dim);
+  letter-spacing:-1px;touch-action:none;padding:2px 4px}
+.fl-cref{font-size:10px;color:var(--gild);line-height:1.35;padding-right:14px}
+.fl-empty{font-size:10px;color:var(--dim);padding:6px}
+#toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(14px);
+  background:var(--panel);border:1px solid var(--gild-dim);color:var(--bright);
+  padding:9px 15px;border-radius:3px;font-size:11.5px;z-index:800;opacity:0;
+  transition:.2s;pointer-events:none;max-width:88%;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#load{padding:44px 22px;color:var(--dim);font-size:11px;letter-spacing:.16em}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="hdr">
+    <button class="hbtn nav" id="prev">‹</button>
+    <button class="hbtn" id="ref-btn">Loading…</button>
+    <button class="hbtn nav" id="next">›</button>
+    <button class="hbtn" id="tr-btn">KJV</button>
+    <button class="hbtn" id="mode-btn">◎</button>
+    <button class="hbtn" id="menu-btn">☰</button>
+  </div>
+  <div id="scroll"><div id="load">LOADING SCRIPTURE…</div></div>
+  <div id="orbit">
+    <div id="obar"></div>
+    <div id="stage"><div id="lane-stack"></div></div>
+    <div id="lane-tag"></div>
+  </div>
+</div>
+
+<div id="selbar">
+  <div id="sel-ref"></div>
+  <div id="sel-meta"></div>
+  <div id="sel-acts">
+    <button class="act" id="a-clear">Clear</button>
+    <button class="act" id="a-bank">＋ Range</button>
+    <button class="act" id="a-trim">Trim</button>
+    <button class="act prime" id="a-make">Make card</button>
+  </div>
+</div>
+
+<div class="sheet" id="sh-book"><div class="sheet-in">
+  <div class="sheet-ttl"><span id="bk-ttl">Go to</span><button class="x" data-close>✕</button></div>
+  <input type="text" id="q" placeholder="Reference, phrase, or one of your notes">
+  <div id="q-res"></div>
+  <div id="bk-body"></div>
+</div></div>
+
+<div class="sheet" id="sh-card"><div class="sheet-in">
+  <div class="sheet-ttl"><span>New card</span><button class="x" data-close>✕</button></div>
+  <div id="card-ref" style="font-size:13px;font-weight:700;color:var(--gild);margin-bottom:8px"></div>
+  <div class="quote" id="card-quote"></div>
+  <div class="fld">Note</div>
+  <textarea id="card-note" rows="4" placeholder="What you saw here."></textarea>
+  <div class="fld">Tags — comma separated</div>
+  <input type="text" id="card-tags" placeholder="providence, suffering">
+  <div id="sel-acts" style="display:flex;gap:6px;margin-top:16px">
+    <button class="act" data-close>Cancel</button>
+    <button class="act prime" id="card-save">Save card</button>
+  </div>
+</div></div>
+
+<div class="sheet" id="sh-trim"><div class="sheet-in">
+  <div class="sheet-ttl"><span>Trim to a phrase</span><button class="x" data-close>✕</button></div>
+  <div style="font-size:10px;color:var(--muted);letter-spacing:.04em;margin-bottom:10px">
+    Tap the first word, then the last.</div>
+  <div id="trim-words"></div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:12px" id="trim-note"></div>
+  <div style="display:flex;gap:6px">
+    <button class="act" id="trim-reset">Reset</button>
+    <button class="act prime" id="trim-ok">Use phrase</button>
+  </div>
+</div></div>
+
+<div class="sheet" id="sh-cards"><div class="sheet-in">
+  <div class="sheet-ttl"><span id="cards-ttl">Cards</span><button class="x" data-close>✕</button></div>
+  <div id="cards-body"></div>
+</div></div>
+
+<div class="sheet" id="sh-menu"><div class="sheet-in">
+  <div class="sheet-ttl"><span>Menu</span><button class="x" data-close>✕</button></div>
+  <div style="display:flex;gap:6px"><button class="act" id="m-trans">Translation</button>
+    <button class="act" id="m-note">＋ Note</button>
+    <button class="act" id="m-cards">All cards</button>
+    <button class="act prime" id="m-export">Export backup</button></div>
+
+  <div class="fld">Restore</div>
+  <select id="imp-mode" style="width:100%;background:var(--void);color:var(--text);
+    border:1px solid var(--border);border-radius:3px;padding:9px;font-family:inherit;font-size:13px">
+    <option value="merge">Merge — keeps everything you already have</option>
+    <option value="replace">Replace — wipes current cards first</option>
+  </select>
+  <input type="file" id="imp-file" accept="application/json,.json"
+    style="margin-top:8px;font-size:11px;color:var(--muted)">
+  <textarea id="imp-paste" rows="3" placeholder="…or paste backup JSON here"
+    style="margin-top:8px"></textarea>
+  <button class="act" id="imp-go" style="width:100%;margin-top:6px">Restore from pasted text</button>
+  <div id="imp-msg" style="font-size:11px;color:var(--gild);margin-top:8px;min-height:14px"></div>
+</div></div>
+
+<div class="sheet" id="sh-hl"><div class="sheet-in">
+  <div class="sheet-ttl"><span>Highlights</span><button class="x" data-close>✕</button></div>
+  <div id="hl-ref" style="font-size:13px;font-weight:700;color:var(--gild)"></div>
+  <div id="hl-count" style="font-size:10px;color:var(--muted);letter-spacing:.08em;margin:3px 0 4px"></div>
+  <div style="font-size:10px;color:var(--dim);margin-bottom:10px">
+    Tap a verse to highlight it. Abbreviated view shows only these.</div>
+  <div id="hl-body"></div>
+  <div style="display:flex;gap:6px;margin-top:12px">
+    <button class="act" id="hl-clear">Clear</button>
+    <button class="act" id="hl-all">All</button>
+    <button class="act prime" id="hl-done">Done</button>
+  </div>
+</div></div>
+
+<div class="sheet" id="sh-pick"><div class="sheet-in">
+  <div class="sheet-ttl"><span>Add to a list</span><button class="x" data-close>✕</button></div>
+  <div id="pick-body"></div>
+</div></div>
+
+<div class="sheet" id="sh-lanes"><div class="sheet-in">
+  <div class="sheet-ttl"><span>Lanes &amp; orbits</span><button class="x" data-close>✕</button></div>
+  <div class="fld">Orbits</div>
+  <div id="orb-body"></div>
+  <button class="act" id="orb-new" style="width:100%;margin-top:6px">＋ New orbit</button>
+  <div class="fld">Lanes in <span id="orb-cur" style="color:var(--gild)"></span></div>
+  <div id="lanes-body"></div>
+  <div class="fld">Add a lane</div>
+  <div id="rule-body" class="grid" style="grid-template-columns:repeat(2,1fr)"></div>
+</div></div>
+
+<div class="sheet" id="sh-note"><div class="sheet-in">
+  <div class="sheet-ttl"><span id="note-ttl">New note</span><button class="x" data-close>✕</button></div>
+  <div class="fld">Title</div>
+  <input type="text" id="note-title" placeholder="Optional">
+  <div class="fld">Note</div>
+  <textarea id="note-body" rows="7" placeholder="Anything at all."></textarea>
+  <div class="fld">Tags</div>
+  <input type="text" id="note-tags" placeholder="comma separated">
+  <div style="display:flex;gap:6px;margin-top:14px">
+    <button class="act" data-close>Cancel</button>
+    <button class="act prime" id="note-save">Save note</button>
+  </div>
+</div></div>
+
+<div class="sheet" id="sh-trans"><div class="sheet-in">
+  <div class="sheet-ttl"><span>Translation</span><button class="x" data-close>✕</button></div>
+  <div id="tr-body"></div>
+  <div style="font-size:9.5px;color:var(--dim);line-height:1.5;margin-top:12px">
+    All four are public domain. NIV, NRSV, ESV, NKJV and NLT are under active
+    copyright and can't be bundled into a public repo.</div>
+</div></div>
+
+<div id="drag-ghost"></div>
+<div id="drop-map"></div>
+<div id="float-lane"></div>
+
+<div id="toast"></div>
+
+<script src="bibleref.js"></script>
+<script>
+/* ═══ translations ════════════════════════════════════════════════════
+   All four are public domain. NIV, NRSV, ESV, NKJV and NLT are under active
+   copyright and cannot be bundled — the folder format below is open, so any
+   translation you hold a licence for can be dropped in as bible/<tag>/.      */
+const TRANS=[
+  {tag:'kjv', short:'KJV', name:'King James Version', note:'1769'},
+  {tag:'bsb', short:'BSB', name:'Berean Standard Bible', note:'modern, public domain'},
+  {tag:'web', short:'WEB', name:'World English Bible', note:'modern'},
+  {tag:'asv', short:'ASV', name:'American Standard Version', note:'1901'},
+];
+const transInfo=t=>TRANS.find(x=>x.tag===t)||TRANS[0];
+
+/* ═══ state ═══════════════════════════════════════════════════════════ */
+const LS='bibleorbit_v1';
+const ST={
+  tr:'kjv', idx:null, R:null,
+  bk:'jhn', ch:1,
+  cache:new Map(),        // "tr/book" -> book json. MEMORY ONLY, never localStorage.
+  sel:null,               // {a,b,anchor} verse range in the current chapter
+  banked:[],              // committed segments from any chapter
+  trim:null,              // {words,first,last,verse}
+  mode:'read', editing:null, noteEditing:null, pendingHl:null, data:{v:2,cards:[],lanes:[],orbits:[],nextId:1}
+};
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;};
+
+/* ═══ storage ═════════════════════════════════════════════════════════ */
+function load(){
+  try{ const r=localStorage.getItem(LS); if(r)ST.data=JSON.parse(r); }catch(e){}
+  // ALWAYS normalise — this is what seeds the starting lanes and orbit, so a
+  // fresh install must run it too or the stage boots with nothing on it.
+  try{ normalizeData(); save(); }catch(e){}
+}
+function save(){ try{localStorage.setItem(LS,JSON.stringify(ST.data));}
+  catch(e){toast('Could not save — storage full');} }
+
+/* ═══ tap: delegated touchend + movement threshold ════════════════════
+   Straight from JokeOrbit's v176/v178 lessons. A tap only counts if the
+   finger stayed within 10px, so scrolling a chapter never selects a verse.
+   Delegated (v167) so re-rendering the chapter needs no rewiring.        */
+function tapOn(root, sel, fn){
+  let sx=0,sy=0,moved=false,last=0;
+  const fire=(e)=>{
+    const t=e.target.closest(sel); if(!t||!root.contains(t))return;
+    if(Date.now()-last<320)return; last=Date.now();
+    fn(t,e);
+  };
+  root.addEventListener('touchstart',e=>{const t=e.touches[0];sx=t.clientX;sy=t.clientY;moved=false;},{passive:true});
+  root.addEventListener('touchmove',e=>{const t=e.touches[0];
+    if(Math.abs(t.clientX-sx)>10||Math.abs(t.clientY-sy)>10)moved=true;},{passive:true});
+  root.addEventListener('touchend',e=>{if(moved)return;fire(e);});
+  root.addEventListener('click',fire);
+}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2100);}
+
+/* ═══ fetching ════════════════════════════════════════════════════════ */
+async function getIndex(tr){
+  const r=await fetch(`bible/${tr}/index.json`);
+  if(!r.ok) throw new Error('index '+r.status);
+  return r.json();
+}
+async function getBook(tr,id){
+  const k=tr+'/'+id;
+  if(ST.cache.has(k)) return ST.cache.get(k);
+  const r=await fetch(`bible/${tr}/${id}.json`);
+  if(!r.ok) throw new Error(id+' '+r.status);
+  const j=await r.json(); ST.cache.set(k,j); return j;
+}
+const cached=id=>ST.cache.get(ST.tr+'/'+id)||null;
+
+/* ═══ selection → reference ═══════════════════════════════════════════ */
+function currentRef(){
+  const r=ST.banked.slice();
+  if(ST.sel) r.push({b:ST.bk,c:ST.ch,v1:Math.min(ST.sel.a,ST.sel.b),v2:Math.max(ST.sel.a,ST.sel.b)});
+  return ST.R?ST.R.normalize(r):r;
+}
+function clearSel(){ ST.sel=null; ST.banked=[]; paintSel(); }
+
+/* ═══ render: chapter ═════════════════════════════════════════════════ */
+async function renderChapter(){
+  const sc=$('#scroll');
+  const b=ST.idx.books.find(x=>x.id===ST.bk);
+  $('#ref-btn').textContent=`${b.name} ${ST.ch}`;
+  $('#prev').disabled = (b._i===0 && ST.ch===1);
+  $('#next').disabled = false;
+  sc.innerHTML='<div id="load">LOADING…</div>';
+  let bk; try{ bk=await getBook(ST.tr,ST.bk); }
+  catch(e){ sc.innerHTML=`<div id="load">Couldn't load ${ST.bk}. Check that bible/${ST.tr}/ is deployed.</div>`; return; }
+
+  const verses=bk.ch[ST.ch-1]||[];
+  const frag=document.createDocumentFragment();
+  const head=el('div'); head.id='chap-head';
+  head.innerHTML=`${ST.tr.toUpperCase()} · CHAPTER ${ST.ch}<b>${b.name}</b>`;
+  frag.appendChild(head);
+
+  // which verses in this chapter already have cards — the gutter dot
+  const marked=new Set();
+  ST.data.cards.forEach(c=>c.ref.forEach(s=>{
+    if(s.b!==ST.bk||s.c!==ST.ch)return;
+    const v1=s.v1==null?1:s.v1, v2=s.v2==null?verses.length:s.v2;
+    for(let v=v1;v<=v2;v++)marked.add(v);
+  }));
+
+  verses.forEach((txt,i)=>{
+    const v=i+1;
+    const row=el('div','v'); row.dataset.v=v;
+    row.appendChild(el('div','v-num',String(v)));
+    const t=el('div','v-txt');
+    if(txt) t.textContent=txt;
+    else { t.className='v-txt'; t.appendChild(el('span','v-omit','— not in this translation')); }
+    row.appendChild(t);
+    if(marked.has(v)) row.appendChild(el('div','v-dot'));
+    frag.appendChild(row);
+  });
+  frag.appendChild(el('div')).id='end-rule';
+  sc.innerHTML=''; sc.appendChild(frag); sc.scrollTop=0;
+  paintSel();
+}
+
+/* ═══ render: selection state ═════════════════════════════════════════ */
+function paintSel(){
+  const lo=ST.sel?Math.min(ST.sel.a,ST.sel.b):0, hi=ST.sel?Math.max(ST.sel.a,ST.sel.b):-1;
+  const bankHere=new Set();
+  ST.banked.forEach(s=>{ if(s.b===ST.bk&&s.c===ST.ch)
+    for(let v=s.v1;v<=s.v2;v++)bankHere.add(v); });
+  document.querySelectorAll('#scroll .v').forEach(row=>{
+    const v=+row.dataset.v;
+    row.classList.toggle('on', v>=lo&&v<=hi);
+    row.classList.toggle('on-first', v===lo);
+    row.classList.toggle('on-last', v===hi);
+    row.classList.toggle('banked', bankHere.has(v)&&!(v>=lo&&v<=hi));
+  });
+
+  const ref=currentRef();
+  const bar=$('#selbar');
+  if(!ref.length){ bar.classList.remove('on'); return; }
+  bar.classList.add('on');
+  const n=ST.R.count(ref);
+  $('#sel-ref').textContent=ST.R.format(ref);
+  const dupes=ST.data.cards.filter(c=>ST.R.key(c.ref)===ST.R.key(ref)).length;
+  $('#sel-meta').innerHTML = `${n} verse${n===1?'':'s'}`
+    + (ST.banked.length?` · ${ST.banked.length+(ST.sel?1:0)} ranges`:'')
+    + (dupes?` · <span class="warn">${dupes} card${dupes===1?'':'s'} already on this</span>`:'');
+  $('#a-trim').disabled = !(n===1 && !ST.banked.length);
+  $('#a-bank').disabled = !ST.sel;
+}
+
+/* ═══ interactions ════════════════════════════════════════════════════ */
+tapOn($('#scroll'),'.v',row=>{
+  const v=+row.dataset.v;
+  if(!ST.sel){ ST.sel={a:v,b:v,anchor:v}; }
+  else if(ST.sel.a===ST.sel.b && ST.sel.anchor===v){ ST.sel=null; }   // tap again to drop
+  else { ST.sel={a:ST.sel.anchor,b:v,anchor:ST.sel.anchor}; }         // extend from anchor
+  paintSel();
+});
+tapOn($('#a-clear'),'*',()=>{clearSel();});
+tapOn($('#a-bank'),'*',()=>{
+  if(!ST.sel)return;
+  ST.banked.push({b:ST.bk,c:ST.ch,v1:Math.min(ST.sel.a,ST.sel.b),v2:Math.max(ST.sel.a,ST.sel.b)});
+  ST.sel=null; paintSel();
+  toast('Range banked — select another, they join one card');
+});
+
+/* chapter nav — walks across book boundaries */
+function step(d){
+  const bs=ST.idx.books, i=bs.findIndex(b=>b.id===ST.bk), b=bs[i];
+  let ch=ST.ch+d, bi=i;
+  if(ch<1){ bi=i-1; if(bi<0)return; ch=bs[bi].chapters; }
+  else if(ch>b.chapters){ bi=i+1; if(bi>=bs.length)return; ch=1; }
+  ST.bk=bs[bi].id; ST.ch=ch; ST.sel=null; renderChapter();
+}
+tapOn($('#prev'),'*',()=>step(-1));
+tapOn($('#next'),'*',()=>step(1));
+
+/* translation switch — cards are pointers, so every one re-renders for free */
+async function setTranslation(tag){
+  const prev=ST.tr;
+  ST.tr=tag;
+  $('#tr-btn').textContent=transInfo(tag).short;
+  try{ ST.idx=await getIndex(tag); ST.idx.books.forEach((b,i)=>b._i=i); ST.R=BibleRef(ST.idx); }
+  catch(e){ ST.tr=prev; $('#tr-btn').textContent=transInfo(prev).short;
+    toast('Could not load '+tag.toUpperCase()); return; }
+  ST.data.tr=tag; save();
+  renderChapter();
+  if(ST.mode==='orbit'){
+    // every card is a pointer, so the whole stage just re-resolves
+    const need=[...new Set(ST.data.cards.flatMap(cardBooks))].filter(id=>!cached(id));
+    if(need.length)await Promise.all(need.map(id=>getBook(ST.tr,id).catch(()=>null)));
+    rebuildOrbit();
+  }
+  renderFloatLane();
+  toast(transInfo(tag).name);
+}
+// tap cycles; the sheet lets you pick directly
+tapOn($('#tr-btn'),'*',()=>{
+  const i=TRANS.findIndex(t=>t.tag===ST.tr);
+  setTranslation(TRANS[(i+1)%TRANS.length].tag);
+});
+function openTrans(){
+  const body=$('#tr-body'); body.innerHTML='';
+  TRANS.forEach(t=>{
+    const b=el('button','pick'+(t.tag===ST.tr?' on':''));
+    b.style.width='100%'; b.dataset.tr=t.tag;
+    b.appendChild(Object.assign(el('div',null,t.short+' — '+t.name),{style:'font-size:12px'}));
+    b.appendChild(Object.assign(el('div',null,t.note),
+      {style:'font-size:9.5px;color:var(--dim);letter-spacing:.06em;margin-top:2px'}));
+    body.appendChild(b);
+  });
+  $('#sh-trans').classList.add('on');
+}
+tapOn($('#tr-body'),'[data-tr]',b=>{
+  $('#sh-trans').classList.remove('on'); setTranslation(b.dataset.tr);
+});
+tapOn($('#sh-menu'),'#m-trans',()=>{ $('#sh-menu').classList.remove('on'); openTrans(); });
+
+/* ── book picker ── */
+function openBooks(){
+  const body=$('#bk-body'); body.innerHTML=''; $('#bk-ttl').textContent='Choose a book';
+  [['Old Testament',true],['New Testament',false]].forEach(([lbl,ot])=>{
+    body.appendChild(el('div','testa',lbl));
+    const g=el('div','grid'); g.id='bk-grid';
+    ST.idx.books.filter(b=>b.ot===ot).forEach(b=>{
+      const p=el('button','pick',b.name); p.dataset.bk=b.id;
+      if(b.id===ST.bk)p.classList.add('on'); g.appendChild(p);
+    });
+    body.appendChild(g);
+  });
+  $('#sh-book').classList.add('on');
+}
+function openChapters(bid){
+  const b=ST.idx.books.find(x=>x.id===bid);
+  const body=$('#bk-body'); body.innerHTML=''; $('#bk-ttl').textContent=b.name;
+  const g=el('div','grid'); g.id='ch-grid';
+  for(let c=1;c<=b.chapters;c++){
+    const p=el('button','pick',String(c)); p.dataset.ch=c;
+    if(bid===ST.bk&&c===ST.ch)p.classList.add('on'); g.appendChild(p);
+  }
+  body.appendChild(g); body.dataset.bk=bid;
+}
+tapOn($('#ref-btn'),'*',openBooks);
+tapOn($('#bk-body'),'.pick',p=>{
+  if(p.dataset.bk){ openChapters(p.dataset.bk); return; }
+  ST.bk=$('#bk-body').dataset.bk; ST.ch=+p.dataset.ch; ST.sel=null;
+  $('#sh-book').classList.remove('on'); renderChapter();
+});
+
+/* ── trim to a phrase (sub-verse) ── */
+tapOn($('#a-trim'),'*',()=>{
+  const ref=currentRef(); if(ST.R.count(ref)!==1)return;
+  const s=ref[0], bk=cached(ST.bk); if(!bk)return;
+  const txt=(bk.ch[s.c-1]||[])[ (s.v1||1)-1 ]||'';
+  if(!txt){ toast('No text to trim in this translation'); return; }
+  const words=[]; const re=/\S+/g; let m;
+  while((m=re.exec(txt))) words.push({w:m[0],s:m.index,e:m.index+m[0].length});
+  ST.trim={words,first:null,last:null,verse:{b:s.b,c:s.c,v:s.v1||1},txt};
+  buildTrim(); paintTrim(); $('#sh-trim').classList.add('on');
+});
+/* Words are built ONCE. paintTrim only toggles classes — rebuilding the list
+   on every tap detached the very node the finger was on, so the second tap
+   landed on an orphan and the end-of-phrase never registered. */
+function buildTrim(){
+  const box=$('#trim-words'); box.innerHTML='';
+  ST.trim.words.forEach((w,i)=>{
+    const s=el('span','w',w.w); s.dataset.i=i;
+    box.appendChild(s); box.appendChild(document.createTextNode(' '));
+  });
+}
+function paintTrim(){
+  const T=ST.trim;
+  const lo=T.first==null?-1:Math.min(T.first,T.last==null?T.first:T.last);
+  const hi=T.last==null?(T.first==null?-2:T.first):Math.max(T.first,T.last);
+  $$('#trim-words .w').forEach(s=>{
+    const i=+s.dataset.i;
+    s.classList.toggle('in', i>=lo&&i<=hi);
+    s.classList.toggle('edge', i===lo||i===hi);
+  });
+  const n=(hi>=lo&&lo>=0)?hi-lo+1:0;
+  $('#trim-note').textContent = n
+    ? `${n} word${n===1?'':'s'} — kept as an excerpt so this card survives a translation switch.`
+    : 'Nothing selected yet.';
+}
+tapOn($('#trim-words'),'.w',s=>{
+  const i=+s.dataset.i, T=ST.trim;
+  if(T.first==null||T.last!=null){ T.first=i; T.last=null; } else { T.last=i; }
+  paintTrim();
+});
+tapOn($('#trim-reset'),'*',()=>{ST.trim.first=ST.trim.last=null;paintTrim();});
+tapOn($('#trim-ok'),'*',()=>{
+  const T=ST.trim; if(T.first==null){toast('Tap a word first');return;}
+  const lo=Math.min(T.first,T.last==null?T.first:T.last);
+  const hi=Math.max(T.first,T.last==null?T.first:T.last);
+  const seg=ST.R.cut(T.verse.b,T.verse.c,T.verse.v,T.words[lo].s,T.words[hi].e,T.txt,ST.tr);
+  $('#sh-trim').classList.remove('on');
+  if(T.intoHl){                       // trimming an existing card's highlight
+    const hl=cardHl(_hlCard);
+    const i=hl.findIndex(h=>h.b===seg.b&&h.c===seg.c&&h.v1===seg.v1);
+    if(i>=0)hl[i]=seg; else hl.push(seg);
+    save(); renderHlList(); return;
+  }
+  // From the reader: the card's EXTENT is the whole verse, the phrase becomes
+  // its first highlight — so full view keeps the context you cut it from.
+  ST.banked=[{b:seg.b,c:seg.c,v1:seg.v1,v2:seg.v2}]; ST.sel=null;
+  ST.pendingHl=[seg];
+  paintSel(); openCard();
+});
+
+/* ── make card ── */
+function openCard(){
+  const ref=currentRef(); if(!ref.length)return;
+  $('#card-ref').textContent=ST.R.format(ref);
+  const bk=cached(ST.bk);
+  const rows=ST.R.text(ref, id=>cached(id), ST.tr);
+  const q=$('#card-quote'); q.innerHTML='';
+  rows.forEach(r=>{
+    if(r.pending){ q.appendChild(el('div',null,'…')); return; }
+    const d=el('div',null, r.t || '— not in this translation');
+    if(!r.t)d.style.cssText='color:var(--dim);font-style:italic';
+    q.appendChild(d);
+  });
+  ST.editing=null;
+  $('#card-note').value=''; $('#card-tags').value='';
+  $('#card-save').textContent='Save card';
+  $('#sh-card').classList.add('on');
+}
+tapOn($('#a-make'),'*',openCard);
+tapOn($('#card-save'),'*',()=>{
+  if(ST.editing!=null){
+    const c=ST.data.cards.find(x=>x.id===ST.editing);
+    if(c){ c.note=$('#card-note').value.trim();
+      c.tags=$('#card-tags').value.split(',').map(t=>t.trim()).filter(Boolean); save(); }
+    ST.editing=null; $('#sh-card').classList.remove('on');
+    if(ST.mode==='orbit')rebuildOrbit(); else renderChapter();
+    toast('Card updated'); return;
+  }
+  const ref=currentRef(); if(!ref.length)return;
+  const card={
+    id:ST.data.nextId++,
+    ref,                                    // POINTERS — never the verse text
+    note:$('#card-note').value.trim(),
+    tags:$('#card-tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+    hl:ST.pendingHl||[], lanes:[], created:Date.now(), madeIn:ST.tr
+  };
+  ST.pendingHl=null;
+  ST.data.cards.push(card); save();
+  $('#sh-card').classList.remove('on');
+  clearSel(); renderChapter();
+  if(ST.mode==='orbit')rebuildOrbit();
+  toast('Card made — '+ST.R.format(ref));
+});
+
+/* ── cards list ── */
+async function openCardsSheet(){
+  $('#sh-cards').classList.add('on');
+  $('#cards-body').innerHTML='<div class="testa">Loading…</div>';
+  // A card can point anywhere in the canon, so pull in whatever books this
+  // list needs before rendering — otherwise every card outside the chapter
+  // you happen to be reading renders blank.
+  const need=[...new Set(ST.data.cards.flatMap(c=>c.ref.map(s=>s.b)))].filter(id=>!cached(id));
+  await Promise.all(need.map(id=>getBook(ST.tr,id).catch(()=>null)));
+  renderCards();
+}
+function renderCards(){
+  const body=$('#cards-body'); body.innerHTML='';
+  $('#cards-ttl').textContent=`Cards · ${ST.data.cards.length}`;
+  if(!ST.data.cards.length){
+    body.appendChild(el('div','testa','Nothing yet. Tap a verse to begin.'));
+  }
+  ST.data.cards.slice().reverse().forEach(c=>{
+    const d=el('div'); d.style.cssText='border:1px solid var(--border);border-radius:3px;padding:11px;margin-bottom:7px';
+    const h=el('div',null,ST.R.format(c.ref));
+    h.style.cssText='font-size:12px;font-weight:700;color:var(--gild);margin-bottom:5px';
+    d.appendChild(h);
+    const rows=ST.R.text(c.ref, id=>cached(id), ST.tr);
+    const t=rows.map(r=>r.pending?null:(r.t||'—')).filter(Boolean).join(' ');
+    if(t){ const p=el('div',null,t.slice(0,150)+(t.length>150?'…':''));
+      p.style.cssText='font-family:"EB Garamond",serif;font-size:15px;line-height:1.5;color:var(--ink)';
+      d.appendChild(p); }
+    if(rows.some(r=>r.fallback)){
+      const f=el('div',null,`excerpt kept from ${(rows.find(r=>r.fallback).cutIn||'').toUpperCase()}`);
+      f.style.cssText='font-size:9.5px;color:var(--gild-dim);letter-spacing:.1em;margin-top:5px';
+      d.appendChild(f); }
+    if(c.note){ const n=el('div',null,c.note);
+      n.style.cssText='font-size:12px;color:var(--muted);margin-top:7px;line-height:1.5';
+      d.appendChild(n); }
+    const del=el('button','act','Delete'); del.dataset.del=c.id;
+    del.style.cssText='margin-top:9px;padding:6px;font-size:10px;flex:0 0 auto';
+    d.appendChild(del);
+    body.appendChild(d);
+  });
+}
+tapOn($('#cards-body'),'[data-del]',b=>{
+  ST.data.cards=ST.data.cards.filter(c=>c.id!==+b.dataset.del); save();
+  renderCards(); renderChapter();
+});
+
+/* One observer, so every sheet — present or added later — flags the body while
+   it is open. Fixed overlays (the floating lane) hide off that flag instead of
+   each open/close site having to remember. */
+(function(){
+  const sync=()=>document.body.classList.toggle('sheet-open', !!document.querySelector('.sheet.on'));
+  const mo=new MutationObserver(sync);
+  document.querySelectorAll('.sheet').forEach(sh=>
+    mo.observe(sh,{attributes:true,attributeFilter:['class']}));
+  sync();
+})();
+
+/* sheets close on backdrop or ✕ */
+document.querySelectorAll('.sheet').forEach(sh=>{
+  tapOn(sh,'[data-close]',()=>sh.classList.remove('on'));
+  sh.addEventListener('click',e=>{ if(e.target===sh)sh.classList.remove('on'); });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ORBIT ENGINE — ported from JOKE ORBIT v185.
+   Every constant below is lifted verbatim (lane heights, blur, opacity,
+   scale falloff, spring K/C, swipe thresholds). The payload changed from
+   jokes to passage cards; the instrument did not.
+   ═══════════════════════════════════════════════════════════════════════ */
+let AL=[];                       // active lane array
+const O={ali:0, orbit:'study', abbr:false, fan:new Set()};
+
+/* ── GENERALISED GROUPING ────────────────────────────────────────────────
+   Nothing here is hardcoded. A LANE is a user-made object with a RULE; an
+   ORBIT is a user-made list of lanes. Add, rename, delete, reorder any of it.
+   Rules available:
+     all      every card
+     notes    note cards only          passages   passage cards only
+     tag      cards carrying a tag      book      cards touching a book
+     manual   an explicit ordered list of card ids (bundles, plans, lineups)
+     recent   newest first
+   Manual lanes NEVER pass through a sort — ids order is display order.       */
+const RULES=[
+  {t:'all',      n:'Everything'},
+  {t:'manual',   n:'Hand-picked list'},
+  {t:'tag',      n:'By tag'},
+  {t:'book',     n:'By book'},
+  {t:'notes',    n:'Notes only'},
+  {t:'passages', n:'Passages only'},
+  {t:'untagged', n:'Untagged'},
+  {t:'recent',   n:'Recent'},
+];
+function cardsAll(){
+  return (ST.data.cards||[]).filter(c=>c&&(c.kind==='note'||(Array.isArray(c.ref)&&c.ref.length)))
+    .map(c=>{ if(!Array.isArray(c.tags))c.tags=c.tags?String(c.tags).split(',').map(t=>t.trim()).filter(Boolean):[];
+              if(!c.kind)c.kind='passage'; if(!Array.isArray(c.ref))c.ref=[]; return c; });
+}
+function cardBooks(c){ return [...new Set((c.ref||[]).map(s=>s.b))]; }
+function isNote(c){ return c.kind==='note'; }
+
+function curOrbit(){
+  const os=ST.data.orbits||[];
+  const o=os.find(x=>x.id===O.orbit)||os[0]||null;
+  if(o&&o.id!==O.orbit)O.orbit=o.id;   // self-heal a dangling orbit id
+  return o;
+}
+function allLanes(){
+  const prev={}; AL.forEach(l=>prev[l.id]=l.si||0);
+  const ob=curOrbit();
+  const defs=(ob?ob.laneIds:[]).map(id=>(ST.data.lanes||[]).find(l=>l.id===id)).filter(Boolean);
+  const lanes=defs.map(d=>({id:d.id, lbl:d.name, def:d}));
+  if(!lanes.length) lanes.push({id:'l_empty', lbl:'No lanes here yet', def:null});
+  lanes.forEach(l=>{ l.so=laneCards(l); l.si=Math.min(prev[l.id]||0, Math.max(0,l.so.length-1)); });
+  return lanes;
+}
+function laneCards(ln){
+  const d=ln.def; if(!d)return [];
+  const c=cardsAll(), r=d.rule||{type:'all'};
+  switch(r.type){
+    case 'manual':   return (r.ids||[]).map(id=>c.find(x=>x.id===id)).filter(Boolean);
+    case 'tag':      return byRef(c.filter(x=>x.tags.includes(r.tag)));
+    case 'book':     return byRef(c.filter(x=>cardBooks(x).includes(r.book)));
+    case 'notes':    return c.filter(isNote).sort((a,b)=>b.created-a.created);
+    case 'passages': return byRef(c.filter(x=>!isNote(x)));
+    case 'untagged': return byRef(c.filter(x=>!x.tags.length));
+    case 'recent':   return c.slice().sort((a,b)=>b.created-a.created).slice(0,50);
+    default:         return byRef(c);
+  }
+}
+// canonical scripture order; notes have no ref so they fall to the end by date
+function byRef(list){
+  return list.slice().sort((a,b)=>{
+    const an=isNote(a), bn=isNote(b);
+    if(an!==bn)return an?1:-1;
+    if(an)return b.created-a.created;
+    return ST.R.compare(a.ref,b.ref)||a.id-b.id;
+  });
+}
+function laneById(id){ return (ST.data.lanes||[]).find(l=>l.id===id); }
+function manualLanes(){ return (ST.data.lanes||[]).filter(l=>l.rule&&l.rule.type==='manual'); }
+
+/* ── geometry (v185 constants, verbatim) ────────────────────────────── */
+const stEl=()=>document.getElementById('stage');
+function stW(){return stEl()?.clientWidth||window.innerWidth||390;}
+function stH(){const e=stEl();return e?e.clientHeight:(window.innerHeight-120);}
+function _bp(){const w=stW();return w>=1100?'desk':w>=600?'ipad':'phone';}
+function lh(d){
+  if(window.innerHeight<480){return [Math.max(170,window.innerHeight-168),32,12,6][Math.min(d,3)];}
+  return {phone:[268,108,46,18], ipad:[230,130,58,22], desk:[260,148,66,26]}[_bp()][Math.min(d,3)];
+}
+function lb(d){return {phone:[0,0.7,2.0,4.5],ipad:[0,0.2,0.8,2.5],desk:[0,0.1,0.5,1.8]}[_bp()][Math.min(d,3)];}
+function lo(d){return {phone:[1,.66,.40,.16],ipad:[1,.82,.58,.28],desk:[1,.86,.62,.32]}[_bp()][Math.min(d,3)];}
+function ls(d){return [1,.82,.66,.52][Math.min(d,3)];}
+
+function offsets(){
+  const n=AL.length, ai=O.ali, sh=stH();
+  const hs=new Array(n), off=new Array(n);
+  for(let i=0;i<n;i++)hs[i]=lh(Math.abs(i-ai));
+  const stack=()=>{
+    const ah=hs[ai];
+    const cy=Math.floor(sh*(_bp()==='phone'?0.44:0.38));
+    off[ai]=cy-Math.floor(ah/2);
+    for(let i=ai-1;i>=0;i--)off[i]=off[i+1]-hs[i];
+    for(let i=ai+1;i<n;i++)off[i]=off[i-1]+hs[i-1];
+  };
+  stack();
+  // SPACE-FILL (v136/v143): lanes stack contiguously, so slack only exists above
+  // lane 0 and below lane n-1. Grow visible lanes proportionally to absorb it,
+  // iteratively, then hard-pin both edges so a void is structurally impossible.
+  if(n>0){
+    for(let pass=0;pass<3;pass++){
+      const G=Math.max(0,off[0])+Math.max(0,sh-(off[n-1]+hs[n-1]));
+      if(G<=1)break;
+      let vis=[],sum=0;
+      for(let i=0;i<n;i++)if(off[i]<sh&&off[i]+hs[i]>0){vis.push(i);sum+=hs[i];}
+      if(!sum)break;
+      vis.forEach(i=>{hs[i]+=G*hs[i]/sum;});
+      stack();
+      const up=-Math.max(0,off[0]); if(up)for(let i=0;i<n;i++)off[i]+=up;
+      const bot=sh-(off[n-1]+hs[n-1]);
+      if(bot>0.5){const shift=Math.min(bot, off[0]<0?-off[0]:bot);
+        for(let i=0;i<n;i++)off[i]+=shift;}
+    }
+    if(off[0]>0.5){const s=off[0];for(let i=0;i<n;i++)off[i]-=s;}
+    const gap=sh-(off[n-1]+hs[n-1]);
+    if(gap>0.5)hs[n-1]+=gap;
+  }
+  return {off,hs};
+}
+
+/* ── spring engine (K=190, C=21 — underdamped glide) ────────────────── */
+const _anim={items:new Map(), raf:null};
+function _springTo(el,t,h){
+  // detached lanes would otherwise sit in the map forever whenever no
+  // animation is in flight to sweep them
+  if(_anim.items.size>AL.length*3)
+    _anim.items.forEach((_,k)=>{ if(!k.isConnected)_anim.items.delete(k); });
+  let s=_anim.items.get(el);
+  if(!s){ _anim.items.set(el,{t,h,vt:0,vh:0,tt:t,th:h});
+    el.style.top=t+'px'; el.style.height=h+'px'; return; }
+  el.style.top=s.t.toFixed(1)+'px'; el.style.height=s.h.toFixed(1)+'px';
+  s.tt=t; s.th=h; _animStart();
+}
+function _animStart(){
+  if(_anim.raf)return;
+  let last=performance.now();
+  const K=190,C=21;
+  const step=now=>{
+    const dt=Math.min(0.034,(now-last)/1000); last=now;
+    let live=false;
+    _anim.items.forEach((s,el)=>{
+      if(!el.isConnected){_anim.items.delete(el);return;}
+      s.vt+=(K*(s.tt-s.t)-C*s.vt)*dt; s.t+=s.vt*dt;
+      s.vh+=(K*(s.th-s.h)-C*s.vh)*dt; s.h+=s.vh*dt;
+      if(Math.abs(s.tt-s.t)<0.4&&Math.abs(s.vt)<3&&Math.abs(s.th-s.h)<0.4&&Math.abs(s.vh)<3){
+        s.t=s.tt;s.h=s.th;s.vt=0;s.vh=0;
+      } else live=true;
+    });
+    _reflow();   // tops derived from springing heights: never a mid-stack gap
+    _anim.items.forEach((s,el)=>{el.style.top=s.t.toFixed(1)+'px';el.style.height=s.h.toFixed(1)+'px';});
+    _anim.raf=live?requestAnimationFrame(step):null;
+  };
+  _anim.raf=requestAnimationFrame(step);
+}
+function _reflow(){
+  const st=document.getElementById('lane-stack'); if(!st)return;
+  const n=AL.length, ai=O.ali, kids=[];
+  for(let i=0;i<n;i++){const el=st.children[i]; if(!el)return;
+    const s=_anim.items.get(el); if(!s)return; kids.push(s);}
+  if(!kids[ai])return;
+  for(let i=ai-1;i>=0;i--)kids[i].t=kids[i+1].t-kids[i].h;
+  for(let i=ai+1;i<n;i++)kids[i].t=kids[i-1].t+kids[i-1].h;
+}
+
+/* ── render ─────────────────────────────────────────────────────────── */
+function renderOrbitBar(){
+  const bar=$('#obar'); bar.innerHTML='';
+  (ST.data.orbits||[]).forEach(o=>{
+    const b=el('button','ochip'+(o.id===O.orbit?' on':''),o.name);
+    b.dataset.orbit=o.id; bar.appendChild(b);
+  });
+  const add=el('button','ochip','⚙ lanes'); add.id='lanes-btn'; bar.appendChild(add);
+}
+function renderStage(){
+  const st=document.getElementById('lane-stack'); if(!st)return;
+  const {off,hs}=offsets();
+  // REUSE the lane elements. Wiping innerHTML meant _springTo always saw a
+  // brand-new node with no prior state, so it snapped instead of springing and
+  // the whole K=190/C=21 glide was dead code.
+  while(st.children.length>AL.length) st.lastChild.remove();
+  while(st.children.length<AL.length) st.appendChild(el('div','lane'));
+  AL.forEach((ln,i)=>{
+    const d=Math.abs(i-O.ali);
+    const div=st.children[i];
+    div.className='lane'+(i===O.ali?' al':'');
+    div.dataset.lane=ln.id;
+    div.style.filter=`blur(${lb(d)}px)`;
+    div.style.opacity=lo(d);
+    div.style.zIndex=String(100-d);
+    div.innerHTML='';
+    div.appendChild(el('div','lane-lbl',ln.lbl));
+    div.appendChild(el('div','lane-cnt', ln.so.length?`${(ln.si||0)+1}/${ln.so.length}`:'0'));
+    if(ln.def){
+      const pop=el('button','lane-pop'+(ST.data.pinnedLane===ln.id?' on':''),'⇱');
+      pop.dataset.lane=ln.id; div.appendChild(pop);
+    }
+    const inner=el('div','lane-in');
+    if(!ln.so.length){ inner.appendChild(el('div','lane-empty','— empty —')); }
+    else buildLane(inner,ln,d);
+    div.appendChild(inner);
+    _springTo(div,off[i],hs[i]);
+  });
+  $('#lane-tag').innerHTML='';
+  const cur=AL[O.ali];
+  if(cur){
+    const t=el('div',null,`${cur.lbl} · ${cur.so.length} card${cur.so.length===1?'':'s'}`);
+    t.style.cssText='font-size:10px;color:var(--muted);letter-spacing:.08em;padding:2px 0';
+    $('#lane-tag').appendChild(t);
+    const ab=el('button',O.abbr?'on':'',O.abbr?'◫ Abbreviated':'▤ Full');
+    ab.id='abbr-btn'; $('#lane-tag').appendChild(ab);
+  }
+}
+function buildLane(inner,ln,dist){
+  const n=ln.so.length, si=((ln.si||0)%n+n)%n;
+  const R=dist===0?2:1;
+  const step=Math.min(stW()*0.82, 348);
+  // Walk outward from the centre (0, +1, -1, +2, -2) and skip any index already
+  // drawn. Without this the ring wraps on small lanes and the SAME card is
+  // painted into two slots — with 3 cards, two of them appear twice and no
+  // amount of swiping clears them.
+  const order=[0]; for(let k=1;k<=R;k++){order.push(k);order.push(-k);}
+  const used=new Set();
+  for(const k of order){
+    const idx=((si+k)%n+n)%n;
+    if(used.has(idx))continue;
+    used.add(idx);
+    const c=ln.so[idx];
+    const isC=k===0;
+    const card=buildCard(c,isC,ln);
+    if(card._grip)inner.appendChild(card._grip);
+    const sc=ls(Math.abs(k));
+    card.style.transform=`translateX(${k*step}px) scale(${sc})`;
+    card.style.opacity=isC?1:(dist===0?0.5:0.34);
+    card.style.zIndex=String(10-Math.abs(k));
+    if(!isC)card.style.pointerEvents='none';
+    inner.appendChild(card);
+  }
+}
+function buildCard(c,isC,ln){
+  const card=el('div','jcard'+(isC?' c':''));
+  card.dataset.card=c.id;
+  const hdr=el('div','c-hdr');
+  hdr.appendChild(el('span','c-ref', isNote(c) ? (c.title||'Note') : ST.R.format(c.ref)));
+  const n=cardHl(c).length;
+  if(n)hdr.appendChild(el('span','hl-badge','▪'+n));
+  hdr.appendChild(el('span','c-tr',(c.madeIn||'').toUpperCase()));
+  card.appendChild(hdr);
+
+  let fb=null;
+  if(isNote(c)){
+    const b=el('div','c-note-body', c.note||'');
+    card.appendChild(b);
+  }else if(O.abbr){
+    card.appendChild(buildAbbrev(c));
+    ST.R.text(cardHl(c), id=>cached(id), ST.tr).forEach(r=>{ if(r.fallback)fb=r.cutIn; });
+  }else{
+    const body=el('div','c-scr');
+    const rows=ST.R.text(c.ref, id=>cached(id), ST.tr);
+    const marks=new Set(cardHl(c).map(h=>h.c+'.'+h.v1));
+    rows.forEach(r=>{
+      if(r.pending){ body.appendChild(document.createTextNode('… ')); return; }
+      if(r.fallback)fb=r.cutIn;
+      body.appendChild(el('span','vn',String(r.v)));
+      const lit=marks.has(r.c+'.'+r.v);
+      const sp=el('span',lit?'lit':null,(r.t||'— not in this translation')+' ');
+      body.appendChild(sp);
+    });
+    card.appendChild(body);
+  }
+  if(fb)card.appendChild(el('div','c-fb','excerpt kept from '+String(fb).toUpperCase()));
+  if(c.note)card.appendChild(el('div','c-note',c.note));
+  if(c.tags.length){
+    const tw=el('div','c-tags');
+    c.tags.forEach(t=>tw.appendChild(el('span','c-tag',t)));
+    card.appendChild(tw);
+  }
+  if(isC){
+    // pinned to the LANE, not the card, so it can't be scrolled out of reach
+    // on a long passage
+    const grip=el('div','c-grip','⠿');
+    grip.dataset.card=c.id;
+    card._grip=grip;
+    wireGrip(grip,c.id,false);
+    const ch=el('div','c-chips');
+    const mk=(lbl,act)=>{const b=el('button','chip',lbl);b.dataset.act=act;b.dataset.card=c.id;return b;};
+    const manual=ln.def&&ln.def.rule&&ln.def.rule.type==='manual';
+    if(manual){
+      ch.appendChild(mk('⬅','pl-l')); ch.appendChild(mk('➡','pl-r'));
+      ch.appendChild(mk('✕ remove','pl-out'));
+    } else ch.appendChild(mk('＋ list','pl-in'));
+    if(!isNote(c)){ ch.appendChild(mk('▪ marks','hl')); }
+    ch.appendChild(mk('✎ edit','edit'));
+    if(!isNote(c)) ch.appendChild(mk('📖 read','goto'));
+    ch.appendChild(mk('🗑','del'));
+    card.appendChild(ch);
+  }
+  return card;
+}
+
+/* ── navigation ─────────────────────────────────────────────────────── */
+function navLane(d){
+  const n=AL.length; if(!n)return;
+  O.ali=((O.ali||0)+d+n)%n;
+  renderStage();
+}
+function navH(d){
+  const ln=AL[O.ali]; if(!ln)return;
+  const n=ln.so.length; if(!n)return;
+  ln.si=((ln.si||0)+d+n)%n;
+  renderStage();
+}
+function rebuildOrbit(){
+  AL=allLanes();
+  O.ali=Math.min(O.ali, Math.max(0,AL.length-1));
+  renderOrbitBar(); renderStage();
+}
+
+/* ── swipe (v185 thresholds: 4px direction lock, 22px / 0.18 commit) ── */
+let _swipeActive=false,_swipeMoving=false,_swipeCool=null;
+function _markSwipeDone(){_swipeActive=true;_swipeMoving=false;
+  clearTimeout(_swipeCool);_swipeCool=setTimeout(()=>{_swipeActive=false;},350);}
+(function initTouch(){
+  const stage=stEl(); if(!stage)return;
+  let tx0=0,ty0=0,moved=false,dir=null,cardEl=null,cardScrollable=false,vs=[];
+  const push=(x,y,t)=>{vs.push({x,y,t});if(vs.length>6)vs.shift();};
+  const vel=()=>{ if(vs.length<2)return{vx:0,vy:0};
+    const a=vs[0],b=vs[vs.length-1],dt=Math.max(b.t-a.t,1);
+    return{vx:(b.x-a.x)/dt, vy:(b.y-a.y)/dt};};
+  const skip=e=>e.target.closest('.chip')||e.target.closest('#obar')
+    ||e.target.closest('.c-grip')||e.target.closest('.lane-pop')||window._dragActive;
+
+  stage.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1||skip(e))return;
+    // Scrollable centre card: a vertical drag that begins here is the CARD's
+    // scroll, never lane navigation. Long passages depend on this.
+    cardEl=e.target.closest('.lane.al .jcard.c')
+        || (e.target.closest('.lane.al') ? document.querySelector('.lane.al .jcard.c') : null);
+    cardScrollable=!!(cardEl&&cardEl.scrollHeight>cardEl.clientHeight+6);
+    const t=e.touches[0]; tx0=t.clientX; ty0=t.clientY;
+    moved=false;dir=null;vs=[];_swipeActive=false;_swipeMoving=false;
+    clearTimeout(_swipeCool);
+  },{passive:true});
+
+  stage.addEventListener('touchmove',e=>{
+    if(e.touches.length!==1||skip(e))return;
+    const t=e.touches[0], dx=t.clientX-tx0, dy=t.clientY-ty0;
+    push(t.clientX,t.clientY,Date.now());
+    if(!dir&&(Math.abs(dx)>4||Math.abs(dy)>4)){
+      moved=true; dir=Math.abs(dx)>=Math.abs(dy)?'h':'v'; _swipeMoving=true;
+    }
+    if(dir==='h'&&e.cancelable)e.preventDefault();
+  },{passive:false});
+
+  stage.addEventListener('touchend',e=>{
+    if(skip(e)||!moved||!dir)return;
+    const dx=e.changedTouches[0].clientX-tx0, dy=e.changedTouches[0].clientY-ty0;
+    const {vx,vy}=vel(), MIN_DIST=22, MIN_VEL=0.18;
+    if(dir==='h'){
+      if(Math.abs(dx)>MIN_DIST||Math.abs(vx)>MIN_VEL){
+        navH(dx<0?1:-1); if(navigator.vibrate)navigator.vibrate(6); _markSwipeDone();
+      }
+    }else{
+      if(cardScrollable){moved=false;dir=null;return;}
+      if(Math.abs(dy)>MIN_DIST||Math.abs(vy)>MIN_VEL){
+        navLane(dy<0?1:-1); if(navigator.vibrate)navigator.vibrate(6); _markSwipeDone();
+      }
+    }
+    moved=false;dir=null;
+  },{passive:true});
+
+  // swallow the synthetic click iOS fires after a swipe
+  stage.addEventListener('click',e=>{ if(_swipeActive){e.stopPropagation();e.preventDefault();} },true);
+})();
+
+/* ── card actions ───────────────────────────────────────────────────── */
+tapOn($('#stage'),'.chip',b=>{
+  const id=+b.dataset.card, act=b.dataset.act;
+  const ln=AL[O.ali], c=ST.data.cards.find(x=>x.id===id); if(!c)return;
+  if(act==='del'){ ST.data.cards=ST.data.cards.filter(x=>x.id!==id);
+    manualLanes().forEach(l=>l.rule.ids=(l.rule.ids||[]).filter(x=>x!==id));
+    save(); rebuildOrbit(); toast('Deleted'); return; }
+  if(act==='hl'){ openHl(id); return; }
+  if(act==='edit'){ if(isNote(c))openNote(id); else openEdit(id); return; }
+  if(act==='goto'){ if(isNote(c))return; const s=c.ref[0]; ST.bk=s.b; ST.ch=s.c||1;
+    setMode('read'); renderChapter(); return; }
+  if(act==='pl-in'){ pickList(id); return; }
+  if(act==='pl-out'){ ln.def.rule.ids=ln.def.rule.ids.filter(x=>x!==id); save(); rebuildOrbit(); return; }
+  if(act==='pl-l'||act==='pl-r'){
+    const ids=ln.def.rule.ids, i=ids.indexOf(id), j=i+(act==='pl-l'?-1:1);
+    if(i<0||j<0||j>=ids.length)return;
+    [ids[i],ids[j]]=[ids[j],ids[i]];
+    save(); rebuildOrbit();
+    const l=AL.find(x=>x.id===ln.id); if(l){l.si=j;} renderStage();
+  }
+});
+tapOn($('#obar'),'.ochip[data-orbit]',b=>{ O.orbit=b.dataset.orbit; O.ali=0; rebuildOrbit(); });
+
+/* ── mode switch ────────────────────────────────────────────────────── */
+async function setMode(m){
+  ST.mode=m;
+  document.body.classList.toggle('m-orbit', m==='orbit');
+  if(m!=='orbit')$('#float-lane').classList.remove('dragging');
+  $('#mode-btn').textContent = m==='orbit' ? '📖' : '◎';
+  if(m==='orbit'){
+    // cards can point anywhere in the canon — pull in every book they need
+    const need=[...new Set(ST.data.cards.flatMap(cardBooks))].filter(id=>!cached(id));
+    if(need.length)await Promise.all(need.map(id=>getBook(ST.tr,id).catch(()=>null)));
+    rebuildOrbit();
+  }
+}
+tapOn($('#mode-btn'),'*',()=>setMode(ST.mode==='orbit'?'read':'orbit'));
+window.addEventListener('resize',()=>{ if(ST.mode==='orbit')renderStage(); });
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BACKUP · EDIT · PLANS · SEARCH
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── backup ─────────────────────────────────────────────────────────────
+   Cards are pointers, so a full backup of a heavy year of study is still
+   measured in kilobytes. There is no excuse for not exporting often.       */
+function buildBackup(){
+  return {app:'bible-orbit', v:1, exported:new Date().toISOString(),
+          translation:ST.tr, data:ST.data};
+}
+function exportBackup(){
+  const json=JSON.stringify(buildBackup(),null,1);
+  const name=`bible-orbit-${new Date().toISOString().slice(0,10)}.json`;
+  try{
+    const url=URL.createObjectURL(new Blob([json],{type:'application/json'}));
+    const a=document.createElement('a'); a.href=url; a.download=name;
+    document.body.appendChild(a); a.click();
+    setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1500);
+    toast(`Exported ${ST.data.cards.length} cards · ${Math.max(1,Math.round(json.length/1024))} KB`);
+  }catch(e){ toast('Export failed — copy from the text box instead');
+    $('#imp-paste').value=json; }
+}
+// Merge never deletes. Same id updates in place; unknown ids are appended with
+// a fresh id so two devices can't collide.
+function importBackup(obj,mode){
+  if(!obj||!obj.data||!Array.isArray(obj.data.cards)) return {err:'Not a Bible Orbit backup'};
+  const inc=obj.data;
+  if(mode==='replace'){
+    ST.data={v:2, cards:inc.cards, lanes:inc.lanes||[], orbits:inc.orbits||[],
+             plans:inc.plans, nextId:inc.nextId||1};
+    normalizeData(); save();
+    return {added:inc.cards.length, updated:0, replaced:true};
+  }
+  const byId=new Map(ST.data.cards.map(c=>[c.id,c]));
+  let added=0, updated=0;
+  const keyset=new Set(ST.data.cards.map(c=>ST.R.key(c.ref)+'|'+(c.note||'')));
+  inc.cards.forEach(c=>{
+    if(!c||!Array.isArray(c.ref)||!c.ref.length)return;
+    const ex=byId.get(c.id);
+    if(ex && ST.R.key(ex.ref)===ST.R.key(c.ref)){ Object.assign(ex,c); updated++; return; }
+    if(keyset.has(ST.R.key(c.ref)+'|'+(c.note||'')))return;   // exact dupe, skip
+    const nc={...c, id:ST.data.nextId++};
+    ST.data.cards.push(nc); added++;
+  });
+  (inc.lanes||[]).forEach(l=>{
+    if((ST.data.lanes||[]).some(x=>x.name===l.name))return;
+    const nl={...l, id:'ln_'+Date.now()+'_'+Math.floor(Math.random()*9999)};
+    if(nl.rule&&nl.rule.type==='manual')nl.rule.ids=[];
+    ST.data.lanes.push(nl);
+    const ob=curOrbit(); if(ob)ob.laneIds.push(nl.id);
+  });
+  normalizeData(); save();
+  return {added, updated};
+}
+function normalizeData(){
+  const d=ST.data;
+  d.cards=(d.cards||[]).filter(c=>c&&(c.kind==='note'||(Array.isArray(c.ref)&&c.ref.length)));
+  d.cards.forEach(c=>{
+    if(!Array.isArray(c.tags))c.tags=[];
+    if(!c.created)c.created=Date.now();
+    if(!Array.isArray(c.hl))c.hl=[];
+    // MIGRATION: sub-verse offsets used to live on ref itself, which made the
+    // card *be* the phrase and lost its surrounding verse. Promote them to the
+    // highlight layer and leave ref as the full extent.
+    if(!Array.isArray(c.ref))c.ref=[];
+    c.ref=c.ref.map(sg=>{
+      if(sg==null||sg.s==null)return sg;
+      if(!c.hl.some(h=>h.b===sg.b&&h.c===sg.c&&h.v1===sg.v1))c.hl.push({...sg});
+      const {s:_a,e:_b,x:_c,tr:_d,...rest}=sg; return rest;
+    });
+    // a highlight outside the card's extent is meaningless
+    const inside=new Set(ST.R?ST.R.expand(c.ref).map(r=>r.b+'.'+r.c+'.'+r.v):[]);
+    if(inside.size)c.hl=c.hl.filter(h=>inside.has(h.b+'.'+h.c+'.'+h.v1));
+  });
+  d.lanes=d.lanes||[]; d.orbits=d.orbits||[];
+  // ── v1 -> v2: plans were a separate, rigid concept. They are just manual
+  //    lanes. Fold them in and drop the parallel system.
+  if(Array.isArray(d.plans)&&d.plans.length){
+    d.plans.forEach(p=>{
+      if(d.lanes.some(l=>l.name===p.name))return;
+      d.lanes.push({id:'ln_p'+p.id, name:p.name, rule:{type:'manual', ids:p.ids||[]}});
+    });
+    delete d.plans; delete d.planTarget;
+  }
+  // first run: seed a starting orbit so the stage is never blank
+  if(!d.lanes.length){
+    d.lanes=[{id:'ln_all',name:'All',rule:{type:'all'}},
+             {id:'ln_notes',name:'Notes',rule:{type:'notes'}},
+             {id:'ln_recent',name:'Recent',rule:{type:'recent'}}];
+  }
+  if(!d.orbits.length){
+    d.orbits=[{id:'ob_main', name:'Main', laneIds:d.lanes.map(l=>l.id)}];
+  }
+  d.orbits.forEach(o=>{ o.laneIds=(o.laneIds||[]).filter(id=>d.lanes.some(l=>l.id===id)); });
+  d.lanes.forEach(l=>{ if(l.rule&&l.rule.type==='manual')
+    l.rule.ids=(l.rule.ids||[]).filter(id=>d.cards.some(c=>c.id===id)); });
+  d.cards.forEach(c=>{ if(!c.kind)c.kind=(c.ref&&c.ref.length)?'passage':'note'; });
+  d.v=2;
+  d.nextId=Math.max(d.nextId||1, ...d.cards.map(c=>c.id+1), 1);
+}
+
+/* ── plans ──────────────────────────────────────────────────────────── */
+// add a card to any hand-picked lane — the sheet lists every one you have
+function pickList(cardId){
+  const ls=manualLanes();
+  if(!ls.length){ const l=newLane('List 1','manual'); l.rule.ids=[cardId]; save();
+    toast('Made a list and added it'); rebuildOrbit(); return; }
+  const body=$('#pick-body'); body.innerHTML='';
+  ls.forEach(l=>{
+    const has=(l.rule.ids||[]).includes(cardId);
+    const b=el('button','pick', (has?'✓ ':'')+l.name+`  (${(l.rule.ids||[]).length})`);
+    b.style.width='100%'; b.dataset.lane=l.id; b.dataset.card=cardId;
+    if(has)b.style.color='var(--gild)';
+    body.appendChild(b);
+  });
+  const nb=el('button','pick','＋ New list'); nb.id='pick-new'; nb.dataset.card=cardId;
+  nb.style.cssText='width:100%;color:var(--accent)'; body.appendChild(nb);
+  $('#sh-pick').classList.add('on');
+}
+function addToLane(laneId,cardId){
+  const l=laneById(laneId); if(!l||l.rule.type!=='manual')return;
+  l.rule.ids=l.rule.ids||[];
+  const i=l.rule.ids.indexOf(cardId);
+  if(i>=0){ l.rule.ids.splice(i,1); toast('Removed from '+l.name); }
+  else { l.rule.ids.push(cardId); toast(`${l.name} — position ${l.rule.ids.length}`); }
+  save(); rebuildOrbit();
+}
+function newLane(name,type,extra){
+  ST.data.lanes=ST.data.lanes||[];
+  const l={id:'ln_'+Date.now()+'_'+Math.floor(Math.random()*999), name,
+           rule:Object.assign({type}, type==='manual'?{ids:[]}:{}, extra||{})};
+  ST.data.lanes.push(l);
+  const ob=curOrbit(); if(ob)ob.laneIds.push(l.id);
+  return l;
+}
+/* ── card editing ───────────────────────────────────────────────────── */
+function openEdit(id){
+  const c=ST.data.cards.find(x=>x.id===id); if(!c)return;
+  ST.editing=id;
+  $('#card-ref').textContent=ST.R.format(c.ref);
+  const q=$('#card-quote'); q.innerHTML='';
+  ST.R.text(c.ref, bid=>cached(bid), ST.tr).forEach(r=>{
+    const d=el('div',null, r.pending?'…':(r.t||'— not in this translation'));
+    if(!r.t&&!r.pending)d.style.cssText='color:var(--dim);font-style:italic';
+    q.appendChild(d);
+  });
+  $('#card-note').value=c.note||''; $('#card-tags').value=(c.tags||[]).join(', ');
+  $('#card-save').textContent='Save changes';
+  $('#sh-card').classList.add('on');
+}
+
+/* ── search ─────────────────────────────────────────────────────────────
+   One surface answers three questions: where is that reference, which of my
+   cards mention this, and where does this phrase occur in scripture.        */
+let _allLoaded=false;
+async function loadAllBooks(onProg){
+  const ids=ST.idx.books.map(b=>b.id).filter(id=>!cached(id));
+  let done=0;
+  for(const id of ids){
+    await getBook(ST.tr,id).catch(()=>null);
+    done++; if(onProg)onProg(done,ids.length);
+  }
+  _allLoaded=true;
+}
+function searchCards(q){
+  const t=q.toLowerCase();
+  return ST.data.cards.filter(c=>
+    ST.R.format(c.ref).toLowerCase().includes(t) ||
+    (c.note||'').toLowerCase().includes(t) ||
+    (c.tags||[]).some(x=>x.toLowerCase().includes(t))
+  ).slice(0,25);
+}
+function searchScripture(q,limit){
+  const t=q.toLowerCase(); const out=[];
+  for(const b of ST.idx.books){
+    const bk=cached(b.id); if(!bk)continue;
+    for(let c=0;c<bk.ch.length;c++){
+      const vs=bk.ch[c];
+      for(let v=0;v<vs.length;v++){
+        if(vs[v] && vs[v].toLowerCase().includes(t)){
+          out.push({b:b.id,c:c+1,v:v+1,t:vs[v]});
+          if(out.length>=limit)return out;
+        }
+      }
+    }
+  }
+  return out;
+}
+function runSearch(){
+  const q=$('#q').value.trim();
+  const res=$('#q-res'); res.innerHTML='';
+  if(!q){ $('#bk-body').style.display=''; return; }
+  $('#bk-body').style.display='none';
+
+  // 1. reference jump — the parser earns its keep here
+  const p=ST.R.parse(q);
+  if(p.ok&&p.ref.length){
+    res.appendChild(el('div','testa','Go to'));
+    const b=el('button','pick','📖 '+p.label);
+    b.dataset.go=JSON.stringify({b:p.ref[0].b,c:p.ref[0].c||1});
+    b.style.cssText='width:100%;color:var(--gild);border-color:var(--gild-dim)';
+    res.appendChild(b);
+  }
+  // 2. your cards
+  const cards=searchCards(q);
+  if(cards.length){
+    res.appendChild(el('div','testa',`Your cards · ${cards.length}`));
+    cards.forEach(c=>{
+      const b=el('button','pick'); b.style.width='100%'; b.style.whiteSpace='normal';
+      b.dataset.card=c.id;
+      b.appendChild(Object.assign(el('div',null,ST.R.format(c.ref)),{style:'color:var(--gild);font-size:11px'}));
+      if(c.note)b.appendChild(Object.assign(el('div',null,c.note.slice(0,80)),
+        {style:'font-size:10.5px;color:var(--muted);margin-top:3px'}));
+      res.appendChild(b);
+    });
+  }
+  // 3. scripture in whatever is loaded
+  const loaded=ST.idx.books.filter(b=>cached(b.id)).length;
+  const hits=q.length>=3?searchScripture(q,30):[];
+  res.appendChild(el('div','testa',
+    `Scripture · ${hits.length}${hits.length>=30?'+':''} in ${loaded} loaded book${loaded===1?'':'s'}`));
+  hits.forEach(h=>{
+    const b=el('button','pick'); b.style.width='100%'; b.style.whiteSpace='normal';
+    b.dataset.go=JSON.stringify({b:h.b,c:h.c,v:h.v});
+    b.appendChild(Object.assign(el('div',null,`${ST.R.book(h.b).abbr} ${h.c}:${h.v}`),
+      {style:'color:var(--gild);font-size:10px'}));
+    b.appendChild(Object.assign(el('div',null,h.t.slice(0,110)),
+      {style:'font-family:"EB Garamond",serif;font-size:14px;color:var(--ink);margin-top:2px'}));
+    res.appendChild(b);
+  });
+  if(!_allLoaded&&loaded<66&&q.length>=3){
+    const b=el('button','pick','⤓ Search all 66 books (loads ~4 MB once)');
+    b.id='load-all'; b.style.cssText='width:100%;margin-top:8px;color:var(--accent)';
+    res.appendChild(b);
+  }
+}
+
+/* ═══ wiring ═══════════════════════════════════════════════════════════ */
+let _qTimer=null;
+$('#q').addEventListener('input',()=>{clearTimeout(_qTimer);_qTimer=setTimeout(runSearch,180);});
+tapOn($('#q-res'),'[data-go]',b=>{
+  const g=JSON.parse(b.dataset.go);
+  ST.bk=g.b; ST.ch=g.c; ST.sel=g.v?{a:g.v,b:g.v,anchor:g.v}:null; ST.banked=[];
+  $('#sh-book').classList.remove('on'); setMode('read'); renderChapter();
+  if(g.v)setTimeout(()=>{
+    const row=document.querySelector(`#scroll .v[data-v="${g.v}"]`);
+    if(row)row.scrollIntoView({block:'center'});
+  },80);
+});
+tapOn($('#q-res'),'[data-card]',b=>{
+  $('#sh-book').classList.remove('on'); openEdit(+b.dataset.card);
+});
+tapOn($('#q-res'),'#load-all',async b=>{
+  b.textContent='Loading… 0/66';
+  await loadAllBooks((d,n)=>{b.textContent=`Loading… ${d}/${n}`;});
+  toast('Whole Bible loaded for this session'); runSearch();
+});
+
+tapOn($('#menu-btn'),'*',()=>{ $('#imp-msg').textContent='';
+  $('#sh-menu').classList.add('on'); });
+tapOn($('#sh-menu'),'#m-export',()=>exportBackup());
+tapOn($('#sh-menu'),'#m-cards',()=>{ $('#sh-menu').classList.remove('on'); openCardsSheet(); });
+
+$('#imp-file').addEventListener('change',async e=>{
+  const f=e.target.files[0]; if(!f)return;
+  try{ const r=importBackup(JSON.parse(await f.text()), $('#imp-mode').value);
+    reportImport(r); }catch(err){ $('#imp-msg').textContent='Could not read that file.'; }
+  e.target.value='';
+});
+tapOn($('#sh-menu'),'#imp-go',()=>{
+  const raw=$('#imp-paste').value.trim(); if(!raw)return;
+  try{ reportImport(importBackup(JSON.parse(raw), $('#imp-mode').value)); }
+  catch(err){ $('#imp-msg').textContent='That is not valid JSON.'; }
+});
+function reportImport(r){
+  if(r.err){ $('#imp-msg').textContent=r.err; return; }
+  $('#imp-msg').textContent = r.replaced
+    ? `Replaced everything — ${r.added} cards.`
+    : `Added ${r.added}, updated ${r.updated}.`;
+  renderChapter(); if(ST.mode==='orbit')rebuildOrbit();
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HIGHLIGHTS · ABBREVIATED VIEW
+   A highlight is just another reference array. Same segment shape as ref, so
+   R.text / R.format / the translation fallback all apply with no new code.
+
+     card.ref  the card's EXTENT   — what the card is about
+     card.hl   emphasis WITHIN it  — what you actually want to see
+
+   Full view renders ref. Abbreviated view renders hl only, so a 20-verse card
+   collapses to the three fragments you marked, run together side by side.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+const hlKey=s=>`${s.b}.${s.c}.${s.v1}.${s.s??''}.${s.e??''}`;
+
+function cardHl(c){ if(!Array.isArray(c.hl))c.hl=[]; return c.hl; }
+function hasHl(c,cc,v){ return cardHl(c).some(s=>s.b===ST.bkOf(c,cc)&&false); }
+
+// toggle a WHOLE-VERSE highlight
+function toggleHlVerse(c,b,ch,v){
+  const hl=cardHl(c);
+  const i=hl.findIndex(s=>s.b===b&&s.c===ch&&s.v1===v&&s.s==null);
+  if(i>=0) hl.splice(i,1);
+  else {
+    // drop any sub-verse highlight on the same verse first — one per verse
+    for(let j=hl.length-1;j>=0;j--) if(hl[j].b===b&&hl[j].c===ch&&hl[j].v1===v) hl.splice(j,1);
+    hl.push({b,c:ch,v1:v,v2:v});
+  }
+  hl.sort((x,y)=>ST.R.compare([x],[y]));
+  save();
+}
+function hlAt(c,b,ch,v){ return cardHl(c).find(s=>s.b===b&&s.c===ch&&s.v1===v)||null; }
+
+/* ── abbreviated rendering ──────────────────────────────────────────── */
+function buildAbbrev(c){
+  const wrap=el('div','c-scr abbr');
+  const hl=cardHl(c);
+  if(!hl.length){
+    const rows=ST.R.text(c.ref, id=>cached(id), ST.tr);
+    const t=rows.map(r=>r.t||'').join(' ').trim();
+    const d=el('div','abbr-none', t? t.slice(0,90)+(t.length>90?'…':'') : '…');
+    wrap.appendChild(d);
+    return wrap;
+  }
+  const rows=ST.R.text(hl, id=>cached(id), ST.tr);
+  rows.forEach((r,i)=>{
+    if(i){ wrap.appendChild(Object.assign(el('span','frag-sep','⁘'),{})); }
+    const f=el('span','frag');
+    f.appendChild(el('span','vn',`${ST.R.book(r.b).abbr} ${r.c}:${r.v}`));
+    f.appendChild(document.createTextNode((r.t||'—')));
+    wrap.appendChild(f);
+  });
+  return wrap;
+}
+
+/* ── highlight editor ───────────────────────────────────────────────── */
+let _hlCard=null;
+async function openHl(id){
+  const c=ST.data.cards.find(x=>x.id===id); if(!c)return;
+  _hlCard=c;
+  const need=[...new Set(c.ref.map(s=>s.b))].filter(b=>!cached(b));
+  if(need.length){ await Promise.all(need.map(b=>getBook(ST.tr,b).catch(()=>null))); }
+  $('#hl-ref').textContent=ST.R.format(c.ref);
+  renderHlList();
+  $('#sh-hl').classList.add('on');
+}
+function renderHlList(){
+  const c=_hlCard, body=$('#hl-body'); body.innerHTML='';
+  const verses=ST.R.expand(c.ref);
+  $('#hl-count').textContent=`${cardHl(c).length} of ${verses.length} highlighted`;
+  verses.forEach(({b,c:ch,v})=>{
+    const bk=cached(b); if(!bk)return;
+    const full=(bk.ch[ch-1]||[])[v-1]||'';
+    const h=hlAt(c,b,ch,v);
+    const row=el('div','hl-row'+(h?' on':''));
+    row.dataset.b=b; row.dataset.c=ch; row.dataset.v=v;
+    row.appendChild(el('div','hl-num',`${ST.R.book(b).abbr} ${ch}:${v}`));
+    const txt=el('div','hl-txt');
+    if(h&&h.s!=null){
+      // show the trimmed phrase in context: dim shoulders, bright middle
+      const src=(h.tr===ST.tr&&full)?full:(h.x||full);
+      if(h.tr===ST.tr&&full){
+        txt.appendChild(Object.assign(el('span','dim',src.slice(0,h.s)),{}));
+        txt.appendChild(el('span','lit',src.slice(h.s,h.e)));
+        txt.appendChild(el('span','dim',src.slice(h.e)));
+      } else txt.appendChild(el('span','lit',h.x||''));
+    } else txt.textContent=full||'— not in this translation';
+    row.appendChild(txt);
+    if(h){
+      const chp=el('div','hl-chips');
+      const t=el('button','chip', h.s!=null?'✂ re-trim':'✂ trim to phrase');
+      t.dataset.hltrim='1'; chp.appendChild(t);
+      if(h.s!=null){ const u=el('button','chip','↺ whole verse'); u.dataset.hlfull='1'; chp.appendChild(u); }
+      row.appendChild(chp);
+    }
+    body.appendChild(row);
+  });
+}
+tapOn($('#hl-body'),'.hl-row',(row,e)=>{
+  const b=row.dataset.b, ch=+row.dataset.c, v=+row.dataset.v;
+  if(e.target.closest('.chip')){
+    const c=_hlCard, h=hlAt(c,b,ch,v);
+    if(e.target.dataset.hlfull){ h.s=h.e=h.x=h.tr=undefined;
+      delete h.s;delete h.e;delete h.x;delete h.tr; save(); renderHlList(); return; }
+    // trim this highlight to a phrase, reusing the reader's word picker
+    const bk=cached(b), full=(bk.ch[ch-1]||[])[v-1]||'';
+    if(!full){toast('No text to trim in this translation');return;}
+    const words=[]; const re=/\S+/g; let m;
+    while((m=re.exec(full))) words.push({w:m[0],s:m.index,e:m.index+m[0].length});
+    ST.trim={words,first:null,last:null,verse:{b,c:ch,v},txt:full,intoHl:true};
+    buildTrim(); paintTrim(); $('#sh-trim').classList.add('on');
+    return;
+  }
+  toggleHlVerse(_hlCard,b,ch,v); renderHlList();
+});
+tapOn($('#hl-clear'),'*',()=>{ _hlCard.hl=[]; save(); renderHlList(); });
+tapOn($('#hl-all'),'*',()=>{
+  _hlCard.hl=ST.R.expand(_hlCard.ref).map(({b,c,v})=>({b,c,v1:v,v2:v}));
+  save(); renderHlList();
+});
+tapOn($('#hl-done'),'*',()=>{
+  $('#sh-hl').classList.remove('on'); save();
+  if(ST.mode==='orbit')rebuildOrbit(); else renderChapter();
+});
+
+/* ── abbreviated toggle ─────────────────────────────────────────────── */
+function setAbbrev(on){
+  O.abbr=!!on;
+  const b=$('#abbr-btn'); if(b){ b.classList.toggle('on',O.abbr);
+    b.textContent=O.abbr?'◫ Abbreviated':'▤ Full'; }
+  if(ST.mode==='orbit')renderStage();
+}
+tapOn($('#lane-tag'),'#abbr-btn',()=>setAbbrev(!O.abbr));
+
+
+
+/* ═══ LANE / ORBIT MANAGER ══════════════════════════════════════════════ */
+function ruleLabel(r){
+  if(!r)return '';
+  if(r.type==='tag')return 'tag: '+r.tag;
+  if(r.type==='book')return 'book: '+(ST.R.book(r.book)?.name||r.book);
+  if(r.type==='manual')return `hand-picked · ${(r.ids||[]).length}`;
+  return (RULES.find(x=>x.t===r.type)||{n:r.type}).n.toLowerCase();
+}
+function renderOrbs(){
+  const body=$('#orb-body'); body.innerHTML='';
+  (ST.data.orbits||[]).forEach(o=>{
+    const row=el('div','ln-row'+(o.id===O.orbit?' on':''));
+    if(o.id===O.orbit)row.style.borderColor='var(--gild-dim)';
+    const inp=document.createElement('input'); inp.type='text'; inp.value=o.name;
+    inp.dataset.orbrename=o.id; row.appendChild(inp);
+    const mk=(l,a)=>{const b=el('button','chip',l);b.dataset.orb=o.id;b.dataset.oact=a;return b;};
+    if(o.id!==O.orbit)row.appendChild(mk('open','open'));
+    if((ST.data.orbits||[]).length>1)row.appendChild(mk('🗑','del'));
+    body.appendChild(row);
+  });
+  $('#orb-cur').textContent=(curOrbit()||{}).name||'—';
+}
+function renderLanes(){
+  renderOrbs();
+  const ob=curOrbit(), body=$('#lanes-body'); body.innerHTML='';
+  if(!ob)return;
+  if(!ob.laneIds.length)body.appendChild(el('div','testa','No lanes in this orbit.'));
+  ob.laneIds.forEach((id,i)=>{
+    const l=laneById(id); if(!l)return;
+    const row=el('div','ln-row');
+    const wrap=el('div'); wrap.style.flex='1';
+    const inp=document.createElement('input'); inp.type='text'; inp.value=l.name;
+    inp.dataset.lnrename=l.id; wrap.appendChild(inp);
+    wrap.appendChild(el('div','ln-kind',ruleLabel(l.rule)));
+    row.appendChild(wrap);
+    const mk=(t,a)=>{const b=el('button','chip',t);b.dataset.ln=l.id;b.dataset.lact=a;return b;};
+    if(i>0)row.appendChild(mk('↑','up'));
+    if(i<ob.laneIds.length-1)row.appendChild(mk('↓','down'));
+    row.appendChild(mk('✕','out'));
+    body.appendChild(row);
+  });
+  // add-a-lane buttons, including one per existing tag and per carded book
+  const rb=$('#rule-body'); rb.innerHTML='';
+  RULES.forEach(r=>{
+    if(r.t==='tag'||r.t==='book')return;
+    const b=el('button','pick','＋ '+r.n); b.dataset.newrule=r.t; rb.appendChild(b);
+  });
+  const cards=cardsAll();
+  [...new Set(cards.flatMap(c=>c.tags))].sort().forEach(t=>{
+    const b=el('button','pick','＋ #'+t); b.dataset.newrule='tag'; b.dataset.arg=t; rb.appendChild(b);
+  });
+  [...new Set(cards.flatMap(cardBooks))]
+    .sort((a,b)=>ST.R.book(a)._i-ST.R.book(b)._i).forEach(bk=>{
+    const b=el('button','pick','＋ '+ST.R.book(bk).abbr); b.dataset.newrule='book'; b.dataset.arg=bk;
+    rb.appendChild(b);
+  });
+}
+tapOn($('#obar'),'#lanes-btn',()=>{ renderLanes(); $('#sh-lanes').classList.add('on'); });
+tapOn($('#orb-body'),'[data-oact]',b=>{
+  const id=b.dataset.orb, a=b.dataset.oact;
+  if(a==='open'){ O.orbit=id; O.ali=0; rebuildOrbit(); }
+  if(a==='del'){ ST.data.orbits=ST.data.orbits.filter(o=>o.id!==id);
+    if(O.orbit===id)O.orbit=ST.data.orbits[0].id; save(); rebuildOrbit(); }
+  renderLanes();
+});
+tapOn($('#orb-new'),'*',()=>{
+  const o={id:'ob_'+Date.now(), name:'Orbit '+((ST.data.orbits||[]).length+1), laneIds:[]};
+  ST.data.orbits.push(o); O.orbit=o.id; O.ali=0; save(); rebuildOrbit(); renderLanes();
+});
+tapOn($('#lanes-body'),'[data-lact]',b=>{
+  const ob=curOrbit(), id=b.dataset.ln, a=b.dataset.lact;
+  const i=ob.laneIds.indexOf(id);
+  if(a==='out'){ ob.laneIds.splice(i,1); }
+  if(a==='up'&&i>0){ [ob.laneIds[i-1],ob.laneIds[i]]=[ob.laneIds[i],ob.laneIds[i-1]]; }
+  if(a==='down'&&i<ob.laneIds.length-1){ [ob.laneIds[i+1],ob.laneIds[i]]=[ob.laneIds[i],ob.laneIds[i+1]]; }
+  save(); rebuildOrbit(); renderLanes();
+});
+tapOn($('#rule-body'),'[data-newrule]',b=>{
+  const t=b.dataset.newrule, arg=b.dataset.arg;
+  const name = t==='tag'?arg : t==='book'?ST.R.book(arg).name
+             : (RULES.find(x=>x.t===t)||{n:t}).n;
+  newLane(name, t, t==='tag'?{tag:arg}:t==='book'?{book:arg}:null);
+  save(); rebuildOrbit(); renderLanes();
+});
+$('#lanes-body').addEventListener('change',e=>{
+  const i=e.target.closest('[data-lnrename]'); if(!i)return;
+  const l=laneById(i.dataset.lnrename);
+  if(l&&i.value.trim()){ l.name=i.value.trim(); save(); rebuildOrbit(); }
+});
+$('#orb-body').addEventListener('change',e=>{
+  const i=e.target.closest('[data-orbrename]'); if(!i)return;
+  const o=(ST.data.orbits||[]).find(x=>x.id===i.dataset.orbrename);
+  if(o&&i.value.trim()){ o.name=i.value.trim(); save(); renderOrbitBar(); renderLanes(); }
+});
+
+/* ── list picking ── */
+tapOn($('#pick-body'),'[data-lane]',b=>{
+  addToLane(b.dataset.lane, +b.dataset.card);
+  $('#sh-pick').classList.remove('on');
+});
+tapOn($('#pick-body'),'#pick-new',b=>{
+  const l=newLane('List '+(manualLanes().length+1),'manual');
+  l.rule.ids=[+b.dataset.card]; save(); rebuildOrbit();
+  $('#sh-pick').classList.remove('on'); toast('Made '+l.name);
+});
+
+/* ── NOTES: a card with no scripture attached ── */
+function openNote(id){
+  ST.noteEditing=id||null;
+  const c=id?ST.data.cards.find(x=>x.id===id):null;
+  $('#note-ttl').textContent=c?'Edit note':'New note';
+  $('#note-title').value=c?(c.title||''):'';
+  $('#note-body').value=c?(c.note||''):'';
+  $('#note-tags').value=c?(c.tags||[]).join(', '):'';
+  $('#sh-note').classList.add('on');
+}
+tapOn($('#sh-menu'),'#m-note',()=>{ $('#sh-menu').classList.remove('on'); openNote(null); });
+tapOn($('#note-save'),'*',()=>{
+  const title=$('#note-title').value.trim(), body=$('#note-body').value.trim();
+  const tags=$('#note-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  if(!title&&!body){ toast('Nothing to save'); return; }
+  if(ST.noteEditing!=null){
+    const c=ST.data.cards.find(x=>x.id===ST.noteEditing);
+    if(c){ c.title=title; c.note=body; c.tags=tags; }
+  }else{
+    ST.data.cards.push({id:ST.data.nextId++, kind:'note', ref:[], hl:[],
+      title, note:body, tags, created:Date.now()});
+  }
+  ST.noteEditing=null; save(); $('#sh-note').classList.remove('on');
+  if(ST.mode==='orbit')rebuildOrbit();
+  toast('Note saved');
+});
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DRAG GHOST + DROP MAP  ·  FLOATING LANE
+   Ported from JokeOrbit v185 (_dragStart/_dragMove/_dragEnd, _spawnGhost,
+   _showDropMap, _dropIntoLane, pinGhostLane/_wirePopoutHandle).
+   Thresholds kept: 7px to confirm a drag, 15s safety cancel.
+
+   What a lane can RECEIVE depends on its rule:
+     manual → the card id is appended (order is yours)
+     tag    → the lane's tag is added to the card
+   Everything else (all / recent / book / notes …) is computed, so there is
+   nothing to drop into and those rows are not offered.
+   ═══════════════════════════════════════════════════════════════════════ */
+let _dragCard=null,_dragMoved=false,_dragStartPt=null,_dragFromFloat=false;
+window._dragActive=false;
+
+function laneDroppable(ln){
+  const r=ln&&ln.def&&ln.def.rule;
+  return !!(r&&(r.type==='manual'||r.type==='tag'));
+}
+function dropIntoLane(ln,cardId){
+  const c=ST.data.cards.find(x=>x.id===cardId); if(!c||!ln||!ln.def)return false;
+  const r=ln.def.rule;
+  if(r.type==='manual'){
+    r.ids=r.ids||[];
+    if(r.ids.includes(cardId)){ toast('Already in '+ln.def.name); return false; }
+    r.ids.push(cardId); save();
+    toast(`${ln.def.name} — position ${r.ids.length}`); return true;
+  }
+  if(r.type==='tag'){
+    if(c.tags.includes(r.tag)){ toast('Already tagged '+r.tag); return false; }
+    c.tags.push(r.tag); save();
+    toast('Tagged '+r.tag); return true;
+  }
+  return false;
+}
+
+/* ── the ghost that follows the finger ── */
+function spawnGhost(c){
+  const g=$('#drag-ghost'); if(!g)return;
+  const label=isNote(c)?(c.title||'Note'):ST.R.format(c.ref);
+  let preview='';
+  if(isNote(c))preview=(c.note||'').slice(0,70);
+  else{
+    const rows=ST.R.text(c.ref, id=>cached(id), ST.tr);
+    preview=rows.map(r=>r.t||'').join(' ').slice(0,70);
+  }
+  g.innerHTML='';
+  g.appendChild(el('div','dg-type',label));
+  g.appendChild(document.createTextNode(preview));
+  g.style.display='block';
+}
+function moveGhost(x,y){ const g=$('#drag-ghost'); if(g){g.style.left=x+'px';g.style.top=y+'px';} }
+function killGhost(){ const g=$('#drag-ghost'); if(g)g.style.display='none'; }
+
+/* ── the drop map ── */
+let _dropLanes={};
+function showDropMap(){
+  const dm=$('#drop-map'); if(!dm)return;
+  _dropLanes={};
+  let cands=AL.filter(laneDroppable);
+  let hdr='drop into lane';
+  if(!cands.length){
+    // this orbit has nothing droppable — offer every droppable lane you own,
+    // orbit-independent, exactly like v185 falls back to the main lanes
+    hdr='drop into lane · all orbits';
+    cands=(ST.data.lanes||[])
+      .filter(l=>l.rule&&(l.rule.type==='manual'||l.rule.type==='tag'))
+      .map(l=>({id:l.id, lbl:l.name, def:l}));
+  }
+  dm.innerHTML='';
+  dm.appendChild(el('div','dropmap-hdr',hdr));
+  if(!cands.length){
+    dm.appendChild(el('div','dropmap-empty','no lists or tag lanes yet'));
+  }
+  cands.forEach(ln=>{
+    _dropLanes[ln.id]=ln;
+    const row=el('div','dropmap-row');
+    row.dataset.laneId=ln.id;
+    const r=ln.def.rule;
+    row.appendChild(el('span','dm-dot'));
+    row.appendChild(el('span','dm-lbl',ln.lbl));
+    row.appendChild(el('span','dm-kind', r.type==='manual'?'list':'tag'));
+    dm.appendChild(row);
+  });
+  dm.classList.add('show');
+}
+function hideDropMap(){ const dm=$('#drop-map'); if(dm)dm.classList.remove('show'); }
+
+const _hit=(x,y)=>document.elementFromPoint?document.elementFromPoint(x,y):null;
+function updateDropHover(x,y){
+  $$('.dropmap-row.hot').forEach(r=>r.classList.remove('hot'));
+  $$('.lane.drop-hover').forEach(l=>l.classList.remove('drop-hover'));
+  const t=_hit(x,y); if(!t)return;
+  const row=t.closest&&t.closest('.dropmap-row');
+  if(row){ row.classList.add('hot'); return; }
+  const laneEl=t.closest&&t.closest('.lane');
+  if(laneEl&&laneEl.parentElement&&laneEl.parentElement.id==='lane-stack'){
+    const i=[...laneEl.parentElement.children].indexOf(laneEl);
+    if(laneDroppable(AL[i]))laneEl.classList.add('drop-hover');
+  }
+}
+// resolve a release point to a lane; separated out so it can be tested
+function laneAtPoint(x,y){
+  const t=_hit(x,y); if(!t||!t.closest)return null;
+  const row=t.closest('.dropmap-row');
+  if(row&&_dropLanes[row.dataset.laneId])return _dropLanes[row.dataset.laneId];
+  const laneEl=t.closest('.lane');
+  if(laneEl&&laneEl.parentElement&&laneEl.parentElement.id==='lane-stack'){
+    const i=[...laneEl.parentElement.children].indexOf(laneEl);
+    if(laneDroppable(AL[i]))return AL[i];
+  }
+  return null;
+}
+
+const _dpt=e=>e.touches?.[0]||e.changedTouches?.[0]||e;
+function dragBegin(e,cardId,fromFloat){
+  const c=ST.data.cards.find(x=>x.id===cardId); if(!c)return;
+  e.stopPropagation();
+  if(e.cancelable)e.preventDefault();
+  const pt=_dpt(e);
+  _dragCard=cardId; _dragMoved=false; _dragFromFloat=!!fromFloat;
+  _dragStartPt={x:pt.clientX,y:pt.clientY};
+  window._dragActive=true;
+  document.addEventListener('touchmove',dragMove,{passive:false});
+  document.addEventListener('touchend',dragEnd,{passive:false});
+  document.addEventListener('touchcancel',dragCancel,{passive:false});
+  document.addEventListener('pointermove',dragMove,{passive:false});
+  document.addEventListener('pointerup',dragEnd,{passive:false});
+  clearTimeout(window._dragSafety);
+  window._dragSafety=setTimeout(()=>{ if(window._dragActive)dragCancel(); },15000);
+}
+function dragMove(e){
+  if(!window._dragActive)return;
+  const pt=_dpt(e);
+  const dx=pt.clientX-_dragStartPt.x, dy=pt.clientY-_dragStartPt.y;
+  if(!_dragMoved){
+    if(Math.hypot(dx,dy)<7)return;
+    _dragMoved=true;
+    spawnGhost(ST.data.cards.find(x=>x.id===_dragCard));
+    showDropMap();
+    if(navigator.vibrate)navigator.vibrate(5);
+  }
+  if(e.cancelable)e.preventDefault();
+  moveGhost(pt.clientX,pt.clientY);
+  updateDropHover(pt.clientX,pt.clientY);
+}
+function dragEnd(e){
+  teardownDrag();
+  const pt=_dpt(e), wasDrag=_dragMoved, cid=_dragCard;
+  window._dragActive=false; _dragMoved=false;
+  if(wasDrag&&cid!=null){
+    const ln=laneAtPoint(pt.clientX,pt.clientY);
+    if(ln)dropIntoLane(ln,cid);
+    rebuildOrbit(); renderFloatLane();
+  }
+  _dragCard=null;
+  killGhost(); hideDropMap();
+  $$('.lane.drop-hover').forEach(l=>l.classList.remove('drop-hover'));
+}
+function dragCancel(){
+  teardownDrag();
+  window._dragActive=false;_dragMoved=false;_dragCard=null;
+  killGhost(); hideDropMap();
+  $$('.lane.drop-hover').forEach(l=>l.classList.remove('drop-hover'));
+}
+function teardownDrag(){
+  ['touchmove','touchend','touchcancel','pointermove','pointerup'].forEach(t=>{
+    document.removeEventListener(t,dragMove);
+    document.removeEventListener(t,dragEnd);
+    document.removeEventListener(t,dragCancel);
+  });
+  document.removeEventListener('touchmove',dragMove);
+  document.removeEventListener('touchend',dragEnd);
+  document.removeEventListener('touchcancel',dragCancel);
+  document.removeEventListener('pointermove',dragMove);
+  document.removeEventListener('pointerup',dragEnd);
+  clearTimeout(window._dragSafety);
+}
+// grips are wired per render; delegation would fight the stage swipe handler
+function wireGrip(grip,cardId,fromFloat){
+  grip.addEventListener('touchstart',e=>dragBegin(e,cardId,fromFloat),{passive:false});
+  grip.addEventListener('pointerdown',e=>{
+    if(e.pointerType==='touch')return;   // touch path owns touch
+    dragBegin(e,cardId,fromFloat);
+  });
+}
+
+/* ═══ FLOATING LANE ═════════════════════════════════════════════════════
+   Lift a lane out of the stack into a movable panel. It survives orbit
+   switches via a snapshot of the lane definition, and while it is floating
+   you can drop it INTO whatever orbit you are looking at — that is the
+   "combinable" half: the same lane can belong to many orbits at once.      */
+function pinLane(laneId,pos){
+  ST.data.pinnedLane=laneId;
+  if(pos)ST.data.pinnedPos=pos;
+  save(); renderFloatLane(); renderStage();
+  if(!pos)toast('Lane floating — drag its header to move it');
+}
+function unpinLane(){
+  ST.data.pinnedLane=null; save();
+  $('#float-lane').classList.remove('show');
+  renderStage();
+}
+function pinnedDef(){
+  const id=ST.data.pinnedLane; if(!id)return null;
+  return laneById(id)||null;
+}
+function renderFloatLane(){
+  const box=$('#float-lane'); if(!box)return;
+  const def=pinnedDef();
+  if(!def){ box.classList.remove('show'); return; }
+  const ln={id:def.id, lbl:def.name, def};
+  ln.so=laneCards(ln);
+  const p=ST.data.pinnedPos;
+  if(p){ box.style.left=p.x+'px'; box.style.top=p.y+'px'; box.style.transform='none'; }
+  box.innerHTML='';
+  const hdr=el('div','fl-hdr');
+  hdr.appendChild(el('span','fl-grip','⠿'));
+  hdr.appendChild(el('span','fl-title',def.name));
+  hdr.appendChild(el('span','fl-count',String(ln.so.length)));
+  const inOrbit=(curOrbit()?.laneIds||[]).includes(def.id);
+  const add=el('button','fl-btn', inOrbit?'✓ here':'＋ orbit');
+  add.id='fl-add'; add.title='Also show this lane in the orbit you are viewing';
+  if(inOrbit)add.classList.add('on');
+  hdr.appendChild(add);
+  const close=el('button','fl-btn','✕'); close.id='fl-close'; hdr.appendChild(close);
+  box.appendChild(hdr);
+  const strip=el('div','fl-strip');
+  if(!ln.so.length)strip.appendChild(el('div','fl-empty','— empty —'));
+  ln.so.forEach(c=>{
+    const mini=el('div','fl-card');
+    mini.dataset.card=c.id;
+    const g=el('span','fl-cgrip','⠿'); mini.appendChild(g);
+    mini.appendChild(el('div','fl-cref', isNote(c)?(c.title||'Note'):ST.R.format(c.ref)));
+    wireGrip(g,c.id,true);
+    strip.appendChild(mini);
+  });
+  box.appendChild(strip);
+  box.classList.add('show');
+  wireFloatDrag(hdr);
+}
+function wireFloatDrag(hdr){
+  let down=false,moved=false,sx=0,sy=0,ox=0,oy=0;
+  const box=$('#float-lane');
+  const start=e=>{
+    if(e.target.closest('.fl-btn')||e.target.closest('.fl-cgrip'))return;
+    const pt=_dpt(e); down=true; moved=false;
+    sx=pt.clientX; sy=pt.clientY;
+    const r=box.getBoundingClientRect(); ox=r.left; oy=r.top;
+    if(e.cancelable)e.preventDefault();
+  };
+  const move=e=>{
+    if(!down)return;
+    const pt=_dpt(e), dx=pt.clientX-sx, dy=pt.clientY-sy;
+    if(!moved&&Math.hypot(dx,dy)<7)return;
+    moved=true; box.classList.add('dragging');
+    const w=box.offsetWidth||300;
+    const x=Math.max(4,Math.min(ox+dx, window.innerWidth-Math.max(60,w*0.5)));
+    const y=Math.max(4,Math.min(oy+dy, window.innerHeight-44));
+    box.style.left=x+'px'; box.style.top=y+'px'; box.style.transform='none';
+    if(e.cancelable)e.preventDefault();
+  };
+  const end=()=>{
+    if(!down)return; down=false;
+    box.classList.remove('dragging');
+    if(moved){
+      const r=box.getBoundingClientRect();
+      ST.data.pinnedPos={x:Math.round(r.left),y:Math.round(r.top)}; save();
+    }
+  };
+  hdr.addEventListener('touchstart',start,{passive:false});
+  hdr.addEventListener('touchmove',move,{passive:false});
+  hdr.addEventListener('touchend',end);
+  hdr.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')start(e);});
+  hdr.addEventListener('pointermove',e=>{if(e.pointerType!=='touch')move(e);});
+  hdr.addEventListener('pointerup',end);
+}
+tapOn($('#float-lane'),'#fl-close',()=>unpinLane());
+tapOn($('#float-lane'),'#fl-add',()=>{
+  const def=pinnedDef(), ob=curOrbit(); if(!def||!ob)return;
+  const i=ob.laneIds.indexOf(def.id);
+  if(i>=0){ ob.laneIds.splice(i,1); toast('Removed from '+ob.name); }
+  else { ob.laneIds.push(def.id); toast('Added to '+ob.name); }
+  save(); rebuildOrbit(); renderFloatLane();
+});
+// tap the ⇱ handle on a lane to float it / return it
+tapOn($('#stage'),'.lane-pop',b=>{
+  const id=b.dataset.lane;
+  if(ST.data.pinnedLane===id)unpinLane(); else pinLane(id);
+});
+
+/* ═══ boot ════════════════════════════════════════════════════════════ */
+(async function(){
+  load();
+  try{
+    if(ST.data.tr&&TRANS.some(t=>t.tag===ST.data.tr))ST.tr=ST.data.tr;
+  $('#tr-btn').textContent=transInfo(ST.tr).short;
+  ST.idx=await getIndex(ST.tr);
+    ST.idx.books.forEach((b,i)=>b._i=i);
+    ST.R=BibleRef(ST.idx);
+  }catch(e){
+    $('#scroll').innerHTML='<div id="load">Couldn\'t load bible/kjv/index.json.<br><br>'
+      +'Serve this over http, not file://, and check the bible/ folder sits next to this page.</div>';
+    return;
+  }
+  await renderChapter();
+  renderFloatLane();
+  // exposed for console poking / harnesses
+  window.ST=ST; window.renderChapter=renderChapter; window.paintSel=paintSel;
+  window.O=O; window.AL_=()=>AL; window.openCardsSheet=openCardsSheet; window.exportBackup=exportBackup;
+  window.importBackup=importBackup; window.runSearch=runSearch; window.openEdit=openEdit;
+  window.addToLane=addToLane; window.newLane=newLane; window.buildBackup=buildBackup;
+  window.pickList=pickList; window.laneById=laneById; window.manualLanes=manualLanes;
+  window.curOrbit=curOrbit; window.setTranslation=setTranslation;
+  window.TRANS=TRANS; window.openTrans=openTrans; window.getBook=getBook; window.dropIntoLane=dropIntoLane; window.laneDroppable=laneDroppable;
+  window.showDropMap=showDropMap; window.hideDropMap=hideDropMap; window.pinLane=pinLane;
+  window.unpinLane=unpinLane; window.renderFloatLane=renderFloatLane; window.pinnedDef=pinnedDef;
+  window.dragBegin=dragBegin; window.laneAtPoint=laneAtPoint; window.dropLanes=()=>_dropLanes; window.openNote=openNote; window.renderLanes=renderLanes;
+  window.normalizeData=normalizeData; window.save=save; window.openHl=openHl;
+  window.setAbbrev=setAbbrev; window.toggleHlVerse=toggleHlVerse; window.cardHl=cardHl;
+  window.buildAbbrev=buildAbbrev; window.renderHlList=renderHlList;
+  window.hlCard=()=>_hlCard; window.searchScripture=searchScripture; window.setMode=setMode; window.rebuildOrbit=rebuildOrbit;
+  window.offsets=offsets; window.navLane=navLane; window.navH=navH;
+})();
+</script>
+</body>
+</html>
