@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-09-02T02:44:42.161Z",
+  "exported": "2026-09-02T12:25:19.616Z",
   "jokes": [
     {
       "variants": [],
@@ -3185,7 +3185,7 @@
         "sfx"
       ],
       "mt": "audio",
-      "md": null,
+      "md": "https://res.cloudinary.com/danshatdk/video/upload/v1788351823/b3fr6jtlxht0bfymzat1.mp3",
       "mu": null,
       "hot": 5,
       "_builtinSfx": true,
@@ -7578,7 +7578,7 @@
       "tags": [
         "t1781356251323"
       ],
-      "md": null,
+      "md": "https://res.cloudinary.com/danshatdk/image/upload/v1788351909/xmlfvjmj39aji4gmmbtn.gif",
       "mt": "image",
       "mu": null,
       "mu_is_image": false,
@@ -7589,8 +7589,7 @@
       "image": null,
       "variants": [],
       "_wip": false,
-      "_shower": false,
-      "gestureCat": "smug"
+      "_shower": false
     }
   ],
   "ratings": {
@@ -7844,7 +7843,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 317
+      "si": 218
     },
     {
       "id": "l2",
@@ -7853,7 +7852,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 13
+      "si": 34
     },
     {
       "id": "l3",
@@ -7862,7 +7861,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 50
+      "si": 39
     },
     {
       "id": "l4",
@@ -7872,7 +7871,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 2
+      "si": 0
     },
     {
       "id": "l5",
@@ -7881,7 +7880,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 21
+      "si": 0
     },
     {
       "id": "l6",
@@ -7890,7 +7889,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 16
+      "si": 18
     },
     {
       "id": "l7",
@@ -7899,7 +7898,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 6
+      "si": 2
     },
     {
       "id": "l8",
@@ -7908,7 +7907,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 5
+      "si": 6
     },
     {
       "id": "l9",
@@ -7917,7 +7916,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 6
+      "si": 1
     },
     {
       "id": "l10",
@@ -7926,7 +7925,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 25
+      "si": 4
     },
     {
       "id": "l11",
@@ -7935,7 +7934,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 6
+      "si": 4
     },
     {
       "id": "l_mimic",
@@ -7987,7 +7986,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 11,
+      "si": 12,
       "isGestureLane": true,
       "so": []
     },
@@ -7996,7 +7995,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 265,
+      "si": 196,
       "so": [
         {
           "variants": [
@@ -8382,7 +8381,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 2,
+      "si": 5,
       "isSfxLane": true,
       "so": [
         {
