@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-09-02T12:25:43.538Z",
+  "exported": "2026-09-02T13:28:13.986Z",
   "jokes": [
     {
       "variants": [],
@@ -1099,7 +1099,8 @@
       "context": "Jim Gaffigan. Defends personal food autonomy with mock philosophical conviction — exposes how 'we' is used to normalize food theft.",
       "mt": "image",
       "md": null,
-      "mu": null
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-65-there-is-no-we-in-fries-i-s.webp",
+      "mu_is_image": true
     },
     {
       "variants": [],
@@ -3186,10 +3187,11 @@
       ],
       "mt": "audio",
       "md": null,
-      "mu": null,
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9001-scream.mp3",
       "hot": 5,
       "_builtinSfx": true,
-      "sfxGroup": "scream"
+      "sfxGroup": "scream",
+      "mu_is_image": true
     },
     {
       "variants": [],
@@ -7592,6 +7594,24 @@
       "_wip": false,
       "_shower": false,
       "gestureCat": "smug"
+    },
+    {
+      "id": 9105,
+      "type": "gesture",
+      "body": "IMG 3906",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "mu": "https://raw.githubusercontent.com/instructcode/instructcode.github.io/main/media/joke-9105-untitled.jpg",
+      "mu_is_image": true,
+      "mt": null,
+      "md": null,
+      "image": null,
+      "context": "",
+      "notes": "",
+      "variants": [],
+      "_needsReview": true
     }
   ],
   "ratings": {
@@ -7845,7 +7865,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 296
+      "si": 102
     },
     {
       "id": "l2",
@@ -7854,7 +7874,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 28
+      "si": 44
     },
     {
       "id": "l3",
@@ -7863,7 +7883,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 22
+      "si": 15
     },
     {
       "id": "l4",
@@ -7882,7 +7902,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 33
+      "si": 24
     },
     {
       "id": "l6",
@@ -7891,7 +7911,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 14
+      "si": 25
     },
     {
       "id": "l7",
@@ -7900,7 +7920,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 19
+      "si": 29
     },
     {
       "id": "l8",
@@ -7909,7 +7929,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 9
+      "si": 12
     },
     {
       "id": "l9",
@@ -7918,7 +7938,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 6
+      "si": 4
     },
     {
       "id": "l10",
@@ -7927,7 +7947,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 26
+      "si": 7
     },
     {
       "id": "l11",
@@ -7988,7 +8008,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 11,
+      "si": 0,
       "isGestureLane": true,
       "so": []
     },
@@ -7997,7 +8017,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 123,
+      "si": 194,
       "so": [
         {
           "variants": [
@@ -8383,7 +8403,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 5,
+      "si": 1,
       "isSfxLane": true,
       "so": [
         {
