@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-09-01T20:34:23.897Z",
+  "exported": "2026-09-02T01:08:55.407Z",
   "jokes": [
     {
       "variants": [],
@@ -7525,7 +7525,53 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9102,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "md": null,
+      "mt": "image",
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false,
+      "gestureCat": "laugh"
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9103,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "md": null,
+      "mt": "image",
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false,
+      "gestureCat": "smug"
+    },
+    {
+      "id": 9104,
       "type": "joke",
       "body": "",
       "punch": "",
@@ -7798,7 +7844,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 77
+      "si": 145
     },
     {
       "id": "l2",
@@ -7807,7 +7853,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 16
+      "si": 21
     },
     {
       "id": "l3",
@@ -7816,7 +7862,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 43
+      "si": 24
     },
     {
       "id": "l4",
@@ -7826,7 +7872,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 0
+      "si": 2
     },
     {
       "id": "l5",
@@ -7835,7 +7881,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 30
+      "si": 1
     },
     {
       "id": "l6",
@@ -7844,7 +7890,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 35
+      "si": 2
     },
     {
       "id": "l7",
@@ -7853,7 +7899,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 17
+      "si": 10
     },
     {
       "id": "l8",
@@ -7862,7 +7908,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 6
+      "si": 5
     },
     {
       "id": "l9",
@@ -7871,7 +7917,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 0
+      "si": 7
     },
     {
       "id": "l10",
@@ -7880,7 +7926,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 1
+      "si": 24
     },
     {
       "id": "l11",
@@ -7889,7 +7935,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 5
+      "si": 1
     },
     {
       "id": "l_mimic",
@@ -7941,7 +7987,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 1,
+      "si": 8,
       "isGestureLane": true,
       "so": []
     },
@@ -7950,7 +7996,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 246,
+      "si": 62,
       "so": [
         {
           "variants": [
@@ -8336,7 +8382,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 2,
+      "si": 5,
       "isSfxLane": true,
       "so": [
         {
