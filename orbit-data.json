@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-09-02T01:08:55.407Z",
+  "exported": "2026-09-02T02:44:42.161Z",
   "jokes": [
     {
       "variants": [],
@@ -7590,7 +7590,7 @@
       "variants": [],
       "_wip": false,
       "_shower": false,
-      "gestureCat": "laugh"
+      "gestureCat": "smug"
     }
   ],
   "ratings": {
@@ -7844,7 +7844,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 145
+      "si": 317
     },
     {
       "id": "l2",
@@ -7853,7 +7853,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 21
+      "si": 13
     },
     {
       "id": "l3",
@@ -7862,7 +7862,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 24
+      "si": 50
     },
     {
       "id": "l4",
@@ -7881,7 +7881,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 1
+      "si": 21
     },
     {
       "id": "l6",
@@ -7890,7 +7890,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 2
+      "si": 16
     },
     {
       "id": "l7",
@@ -7899,7 +7899,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 10
+      "si": 6
     },
     {
       "id": "l8",
@@ -7917,7 +7917,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 7
+      "si": 6
     },
     {
       "id": "l10",
@@ -7926,7 +7926,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 24
+      "si": 25
     },
     {
       "id": "l11",
@@ -7935,7 +7935,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 1
+      "si": 6
     },
     {
       "id": "l_mimic",
@@ -7987,7 +7987,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 8,
+      "si": 11,
       "isGestureLane": true,
       "so": []
     },
@@ -7996,7 +7996,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 62,
+      "si": 265,
       "so": [
         {
           "variants": [
@@ -8382,7 +8382,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 5,
+      "si": 2,
       "isSfxLane": true,
       "so": [
         {
