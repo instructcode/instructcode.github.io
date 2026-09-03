@@ -1,0 +1,23 @@
+{
+  "scenes": [
+    { "file": "IMG_4004.jpeg", "title": "Celestial City",
+      "note": "pale sky, cream and gold — pairs with Empyrean",
+      "focus": "center 32%", "strength": ".9" },
+    { "file": "IMG_4005.jpeg", "title": "Cathedral in Cloud",
+      "note": "green and gold, sphinxes — pairs with Emerald",
+      "focus": "center 34%", "strength": ".85" },
+    { "file": "IMG_4003.jpeg", "title": "Sunburst Temple",
+      "note": "rayed disc, obelisks — pairs with Emerald",
+      "focus": "center 38%", "strength": ".82" },
+    { "file": "IMG_3999.jpeg", "title": "Emerald Skyline",
+      "note": "stepped towers under constellations — pairs with Emerald",
+      "focus": "center 36%", "strength": ".85" },
+    { "file": "IMG_4001.jpeg", "title": "Scene 4001",
+      "focus": "center 34%", "strength": ".85" },
+    { "file": "IMG_4002.jpeg", "title": "Scene 4002",
+      "focus": "center 34%", "strength": ".85" },
+    { "file": "IMG_3921.jpeg", "title": "Deco Frame",
+      "note": "dense gold frame — try this one as a sleeve too",
+      "focus": "center 40%", "strength": ".8" }
+  ]
+}
