@@ -1,13 +1,13 @@
 {
   "_readme": "Drop illustrations in this folder and list them here. Only 'file' is required.",
   "scenes": [
-    { "file": "celestial-city.jpg",     "title": "Celestial City",
+    { "file": "IMG_3921.jpeg",     "title": "Celestial City",
       "note": "pale sky, gold towers — pairs with Empyrean",
       "focus": "center top", "strength": ".9" },
-    { "file": "emerald-cathedral.jpg",  "title": "Emerald Cathedral",
+    { "file": "IMG_3999.jpeg",  "title": "Emerald Cathedral",
       "note": "green and gold, sphinxes — pairs with Emerald",
       "focus": "center top", "strength": ".85" },
-    { "file": "sunburst-temple.jpg",    "title": "Sunburst Temple",
+    { "file": "IMG_4001.jpeg",    "title": "Sunburst Temple",
       "note": "rayed disc over stepped towers",
       "focus": "center 20%", "strength": ".8" }
   ]
