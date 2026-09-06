@@ -1,0 +1,603 @@
+{
+ "app": "bible-orbit",
+ "v": 2,
+ "pushedAt": "2026-09-06T19:53:09.247Z",
+ "data": {
+  "v": 2,
+  "cards": [
+   {
+    "id": 1,
+    "ref": [
+     {
+      "b": "exo",
+      "c": 16,
+      "v1": 1,
+      "v2": 1
+     },
+     {
+      "b": "exo",
+      "c": 16,
+      "v1": 12,
+      "v2": 18
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "lanes": [],
+    "created": 1787084404822,
+    "madeIn": "kjv",
+    "hl": [],
+    "kind": "passage",
+    "mtime": 1787084404822
+   },
+   {
+    "id": 2,
+    "ref": [
+     {
+      "b": "luk",
+      "c": 9,
+      "v1": 1,
+      "v2": 5
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286415240,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286415240
+   },
+   {
+    "id": 3,
+    "ref": [
+     {
+      "b": "luk",
+      "c": 9,
+      "v1": 3,
+      "v2": 3
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286427804,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286427804
+   },
+   {
+    "id": 4,
+    "ref": [
+     {
+      "b": "mat",
+      "c": 10,
+      "v1": 1,
+      "v2": 18
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286489047,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286489047
+   },
+   {
+    "id": 5,
+    "ref": [
+     {
+      "b": "mat",
+      "c": 10,
+      "v1": 9,
+      "v2": 9
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286498400,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286498400
+   },
+   {
+    "id": 6,
+    "ref": [
+     {
+      "b": "luk",
+      "c": 10,
+      "v1": 1,
+      "v2": 11
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286544629,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286544629
+   },
+   {
+    "id": 7,
+    "ref": [
+     {
+      "b": "luk",
+      "c": 10,
+      "v1": 4,
+      "v2": 4
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286551551,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286551551
+   },
+   {
+    "id": 8,
+    "ref": [
+     {
+      "b": "luk",
+      "c": 14,
+      "v1": 24,
+      "v2": 35
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286679308,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286679308
+   },
+   {
+    "id": 9,
+    "ref": [
+     {
+      "b": "mrk",
+      "c": 8,
+      "v1": 34,
+      "v2": 38
+     }
+    ],
+    "note": "",
+    "tags": [],
+    "hl": [],
+    "lanes": [],
+    "created": 1788286720275,
+    "madeIn": "asv",
+    "kind": "passage",
+    "mtime": 1788286720275
+   },
+   {
+    "id": 10,
+    "ref": [
+     {
+      "b": "jos",
+      "c": 6,
+      "v1": 2,
+      "v2": 24
+     }
+    ],
+    "note": "",
+    "tags": [
+     "uhoh"
+    ],
+    "hl": [],
+    "lanes": [],
+    "created": 1788353712758,
+    "mtime": 1788353712758,
+    "madeIn": "kjv",
+    "kind": "passage"
+   },
+   {
+    "id": 11,
+    "ref": [
+     {
+      "b": "mat",
+      "c": 17,
+      "v1": 20,
+      "v2": 20
+     }
+    ],
+    "note": "",
+    "tags": [
+     "faith"
+    ],
+    "hl": [],
+    "lanes": [],
+    "created": 1788652336865,
+    "mtime": 1788652336865,
+    "madeIn": "kjv",
+    "kind": "passage"
+   },
+   {
+    "id": 12,
+    "ref": [
+     {
+      "b": "mat",
+      "c": 14,
+      "v1": 22,
+      "v2": 34
+     }
+    ],
+    "note": "",
+    "tags": [
+     "faith"
+    ],
+    "hl": [],
+    "lanes": [],
+    "created": 1788652386051,
+    "mtime": 1788652386051,
+    "madeIn": "kjv",
+    "kind": "passage"
+   },
+   {
+    "id": 13,
+    "ref": [
+     {
+      "b": "mrk",
+      "c": 11,
+      "v1": 13,
+      "v2": 26
+     }
+    ],
+    "note": "",
+    "tags": [
+     "faith"
+    ],
+    "hl": [],
+    "lanes": [],
+    "created": 1788652493966,
+    "mtime": 1788652493966,
+    "madeIn": "kjv",
+    "kind": "passage"
+   },
+   {
+    "id": 14,
+    "ref": [
+     {
+      "b": "mat",
+      "c": 7,
+      "v1": 7,
+      "v2": 16
+     }
+    ],
+    "note": "",
+    "tags": [
+     "providence"
+    ],
+    "hl": [],
+    "lanes": [],
+    "created": 1788652646988,
+    "mtime": 1788652646988,
+    "madeIn": "kjv",
+    "kind": "passage"
+   },
+   {
+    "id": 15,
+    "ref": [
+     {
+      "b": "jhn",
+      "c": 2,
+      "v1": 1,
+      "v2": 11
+     }
+    ],
+    "note": "",
+    "tags": [
+     "providence"
+    ],
+    "hl": [],
+    "lanes": [],
+    "created": 1788652917514,
+    "mtime": 1788652917514,
+    "madeIn": "kjv",
+    "kind": "passage"
+   },
+   {
+    "id": 16,
+    "kind": "note",
+    "ref": [],
+    "hl": [],
+    "title": "Discrepancies",
+    "note": "send the disciples out all have discrepancies on items allowed.  what does this say about each passage or the bible or the conference that assembled these passages",
+    "tags": [],
+    "created": 1788694133029,
+    "mtime": 1788694133029
+   },
+   {
+    "id": 17,
+    "kind": "note",
+    "ref": [],
+    "hl": [],
+    "title": "competing claims",
+    "note": "islam, judaism, christianity and other religions have competing claims to godhood.  these three religions compete on judeochristian god ownership.  christianity through jesus as god.  islam through muhammed as final prophet and jesus as only a prophet, and judaism as no messiah yet manifest.  they even have different interpretations for the holy spirit passage to resolve such things",
+    "tags": [],
+    "created": 1788694258777,
+    "mtime": 1788694258777
+   }
+  ],
+  "plans": [],
+  "nextId": 18,
+  "planTarget": null,
+  "lanes": [
+   {
+    "id": "ln_all",
+    "name": "All",
+    "rule": {
+     "type": "all"
+    }
+   },
+   {
+    "id": "ln_notes",
+    "name": "Notes",
+    "rule": {
+     "type": "notes"
+    }
+   },
+   {
+    "id": "ln_recent",
+    "name": "Recent",
+    "rule": {
+     "type": "recent"
+    }
+   },
+   {
+    "id": "ln_mtp1iwqw_3pkp",
+    "name": "faith",
+    "rule": {
+     "type": "tag",
+     "tag": "faith"
+    }
+   }
+  ],
+  "orbits": [
+   {
+    "id": "ob_main",
+    "name": "Main",
+    "laneIds": [
+     "ln_all",
+     "ln_notes",
+     "ln_recent"
+    ]
+   },
+   {
+    "id": "ob_mtp1iq9w_2tko",
+    "name": "Orbit 2",
+    "laneIds": [
+     "ln_mtp1iwqw_3pkp"
+    ]
+   }
+  ],
+  "tr": "web",
+  "theme": "dawn",
+  "light": 2,
+  "skin": "cloud",
+  "deco": true,
+  "art": true,
+  "scene": "IMG_4004.jpeg",
+  "sleeves": {
+   "card": {
+    "file": null,
+    "slice": 56,
+    "width": 26,
+    "outset": 0,
+    "repeat": "round",
+    "opacity": 1,
+    "fill": true,
+    "mode": "free",
+    "px": 50,
+    "py": 50,
+    "zoom": 100
+   },
+   "hdr": {
+    "file": "IMG_3921.jpeg",
+    "slice": 34,
+    "width": 16,
+    "outset": 0,
+    "repeat": "round",
+    "opacity": 1,
+    "fill": true,
+    "mode": "free",
+    "px": 50,
+    "py": 50,
+    "zoom": 100
+   },
+   "chip": {
+    "file": null,
+    "slice": 22,
+    "width": 10,
+    "outset": 0,
+    "repeat": "round",
+    "opacity": 1,
+    "fill": true,
+    "mode": "free",
+    "px": 50,
+    "py": 50,
+    "zoom": 100
+   },
+   "obar": {
+    "file": "IMG_4002.jpeg",
+    "slice": 30,
+    "width": 14,
+    "outset": 0,
+    "repeat": "round",
+    "opacity": 1,
+    "fill": true,
+    "mode": "free",
+    "px": 50,
+    "py": 50,
+    "zoom": 100
+   }
+  },
+  "gears": {
+   "lanes": [
+    {
+     "id": "gl_mtooazhr_1gfs",
+     "tr": "kjv",
+     "b": "mat",
+     "c": 16,
+     "v": 24,
+     "span": 1
+    },
+    {
+     "id": "gl_mtooazhr_2pop",
+     "tr": "kjv",
+     "b": "mrk",
+     "c": 8,
+     "v": 34,
+     "span": 1
+    },
+    {
+     "id": "gl_mtooazhr_39hm",
+     "tr": "web",
+     "b": "luk",
+     "c": 9,
+     "v": 23,
+     "span": 1
+    }
+   ],
+   "locks": [
+    {
+     "id": "lk_mtooazhr_4jnp",
+     "name": "Take up your cross",
+     "tags": [
+      "discipleship",
+      "synoptic"
+     ],
+     "marks": {
+      "gl_mtooazhr_1gfs": {
+       "b": "mat",
+       "c": 16,
+       "v": 24,
+       "span": 1
+      },
+      "gl_mtooazhr_2pop": {
+       "b": "mrk",
+       "c": 8,
+       "v": 34,
+       "span": 1
+      },
+      "gl_mtooazhr_39hm": {
+       "b": "luk",
+       "c": 9,
+       "v": 23,
+       "span": 1
+      }
+     },
+     "order": [
+      {
+       "b": "mat",
+       "c": 16,
+       "v": 24,
+       "span": 1
+      },
+      {
+       "b": "mrk",
+       "c": 8,
+       "v": 34,
+       "span": 1
+      },
+      {
+       "b": "luk",
+       "c": 9,
+       "v": 23,
+       "span": 1
+      }
+     ],
+     "created": 1788630309423
+    },
+    {
+     "id": "lk_mtp1czah_1hpx",
+     "name": "Take nothing for the journey",
+     "tags": [
+      "mission",
+      "synoptic",
+      "the twelve"
+     ],
+     "marks": {
+      "gl_mtooazhr_1gfs": {
+       "b": "mat",
+       "c": 10,
+       "v": 9,
+       "span": 2
+      },
+      "gl_mtooazhr_2pop": {
+       "b": "mrk",
+       "c": 6,
+       "v": 8,
+       "span": 2
+      },
+      "gl_mtooazhr_39hm": {
+       "b": "luk",
+       "c": 9,
+       "v": 3,
+       "span": 1
+      }
+     },
+     "order": [
+      {
+       "b": "mat",
+       "c": 10,
+       "v": 9,
+       "span": 2
+      },
+      {
+       "b": "mrk",
+       "c": 6,
+       "v": 8,
+       "span": 2
+      },
+      {
+       "b": "luk",
+       "c": 9,
+       "v": 3,
+       "span": 1
+      }
+     ],
+     "created": 1788652237481
+    }
+   ],
+   "seeded": true,
+   "starters": {
+    "cross": true,
+    "mission": true
+   }
+  },
+  "marks": [],
+  "markGroups": [
+   {
+    "id": "mg_promise",
+    "name": "Promise",
+    "color": "#e8b755",
+    "on": true
+   },
+   {
+    "id": "mg_command",
+    "name": "Command",
+    "color": "#e2604a",
+    "on": true
+   },
+   {
+    "id": "mg_prayer",
+    "name": "Prayer",
+    "color": "#6f8fe0",
+    "on": true
+   }
+  ]
+ }
+}
