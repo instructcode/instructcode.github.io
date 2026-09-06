@@ -1,0 +1,7 @@
+{
+  "_readme": "Frame images for UI sleeves. Draw ornament at the edges, plain middle.",
+  "sleeves": [
+    { "file": "frame.png", "title": "Frame" },
+    { "file": "other.png", "title": "Other" }
+  ]
+}
