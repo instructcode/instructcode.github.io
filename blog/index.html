@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>THE LOG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{background:#000}
+  body{
+    min-height:100vh;min-height:100dvh;background:#000;color:#a8d9b5;
+    font-family:'Share Tech Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    -webkit-overflow-scrolling:touch;overflow-x:hidden;
+    padding:calc(18px + env(safe-area-inset-top)) 18px calc(40px + env(safe-area-inset-bottom));
+  }
+  #rain{position:fixed;inset:0;z-index:0;opacity:.16;display:block}
+  .vig{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 30%,rgba(0,0,0,0) 20%,rgba(0,0,0,.7) 75%,rgba(0,0,0,.95) 100%)}
+  .wrap{position:relative;z-index:2;max-width:760px;margin:0 auto}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;gap:12px;
+    padding-bottom:14px;border-bottom:1px solid rgba(59,255,92,.22);margin-bottom:26px}
+  .brand{font-size:17px;letter-spacing:.24em;color:#8dffa2;text-decoration:none;
+    text-shadow:0 0 12px rgba(59,255,92,.5);white-space:nowrap}
+  .spacer{flex:1}
+  .chip{
+    font-size:10px;letter-spacing:.2em;padding:7px 11px;cursor:pointer;
+    border:1px solid rgba(59,255,92,.3);background:rgba(0,20,5,.6);color:#2fbe4c;
+    transition:.2s;white-space:nowrap;font-family:inherit
+  }
+  .chip:hover,.chip:active{border-color:#3bff5c;color:#c9ffd4;box-shadow:0 0 16px rgba(59,255,92,.28)}
+  .chip.on{border-color:#3bff5c;color:#3bff5c}
+  .chip.danger:hover{border-color:#ff4d6a;color:#ff9db0;box-shadow:0 0 16px rgba(255,77,106,.28)}
+
+  /* ---------- auth panel ---------- */
+  #auth{display:none;margin-bottom:26px;padding:18px;
+    border:1px solid rgba(59,255,92,.28);background:rgba(0,18,4,.75)}
+  #auth.show{display:block}
+  #auth h3{font-size:12px;letter-spacing:.24em;color:#8dffa2;font-weight:400;margin-bottom:10px}
+  #auth p{font-size:12px;line-height:1.7;color:#2a9b41;margin-bottom:12px}
+  #auth a{color:#3bff5c}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  input,textarea,select{
+    font-family:inherit;font-size:16px;color:#c9ffd4;background:rgba(0,0,0,.55);
+    border:1px solid rgba(59,255,92,.3);padding:11px 12px;width:100%;
+    border-radius:0;-webkit-appearance:none;outline:none
+  }
+  input:focus,textarea:focus{border-color:#3bff5c;box-shadow:0 0 0 1px rgba(59,255,92,.35)}
+  ::placeholder{color:#1c6b2c}
+
+  /* ---------- list ---------- */
+  .post-link{
+    display:block;text-decoration:none;color:inherit;padding:18px 0;
+    border-bottom:1px solid rgba(59,255,92,.14);transition:.2s
+  }
+  .post-link:hover{background:rgba(59,255,92,.04);padding-left:8px}
+  .meta{font-size:11px;letter-spacing:.2em;color:#1f8f34;margin-bottom:7px;
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .post-link h2{font-size:21px;font-weight:400;color:#c9ffd4;letter-spacing:.02em;
+    line-height:1.35;margin-bottom:7px}
+  .excerpt{font-size:14px;line-height:1.65;color:#5aa76c}
+  .badge{border:1px solid rgba(255,190,60,.45);color:#ffbe3c;padding:2px 7px;font-size:9px;letter-spacing:.16em}
+  .tagpill{border:1px solid rgba(59,255,92,.25);padding:2px 7px;font-size:9px;letter-spacing:.14em;color:#2a9b41}
+
+  .empty{padding:50px 0;text-align:center;color:#1f8f34;font-size:13px;line-height:1.9}
+
+  /* ---------- article ---------- */
+  article{padding-top:4px}
+  article h1{font-size:clamp(25px,6vw,38px);font-weight:400;color:#d8ffe2;
+    line-height:1.2;letter-spacing:.01em;margin-bottom:14px;
+    text-shadow:0 0 20px rgba(59,255,92,.28)}
+  .body{font-size:16.5px;line-height:1.85;color:#bfe4c9;margin-top:26px}
+  .body p{margin:0 0 1.25em}
+  .body h2{font-size:21px;color:#8dffa2;font-weight:400;margin:1.9em 0 .7em;letter-spacing:.04em}
+  .body h3{font-size:17px;color:#8dffa2;font-weight:400;margin:1.6em 0 .6em;letter-spacing:.04em}
+  .body a{color:#3bff5c;text-decoration:underline;text-underline-offset:3px}
+  .body strong{color:#e6fff0}
+  .body em{color:#9fd9ad}
+  .body ul,.body ol{margin:0 0 1.25em 1.3em}
+  .body li{margin-bottom:.5em}
+  .body blockquote{border-left:2px solid rgba(59,255,92,.4);padding:2px 0 2px 16px;
+    margin:0 0 1.25em;color:#7fc492}
+  .body code{background:rgba(59,255,92,.1);padding:2px 6px;font-size:14px;color:#a8ffbe}
+  .body pre{background:rgba(0,25,7,.8);border:1px solid rgba(59,255,92,.2);
+    padding:14px;overflow-x:auto;margin:0 0 1.25em}
+  .body pre code{background:none;padding:0;font-size:13.5px;line-height:1.6}
+  .body img{max-width:100%;height:auto;border:1px solid rgba(59,255,92,.2);margin-bottom:1.25em}
+  .body hr{border:0;border-top:1px solid rgba(59,255,92,.22);margin:2.2em 0}
+
+  /* ---------- editor ---------- */
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:10px;letter-spacing:.24em;color:#1f8f34;margin-bottom:6px}
+  #ed-body{min-height:46vh;line-height:1.7;resize:vertical}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;
+    padding-bottom:14px;border-bottom:1px solid rgba(59,255,92,.16)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:600px){.split{grid-template-columns:1fr}}
+  .check{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.14em;color:#2fbe4c;cursor:pointer}
+  .check input{width:auto;margin:0}
+
+  #status{font-size:12px;line-height:1.7;margin-top:14px;min-height:20px;letter-spacing:.06em}
+  .ok{color:#3bff5c}.err{color:#ff6b81}.warn{color:#ffbe3c}.dim{color:#1f8f34}
+
+  .hidden{display:none!important}
+  .backlink{display:inline-block;font-size:11px;letter-spacing:.2em;color:#2a9b41;
+    text-decoration:none;margin-bottom:22px}
+  .backlink:hover{color:#3bff5c}
+</style>
+</head>
+<body>
+
+<canvas id="rain"></canvas>
+<div class="vig"></div>
+
+<div class="wrap">
+
+  <header>
+    <a class="brand" href="#/">THE LOG</a>
+    <span class="spacer"></span>
+    <button class="chip hidden" id="btn-new">+ NEW</button>
+    <button class="chip" id="btn-auth">[ LOCKED ]</button>
+  </header>
+
+  <div id="auth">
+    <h3>ROOT AUTHENTICATION</h3>
+    <p>
+      Paste a GitHub fine-grained personal access token with
+      <strong>Contents: Read and write</strong> on this repository only.
+      It is stored in this browser's localStorage and never leaves your device
+      except in requests to api.github.com.
+      <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create one &rarr;</a>
+    </p>
+    <div class="field">
+      <input type="password" id="tok" placeholder="github_pat_..." autocomplete="off" autocapitalize="off" spellcheck="false">
+    </div>
+    <div class="row">
+      <button class="chip" id="btn-save-tok">AUTHENTICATE</button>
+      <button class="chip danger" id="btn-clear-tok">CLEAR TOKEN</button>
+    </div>
+    <div id="auth-status"></div>
+  </div>
+
+  <!-- LIST VIEW -->
+  <div id="view-list"></div>
+
+  <!-- POST VIEW -->
+  <div id="view-post" class="hidden"></div>
+
+  <!-- EDITOR VIEW -->
+  <div id="view-edit" class="hidden">
+    <a class="backlink" href="#/">&lt;&lt; BACK TO INDEX</a>
+
+    <div class="toolbar">
+      <button class="chip on" id="tab-write">WRITE</button>
+      <button class="chip" id="tab-preview">PREVIEW</button>
+      <span class="spacer"></span>
+      <button class="chip" id="btn-publish">PUBLISH</button>
+      <button class="chip danger hidden" id="btn-delete">DELETE</button>
+    </div>
+
+    <div id="pane-write">
+      <div class="field">
+        <label>TITLE</label>
+        <input id="ed-title" placeholder="Untitled transmission" autocapitalize="sentences">
+      </div>
+
+      <div class="split">
+        <div class="field">
+          <label>SLUG (URL)</label>
+          <input id="ed-slug" placeholder="auto-generated" autocapitalize="off" spellcheck="false">
+        </div>
+        <div class="field">
+          <label>DATE</label>
+          <input id="ed-date" type="date">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>TAGS (comma separated)</label>
+        <input id="ed-tags" placeholder="comedy, notes" autocapitalize="off">
+      </div>
+
+      <div class="field">
+        <label class="check">
+          <input type="checkbox" id="ed-draft">
+          <span>DRAFT — hidden from the public index</span>
+        </label>
+      </div>
+
+      <div class="field">
+        <label>BODY (markdown)</label>
+        <textarea id="ed-body" placeholder="# Heading&#10;&#10;Write here. **bold**, *italic*, [link](url), - lists, &gt; quotes."></textarea>
+      </div>
+    </div>
+
+    <div id="pane-preview" class="hidden">
+      <article><h1 id="pv-title"></h1><div class="body" id="pv-body"></div></article>
+    </div>
+
+    <div id="status"></div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   CONFIG — set these three to match your repo
+   ============================================================ */
+var CFG = {
+  owner:  'YOUR_GITHUB_USERNAME',
+  repo:   'YOUR_REPO_NAME',
+  branch: 'main',
+  dir:    'blog/posts'        // path inside the repo
+};
+
+var TOK_KEY   = 'log_gh_token';
+var DRAFT_KEY = 'log_editor_draft';
+
+var TOKEN = localStorage.getItem(TOK_KEY) || '';
+var MANIFEST = null;          // [{slug,title,date,tags,draft,excerpt}]
+var EDITING = null;           // slug currently being edited, or null for new
+
+/* ============================================================
+   UTF-8 SAFE BASE64
+   btoa() throws on any character above U+00FF. Smart quotes,
+   em dashes and emoji all land there, so encode through
+   TextEncoder and chunk the byte array — String.fromCharCode
+   blows the call stack past roughly 100k arguments.
+   ============================================================ */
+function b64enc(str){
+  var bytes = new TextEncoder().encode(str), bin = '', CH = 0x8000;
+  for(var i=0;i<bytes.length;i+=CH){
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i+CH));
+  }
+  return btoa(bin);
+}
+function b64dec(b64){
+  var bin = atob(String(b64).replace(/\s/g,''));
+  var bytes = new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+/* ============================================================
+   GITHUB API
+   ============================================================ */
+function gh(path, opts){
+  opts = opts || {};
+  var h = {
+    'Accept':'application/vnd.github+json',
+    'X-GitHub-Api-Version':'2022-11-28'
+  };
+  if(TOKEN) h.Authorization = 'Bearer ' + TOKEN;
+  if(opts.body) h['Content-Type'] = 'application/json';
+
+  return fetch('https://api.github.com' + path, {
+    method: opts.method || 'GET',
+    headers: h,
+    body: opts.body ? JSON.stringify(opts.body) : undefined,
+    cache: 'no-store'
+  }).then(function(res){
+    if(res.status === 404) return {__missing:true, __status:404};
+    return res.json().then(function(j){
+      if(!res.ok){
+        var msg = (j && j.message) || ('HTTP ' + res.status);
+        if(res.status === 401) msg = 'Token rejected (401). It may be expired or lack Contents write access.';
+        if(res.status === 403) msg = 'Forbidden (403). Check the token has Contents: Read and write on this repo.';
+        if(res.status === 409) msg = 'Conflict (409). The file changed on GitHub — reload and retry.';
+        throw new Error(msg);
+      }
+      return j;
+    });
+  });
+}
+
+function repoPath(file){
+  return '/repos/' + CFG.owner + '/' + CFG.repo + '/contents/' + CFG.dir + '/' + file;
+}
+
+// Read a file, returning {text, sha} or null when it does not exist.
+function readFile(file){
+  return gh(repoPath(file) + '?ref=' + encodeURIComponent(CFG.branch)).then(function(j){
+    if(j.__missing) return null;
+    return { text: b64dec(j.content), sha: j.sha };
+  });
+}
+
+// Write a file. Re-reads the sha immediately before the PUT so a
+// stale sha from earlier in the session cannot cause a 409.
+function writeFile(file, text, message){
+  return readFile(file).then(function(cur){
+    var body = {
+      message: message,
+      content: b64enc(text),
+      branch: CFG.branch
+    };
+    if(cur) body.sha = cur.sha;
+    return gh(repoPath(file), {method:'PUT', body:body});
+  });
+}
+
+function deleteFile(file, message){
+  return readFile(file).then(function(cur){
+    if(!cur) return null;
+    return gh(repoPath(file), {method:'DELETE', body:{
+      message: message, sha: cur.sha, branch: CFG.branch
+    }});
+  });
+}
+
+/* ============================================================
+   FRONT MATTER
+   ============================================================ */
+function buildPost(m, body){
+  return '---\n'
+    + 'title: '  + m.title + '\n'
+    + 'date: '   + m.date + '\n'
+    + 'tags: '   + (m.tags || []).join(', ') + '\n'
+    + 'draft: '  + (m.draft ? 'true' : 'false') + '\n'
+    + '---\n\n' + body;
+}
+
+function parsePost(raw){
+  var out = {title:'Untitled', date:'', tags:[], draft:false, body:raw};
+  var m = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(raw);
+  if(!m) return out;
+  out.body = raw.slice(m[0].length).replace(/^\s*\n/, '');
+  m[1].split(/\r?\n/).forEach(function(line){
+    var i = line.indexOf(':');
+    if(i < 0) return;
+    var k = line.slice(0,i).trim().toLowerCase();
+    var v = line.slice(i+1).trim();
+    if(k === 'title') out.title = v;
+    else if(k === 'date') out.date = v;
+    else if(k === 'draft') out.draft = (v === 'true');
+    else if(k === 'tags') out.tags = v ? v.split(',').map(function(s){return s.trim();}).filter(Boolean) : [];
+  });
+  return out;
+}
+
+/* ============================================================
+   MARKDOWN  (compact, no dependencies)
+   ============================================================ */
+function esc(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function inline(s){
+  return s
+    .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img src="$2" alt="$1">')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+}
+
+function md(src){
+  if(!src) return '';
+  src = esc(src.replace(/\r\n/g,'\n'));
+
+  // pull fenced code out before anything else touches it
+  var blocks = [];
+  src = src.replace(/```[a-z]*\n([\s\S]*?)```/g, function(_, code){
+    blocks.push(code.replace(/\n$/,''));
+    return '\u0000CODE' + (blocks.length-1) + '\u0000';
+  });
+
+  var lines = src.split('\n'), out = [], para = [], list = null;
+
+  function flushPara(){
+    if(para.length){ out.push('<p>' + inline(para.join(' ')) + '</p>'); para = []; }
+  }
+  function flushList(){
+    if(list){ out.push('<' + list.tag + '>' + list.items.join('') + '</' + list.tag + '>'); list = null; }
+  }
+  function flushAll(){ flushPara(); flushList(); }
+
+  for(var i=0;i<lines.length;i++){
+    var L = lines[i], t = L.trim();
+
+    if(!t){ flushAll(); continue; }
+
+    var code = /^\u0000CODE(\d+)\u0000$/.exec(t);
+    if(code){ flushAll(); out.push('<pre><code>' + blocks[+code[1]] + '</code></pre>'); continue; }
+
+    if(/^(-{3,}|\*{3,}|_{3,})$/.test(t)){ flushAll(); out.push('<hr>'); continue; }
+
+    var h = /^(#{1,4})\s+(.*)$/.exec(t);
+    if(h){ flushAll(); var lv = Math.min(h[1].length + 1, 4);
+      out.push('<h' + lv + '>' + inline(h[2]) + '</h' + lv + '>'); continue; }
+
+    if(/^&gt;\s?/.test(t)){ flushAll();
+      out.push('<blockquote>' + inline(t.replace(/^&gt;\s?/,'')) + '</blockquote>'); continue; }
+
+    var ul = /^[-*+]\s+(.*)$/.exec(t);
+    var ol = /^\d+[.)]\s+(.*)$/.exec(t);
+    if(ul || ol){
+      var tag = ul ? 'ul' : 'ol';
+      flushPara();
+      if(!list || list.tag !== tag){ flushList(); list = {tag:tag, items:[]}; }
+      list.items.push('<li>' + inline((ul||ol)[1]) + '</li>');
+      continue;
+    }
+
+    flushList();
+    para.push(t);
+  }
+  flushAll();
+  return out.join('\n');
+}
+
+function excerptOf(body, n){
+  var plain = body
+    .replace(/```[\s\S]*?```/g,'')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g,'')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g,'$1')
+    .replace(/[#>*`_-]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+  n = n || 165;
+  return plain.length > n ? plain.slice(0,n).replace(/\s\S*$/,'') + '…' : plain;
+}
+
+/* ============================================================
+   MANIFEST
+   Logged out: read the published file over HTTP (no rate limit).
+   Logged in:  read through the API so a fresh publish shows up
+               immediately instead of waiting on the Pages rebuild.
+   ============================================================ */
+function loadManifest(){
+  if(TOKEN){
+    return readFile('index.json')
+      .then(function(f){ return f ? JSON.parse(f.text) : []; })
+      .catch(function(){ return fetchManifestHttp(); });
+  }
+  return fetchManifestHttp();
+}
+function fetchManifestHttp(){
+  return fetch('posts/index.json?t=' + Date.now(), {cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .catch(function(){ return []; });
+}
+
+function loadPostBody(slug){
+  if(TOKEN){
+    return readFile(slug + '.md').then(function(f){
+      if(f) return f.text;
+      return fetchPostHttp(slug);
+    }).catch(function(){ return fetchPostHttp(slug); });
+  }
+  return fetchPostHttp(slug);
+}
+function fetchPostHttp(slug){
+  return fetch('posts/' + slug + '.md?t=' + Date.now(), {cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error('Post not found'); return r.text(); });
+}
+
+/* ============================================================
+   DOM HELPERS
+   ============================================================ */
+function $(id){ return document.getElementById(id); }
+function show(id){ $(id).classList.remove('hidden'); }
+function hide(id){ $(id).classList.add('hidden'); }
+function say(el, msg, cls){ $(el).innerHTML = '<span class="' + (cls||'dim') + '">' + msg + '</span>'; }
+
+function slugify(s){
+  return s.toLowerCase().trim()
+    .replace(/['’"]/g,'')
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-+|-+$/g,'')
+    .slice(0,70);
+}
+function today(){
+  var d = new Date(), p = function(n){ return n<10?'0'+n:''+n; };
+  return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate());
+}
+function prettyDate(iso){
+  if(!iso) return '';
+  var p = iso.split('-');
+  if(p.length !== 3) return iso;
+  var M = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  return M[+p[1]-1] + ' ' + (+p[2]) + ' ' + p[0];
+}
+
+/* ============================================================
+   AUTH UI
+   ============================================================ */
+function refreshAuthUI(){
+  var chip = $('btn-auth');
+  if(TOKEN){
+    chip.textContent = '[ ROOT ]';
+    chip.classList.add('on');
+    show('btn-new');
+  } else {
+    chip.textContent = '[ LOCKED ]';
+    chip.classList.remove('on');
+    hide('btn-new');
+  }
+}
+
+$('btn-auth').onclick = function(){ $('auth').classList.toggle('show'); };
+
+$('btn-save-tok').onclick = function(){
+  var v = $('tok').value.trim();
+  if(!v){ say('auth-status','Paste a token first.','err'); return; }
+  say('auth-status','Verifying…','dim');
+  var prev = TOKEN;
+  TOKEN = v;
+  gh('/repos/' + CFG.owner + '/' + CFG.repo).then(function(r){
+    if(!r.permissions || !r.permissions.push){
+      throw new Error('Token authenticated but has no write access to ' + CFG.owner + '/' + CFG.repo + '.');
+    }
+    localStorage.setItem(TOK_KEY, v);
+    $('tok').value = '';
+    refreshAuthUI();
+    say('auth-status','Authenticated. Write access confirmed on ' + r.full_name + '.','ok');
+    route();
+  }).catch(function(e){
+    TOKEN = prev;
+    say('auth-status', e.message, 'err');
+  });
+};
+
+$('btn-clear-tok').onclick = function(){
+  TOKEN = '';
+  localStorage.removeItem(TOK_KEY);
+  refreshAuthUI();
+  say('auth-status','Token cleared from this browser.','warn');
+  route();
+};
+
+$('btn-new').onclick = function(){ location.hash = '#/new'; };
+
+/* ============================================================
+   VIEWS
+   ============================================================ */
+function renderList(){
+  var el = $('view-list');
+  el.innerHTML = '<div class="empty">reading index…</div>';
+
+  loadManifest().then(function(list){
+    MANIFEST = Array.isArray(list) ? list : [];
+    var visible = MANIFEST.filter(function(p){ return TOKEN || !p.draft; });
+    visible.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+
+    if(!visible.length){
+      el.innerHTML = '<div class="empty">no transmissions yet.' +
+        (TOKEN ? '<br>tap + NEW to write the first one.' : '<br>check back soon.') + '</div>';
+      return;
+    }
+
+    el.innerHTML = visible.map(function(p){
+      var tags = (p.tags||[]).map(function(t){ return '<span class="tagpill">' + esc(t) + '</span>'; }).join('');
+      return '<a class="post-link" href="#/p/' + encodeURIComponent(p.slug) + '">' +
+        '<div class="meta">' +
+          '<span>' + prettyDate(p.date) + '</span>' +
+          (p.draft ? '<span class="badge">DRAFT</span>' : '') + tags +
+        '</div>' +
+        '<h2>' + esc(p.title || 'Untitled') + '</h2>' +
+        (p.excerpt ? '<div class="excerpt">' + esc(p.excerpt) + '</div>' : '') +
+      '</a>';
+    }).join('');
+  });
+}
+
+function renderPost(slug){
+  var el = $('view-post');
+  el.innerHTML = '<div class="empty">decrypting…</div>';
+
+  loadPostBody(slug).then(function(raw){
+    var p = parsePost(raw);
+    var tags = (p.tags||[]).map(function(t){ return '<span class="tagpill">' + esc(t) + '</span>'; }).join('');
+    el.innerHTML =
+      '<a class="backlink" href="#/">&lt;&lt; BACK TO INDEX</a>' +
+      '<article>' +
+        '<div class="meta">' +
+          '<span>' + prettyDate(p.date) + '</span>' +
+          (p.draft ? '<span class="badge">DRAFT</span>' : '') + tags +
+          (TOKEN ? '<a class="chip" style="text-decoration:none" href="#/edit/' + encodeURIComponent(slug) + '">EDIT</a>' : '') +
+        '</div>' +
+        '<h1>' + esc(p.title) + '</h1>' +
+        '<div class="body">' + md(p.body) + '</div>' +
+      '</article>';
+    window.scrollTo(0,0);
+  }).catch(function(e){
+    el.innerHTML = '<a class="backlink" href="#/">&lt;&lt; BACK TO INDEX</a>' +
+      '<div class="empty"><span class="err">' + esc(e.message) + '</span></div>';
+  });
+}
+
+/* ---------- editor ---------- */
+var slugTouched = false;
+$('ed-slug').addEventListener('input', function(){ slugTouched = true; });
+$('ed-title').addEventListener('input', function(){
+  if(!slugTouched && !EDITING) $('ed-slug').value = slugify(this.value);
+  saveDraft();
+});
+['ed-slug','ed-date','ed-tags','ed-body'].forEach(function(id){
+  $(id).addEventListener('input', saveDraft);
+});
+$('ed-draft').addEventListener('change', saveDraft);
+
+var draftTimer = null;
+function saveDraft(){
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(function(){
+    try{
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({
+        editing: EDITING,
+        title: $('ed-title').value,
+        slug:  $('ed-slug').value,
+        date:  $('ed-date').value,
+        tags:  $('ed-tags').value,
+        draft: $('ed-draft').checked,
+        body:  $('ed-body').value,
+        at: Date.now()
+      }));
+    }catch(e){ /* quota — ignore, the post still lives in the textarea */ }
+  }, 400);
+}
+function clearDraft(){ localStorage.removeItem(DRAFT_KEY); }
+
+function fillEditor(d){
+  $('ed-title').value = d.title || '';
+  $('ed-slug').value  = d.slug || '';
+  $('ed-date').value  = d.date || today();
+  $('ed-tags').value  = d.tags || '';
+  $('ed-draft').checked = !!d.draft;
+  $('ed-body').value  = d.body || '';
+}
+
+function openEditor(slug){
+  EDITING = slug || null;
+  slugTouched = !!slug;
+  showWritePane();
+  say('status','','dim');
+
+  if(slug) show('btn-delete'); else hide('btn-delete');
+
+  // an unsaved draft for this same target wins over the committed copy
+  var saved = null;
+  try{ saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); }catch(e){}
+
+  if(saved && saved.editing === EDITING && (saved.body || saved.title)){
+    fillEditor(saved);
+    say('status','Restored an unsaved draft from this browser.','warn');
+    return;
+  }
+
+  if(!slug){
+    fillEditor({date: today()});
+    return;
+  }
+
+  say('status','Loading post…','dim');
+  loadPostBody(slug).then(function(raw){
+    var p = parsePost(raw);
+    fillEditor({
+      title:p.title, slug:slug, date:p.date,
+      tags:(p.tags||[]).join(', '), draft:p.draft, body:p.body
+    });
+    say('status','','dim');
+  }).catch(function(e){
+    say('status', e.message, 'err');
+  });
+}
+
+function showWritePane(){
+  show('pane-write'); hide('pane-preview');
+  $('tab-write').classList.add('on'); $('tab-preview').classList.remove('on');
+}
+$('tab-write').onclick = showWritePane;
+$('tab-preview').onclick = function(){
+  $('pv-title').textContent = $('ed-title').value || 'Untitled';
+  $('pv-body').innerHTML = md($('ed-body').value);
+  hide('pane-write'); show('pane-preview');
+  $('tab-preview').classList.add('on'); $('tab-write').classList.remove('on');
+};
+
+/* ---------- publish ---------- */
+$('btn-publish').onclick = function(){
+  if(!TOKEN){ say('status','Not authenticated.','err'); return; }
+
+  var title = $('ed-title').value.trim();
+  var slug  = ($('ed-slug').value.trim() || slugify(title));
+  var date  = $('ed-date').value || today();
+  var body  = $('ed-body').value;
+  var isDraft = $('ed-draft').checked;
+  var tags  = $('ed-tags').value.split(',').map(function(s){return s.trim();}).filter(Boolean);
+
+  if(!title){ say('status','A title is required.','err'); return; }
+  if(!slug){  say('status','Could not derive a slug. Enter one manually.','err'); return; }
+  if(!body.trim()){ say('status','The body is empty.','err'); return; }
+
+  var btn = this;
+  btn.disabled = true;
+  say('status','Committing post…','dim');
+
+  var meta = {title:title, date:date, tags:tags, draft:isDraft};
+  var file = slug + '.md';
+  var renamed = EDITING && EDITING !== slug;
+
+  writeFile(file, buildPost(meta, body),
+      (EDITING ? 'blog: update ' : 'blog: add ') + slug)
+  .then(function(){
+    say('status','Post committed. Updating index…','dim');
+    return updateManifest(function(list){
+      var entry = {
+        slug: slug, title: title, date: date,
+        tags: tags, draft: isDraft, excerpt: excerptOf(body)
+      };
+      var out = list.filter(function(p){
+        return p.slug !== slug && !(renamed && p.slug === EDITING);
+      });
+      out.push(entry);
+      out.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+      return out;
+    });
+  })
+  .then(function(){
+    if(renamed) return deleteFile(EDITING + '.md', 'blog: remove old slug ' + EDITING);
+  })
+  .then(function(){
+    clearDraft();
+    EDITING = slug;
+    show('btn-delete');
+    say('status','Published. The live site updates once GitHub Pages rebuilds — usually under a minute. ' +
+      '<a href="#/p/' + encodeURIComponent(slug) + '">View post &rarr;</a>', 'ok');
+  })
+  .catch(function(e){
+    say('status', 'Publish failed: ' + esc(e.message), 'err');
+  })
+  .then(function(){ btn.disabled = false; });
+};
+
+/* ---------- delete ---------- */
+$('btn-delete').onclick = function(){
+  if(!EDITING) return;
+  if(!confirm('Delete "' + EDITING + '" permanently? This commits a removal to the repo.')) return;
+
+  var btn = this;
+  btn.disabled = true;
+  say('status','Deleting…','dim');
+
+  deleteFile(EDITING + '.md', 'blog: delete ' + EDITING)
+  .then(function(){
+    return updateManifest(function(list){
+      return list.filter(function(p){ return p.slug !== EDITING; });
+    });
+  })
+  .then(function(){
+    clearDraft();
+    say('status','Deleted.','ok');
+    setTimeout(function(){ location.hash = '#/'; }, 700);
+  })
+  .catch(function(e){ say('status','Delete failed: ' + esc(e.message), 'err'); })
+  .then(function(){ btn.disabled = false; });
+};
+
+/* Read-modify-write the manifest in one shot. Reading immediately
+   before the PUT keeps the sha fresh, so two edits in the same
+   session cannot collide. */
+function updateManifest(fn){
+  return readFile('index.json').then(function(cur){
+    var list = [];
+    if(cur){ try{ list = JSON.parse(cur.text) || []; }catch(e){ list = []; } }
+    var next = fn(Array.isArray(list) ? list : []);
+    MANIFEST = next;
+    return writeFile('index.json', JSON.stringify(next, null, 2), 'blog: update index');
+  });
+}
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+function route(){
+  var h = location.hash.replace(/^#/,'') || '/';
+  hide('view-list'); hide('view-post'); hide('view-edit');
+
+  if(h === '/new'){
+    if(!TOKEN){ location.hash = '#/'; return; }
+    show('view-edit'); openEditor(null); window.scrollTo(0,0); return;
+  }
+
+  var m = /^\/edit\/(.+)$/.exec(h);
+  if(m){
+    if(!TOKEN){ location.hash = '#/'; return; }
+    show('view-edit'); openEditor(decodeURIComponent(m[1])); window.scrollTo(0,0); return;
+  }
+
+  m = /^\/p\/(.+)$/.exec(h);
+  if(m){ show('view-post'); renderPost(decodeURIComponent(m[1])); return; }
+
+  show('view-list'); renderList();
+}
+window.addEventListener('hashchange', route);
+
+/* ============================================================
+   RAIN
+   ============================================================ */
+(function(){
+  var cv = $('rain'), ctx = cv.getContext('2d');
+  var G = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789:.=*+-<>'.split('');
+  var W,H,cols,size,drops,speeds;
+
+  function build(){
+    var dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W*dpr; cv.height = H*dpr;
+    cv.style.width = W+'px'; cv.style.height = H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    size = W < 560 ? 14 : 17;
+    cols = Math.ceil(W/size);
+    drops = []; speeds = [];
+    for(var i=0;i<cols;i++){ drops.push(Math.random()*-70); speeds.push(0.3+Math.random()*0.6); }
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,W,H);
+  }
+  function frame(){
+    ctx.fillStyle = 'rgba(0,0,0,0.08)';
+    ctx.fillRect(0,0,W,H);
+    ctx.font = size + "px 'Share Tech Mono', monospace";
+    ctx.textBaseline = 'top';
+    for(var i=0;i<cols;i++){
+      var y = drops[i]*size;
+      if(y > -size && y < H+size){
+        ctx.fillStyle = '#c9ffd4';
+        ctx.fillText(G[(Math.random()*G.length)|0], i*size, y);
+        ctx.fillStyle = 'rgba(59,255,92,0.5)';
+        ctx.fillText(G[(Math.random()*G.length)|0], i*size, y-size);
+      }
+      drops[i] += speeds[i];
+      if(y > H && Math.random() > 0.97) drops[i] = Math.random()*-40;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  build();
+  requestAnimationFrame(frame);
+
+  // iOS Safari fires resize on URL-bar collapse with only a height
+  // delta. Rebuilding there would reset every column mid-fall.
+  var lw = window.innerWidth, lh = window.innerHeight, t;
+  window.addEventListener('resize', function(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      var w = window.innerWidth, hh = window.innerHeight;
+      if(w !== lw || Math.abs(hh-lh) > 140){ lw = w; lh = hh; build(); }
+    }, 220);
+  });
+})();
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+$('ed-date').value = today();
+refreshAuthUI();
+route();
+
+})();
+</script>
+</body>
+</html>
