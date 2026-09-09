@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "first-transmission",
+    "title": "First transmission",
+    "date": "2026-09-09",
+    "tags": [
+      "meta"
+    ],
+    "draft": false,
+    "excerpt": "The log is online. This post exists so the index has something to render before you write anything real."
+  }
+]
