@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Meditation Orbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1117;
+  --bg2:#151822;
+  --panel:rgba(21,24,34,.82);
+  --panel-hi:rgba(30,34,47,.9);
+  --line:rgba(196,164,98,.22);
+  --line-strong:rgba(196,164,98,.4);
+  --accent:#c4a462;
+  --accent-soft:rgba(196,164,98,.14);
+  --accent-dim:#7d6a44;
+  --text:#e9e3d4;
+  --muted:#8d8f9b;
+  --danger:#b06258;
+  --retired:#5c6270;
+  --radius:3px;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);overscroll-behavior:none;}
+body{
+  font-family:'IBM Plex Sans',-apple-system,sans-serif;
+  font-size:14px;
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(196,164,98,.08), transparent 60%),
+    linear-gradient(180deg,var(--bg2),var(--bg) 40%);
+  overflow:hidden;
+}
+.serif{font-family:'Cormorant Garamond',serif;}
+#app{position:fixed;inset:0;display:flex;flex-direction:column;padding-top:var(--safe-t);padding-bottom:var(--safe-b);}
+
+/* ---------- topbar ---------- */
+#topbar{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px 10px;
+  border-bottom:1px solid var(--line);
+  flex-shrink:0;
+}
+#topbar h1{
+  font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;
+  font-size:22px;letter-spacing:.02em;margin:0;color:var(--text);flex:1;
+}
+#topbar h1 b{font-style:normal;color:var(--accent);font-weight:600;}
+.icon-btn{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+  background:var(--panel);color:var(--accent);display:flex;align-items:center;justify-content:center;
+  font-size:15px;cursor:pointer;flex-shrink:0;
+}
+.icon-btn:active{background:var(--accent-soft);}
+#modeRow{display:flex;gap:0;flex-shrink:0;padding:8px 16px 10px;border-bottom:1px solid var(--line);}
+.mode-btn{
+  flex:1;text-align:center;padding:6px 4px;font-size:11px;letter-spacing:.08em;
+  color:var(--muted);border:1px solid var(--line);background:transparent;cursor:pointer;
+  font-family:'IBM Plex Sans';
+}
+.mode-btn:first-child{border-radius:var(--radius) 0 0 var(--radius);}
+.mode-btn:last-child{border-radius:0 var(--radius) var(--radius) 0;}
+.mode-btn+.mode-btn{border-left:none;}
+.mode-btn.on{color:var(--bg);background:var(--accent);border-color:var(--accent);}
+
+/* ---------- stage / lanes ---------- */
+#stage{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:90px;-webkit-overflow-scrolling:touch;}
+.lane{padding:16px 0 4px;border-bottom:1px solid var(--line);}
+.lane.retired{opacity:.72;}
+.lane-head{display:flex;align-items:baseline;gap:10px;padding:0 16px 10px;}
+.lane-badge{
+  width:24px;height:24px;border-radius:50%;border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--accent);
+  font-family:'IBM Plex Sans';font-weight:600;flex-shrink:0;
+}
+.lane.retired .lane-badge{border-color:rgba(140,143,155,.35);color:var(--retired);}
+.lane-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text);flex:1;}
+.lane-count{font-size:10px;color:var(--muted);letter-spacing:.06em;}
+.lane-track-wrap{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0 10px;}
+.lane-track-wrap::-webkit-scrollbar{display:none;}
+.lane-track{display:flex;padding:0 16px;gap:12px;}
+.lane-empty{padding:0 16px;color:var(--muted);font-size:12px;font-style:italic;font-family:'Cormorant Garamond',serif;}
+
+/* card base */
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:12px 13px 10px;display:flex;flex-direction:column;cursor:pointer;flex-shrink:0;
+  backdrop-filter:blur(6px);
+}
+.card-text{
+  font-size:13px;line-height:1.5;color:var(--text);
+  display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;flex:1;
+}
+.card-media-strip{display:flex;gap:4px;margin-top:8px;}
+.card-media-strip img{width:26px;height:26px;object-fit:cover;border-radius:2px;border:1px solid var(--line);}
+.card-media-strip .vchip{width:26px;height:26px;border-radius:2px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--accent);background:var(--accent-soft);}
+.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:9.5px;color:var(--muted);letter-spacing:.04em;}
+
+/* normal mode */
+.stage-normal .lane-track{scroll-snap-type:x proximity;}
+.stage-normal .card{width:78vw;max-width:340px;min-height:100px;scroll-snap-align:center;}
+
+/* fan mode */
+.stage-fan .lane-track-wrap{padding-top:14px;}
+.stage-fan .lane-track{gap:0;padding-left:26px;}
+.stage-fan .card{width:64vw;max-width:290px;min-height:96px;margin-left:-42px;transform:rotate(var(--r,0deg));transition:transform .15s ease,z-index 0s;box-shadow:-6px 6px 14px rgba(0,0,0,.35);}
+.stage-fan .card:first-child{margin-left:0;}
+.stage-fan .card:active{transform:rotate(0deg) translateY(-4px);}
+
+/* quad mode */
+.stage-quad .lane-track{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,1fr);gap:8px;padding:0 16px;scroll-snap-type:x mandatory;}
+.stage-quad .card{width:44vw;max-width:190px;height:104px;scroll-snap-align:start;}
+.stage-quad .card-text{-webkit-line-clamp:3;font-size:12px;}
+
+/* fab */
+#fab{
+  position:fixed;right:18px;bottom:calc(22px + var(--safe-b));width:52px;height:52px;border-radius:50%;
+  background:var(--accent);color:var(--bg);border:none;font-size:26px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.5);cursor:pointer;z-index:40;
+}
+
+/* ---------- overlays ---------- */
+.overlay{position:fixed;inset:0;background:rgba(10,11,15,.72);backdrop-filter:blur(3px);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
+.overlay.hidden{display:none;}
+.sheet{
+  width:100%;max-width:520px;max-height:88vh;background:var(--panel-hi);border:1px solid var(--line-strong);
+  border-top-left-radius:10px;border-top-right-radius:10px;display:flex;flex-direction:column;
+  padding-bottom:calc(16px + var(--safe-b));overflow:hidden;
+}
+.sheet-head{display:flex;align-items:center;padding:14px 16px 10px;border-bottom:1px solid var(--line);}
+.sheet-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:19px;margin:0;flex:1;color:var(--text);}
+.sheet-body{padding:14px 16px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch;}
+
+#cardText{
+  width:100%;min-height:130px;background:var(--bg2);border:1px solid var(--line);color:var(--text);
+  border-radius:var(--radius);padding:10px 11px;font-family:'IBM Plex Sans';font-size:14px;line-height:1.55;resize:vertical;
+}
+#cardText:focus{outline:none;border-color:var(--line-strong);}
+.section-label{font-size:10.5px;letter-spacing:.08em;color:var(--muted);margin:16px 0 8px;}
+.media-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.media-item{position:relative;width:64px;height:64px;border-radius:3px;overflow:hidden;border:1px solid var(--line);background:var(--bg2);}
+.media-item img{width:100%;height:100%;object-fit:cover;}
+.media-item .rm{position:absolute;top:1px;right:1px;width:16px;height:16px;background:rgba(10,11,15,.8);color:var(--danger);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;}
+.media-item.vid{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--accent);}
+.media-add-row{display:flex;gap:8px;margin-top:8px;}
+.pill-btn{
+  border:1px solid var(--line);background:transparent;color:var(--accent);border-radius:16px;
+  padding:7px 13px;font-size:11.5px;cursor:pointer;font-family:'IBM Plex Sans';letter-spacing:.02em;
+}
+.pill-btn:active{background:var(--accent-soft);}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;}
+.act-btn{
+  border:1px solid var(--line);background:var(--bg2);color:var(--text);padding:11px 8px;border-radius:var(--radius);
+  font-size:12.5px;cursor:pointer;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.act-btn.promote{color:var(--accent);border-color:var(--line-strong);}
+.act-btn.retire{color:var(--muted);}
+.act-btn.delete{color:var(--danger);border-color:rgba(176,98,88,.35);}
+.act-btn.full{grid-column:1/3;}
+.lane-select{width:100%;background:var(--bg2);color:var(--text);border:1px solid var(--line);border-radius:var(--radius);padding:9px;font-size:13px;margin-top:6px;}
+
+/* search */
+#searchInput{
+  width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--text);border-radius:var(--radius);
+  padding:11px 12px;font-size:14px;font-family:'IBM Plex Sans';
+}
+#searchInput:focus{outline:none;border-color:var(--line-strong);}
+.result-row{padding:11px 4px;border-bottom:1px solid var(--line);cursor:pointer;}
+.result-row .rtext{font-size:13px;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.result-row .rlane{font-size:10px;color:var(--accent);margin-top:4px;letter-spacing:.05em;}
+.no-results{color:var(--muted);font-size:12.5px;font-style:italic;font-family:'Cormorant Garamond',serif;padding:20px 4px;text-align:center;}
+
+/* settings */
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);}
+.set-row label{font-size:13px;color:var(--text);}
+.stepper{display:flex;align-items:center;gap:10px;}
+.stepper button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);color:var(--accent);font-size:15px;}
+.stepper span{width:20px;text-align:center;font-size:14px;}
+.set-btn{
+  width:100%;text-align:left;background:var(--bg2);border:1px solid var(--line);color:var(--text);
+  padding:11px 12px;border-radius:var(--radius);font-size:13px;margin-top:10px;cursor:pointer;
+}
+.set-btn.danger{color:var(--danger);border-color:rgba(176,98,88,.3);}
+#fileImport{display:none;}
+.toast{
+  position:fixed;left:50%;bottom:calc(90px + var(--safe-b));transform:translateX(-50%);
+  background:var(--panel-hi);border:1px solid var(--line-strong);color:var(--text);padding:9px 16px;
+  border-radius:20px;font-size:12.5px;z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px);}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <h1><b>Meditation</b> Orbit</h1>
+    <button class="icon-btn" id="searchBtn" aria-label="Search">&#128269;</button>
+    <button class="icon-btn" id="settingsBtn" aria-label="Settings">&#9881;</button>
+  </div>
+  <div id="modeRow">
+    <button class="mode-btn on" data-mode="normal">normal</button>
+    <button class="mode-btn" data-mode="fan">fan</button>
+    <button class="mode-btn" data-mode="quad">quad</button>
+  </div>
+  <div id="stage" class="stage-normal"></div>
+  <button id="fab" aria-label="Add note">+</button>
+</div>
+
+<!-- card sheet -->
+<div class="overlay hidden" id="cardOverlay">
+  <div class="sheet">
+    <div class="sheet-head"><h2 id="cardHeadTitle">New note</h2><button class="icon-btn" id="cardClose">&times;</button></div>
+    <div class="sheet-body">
+      <textarea id="cardText" placeholder="What's on your mind..."></textarea>
+
+      <div class="section-label">lane</div>
+      <select class="lane-select" id="laneSelect"></select>
+
+      <div class="section-label">media</div>
+      <div class="media-grid" id="mediaGrid"></div>
+      <div class="media-add-row">
+        <button class="pill-btn" id="addPhotoBtn">&#128247; photo</button>
+        <button class="pill-btn" id="addVideoBtn">&#127909; video url</button>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" style="display:none">
+
+      <div class="action-grid" id="cardActions"></div>
+    </div>
+  </div>
+</div>
+
+<!-- search sheet -->
+<div class="overlay hidden" id="searchOverlay">
+  <div class="sheet">
+    <div class="sheet-head"><h2>Search</h2><button class="icon-btn" id="searchClose">&times;</button></div>
+    <div class="sheet-body">
+      <input type="text" id="searchInput" placeholder="Search notes...">
+      <div id="searchResults" style="margin-top:12px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- settings sheet -->
+<div class="overlay hidden" id="settingsOverlay">
+  <div class="sheet">
+    <div class="sheet-head"><h2>Settings</h2><button class="icon-btn" id="settingsClose">&times;</button></div>
+    <div class="sheet-body">
+      <div class="set-row">
+        <label>Priority lanes</label>
+        <div class="stepper">
+          <button id="laneMinus">&minus;</button>
+          <span id="laneCountLabel">5</span>
+          <button id="lanePlus">+</button>
+        </div>
+      </div>
+      <button class="set-btn" id="exportBtn">&#8681; Export backup (JSON)</button>
+      <button class="set-btn" id="importBtn">&#8679; Import backup (JSON)</button>
+      <input type="file" id="fileImport" accept="application/json">
+      <button class="set-btn danger" id="clearBtn">Clear all notes</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------------- state ---------------- */
+var LS_KEY='medOrbit_v1';
+var S=null;
+
+function defaultState(){
+  return {numLanes:5, notes:[], nextId:1, mode:'normal'};
+}
+function load(){
+  try{
+    var raw=localStorage.getItem(LS_KEY);
+    if(raw){ var p=JSON.parse(raw); return Object.assign(defaultState(),p); }
+  }catch(e){}
+  return defaultState();
+}
+function save(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(S)); }
+  catch(e){ toast('Storage full — export a backup and remove old media'); }
+}
+S=load();
+
+/* ---------------- helpers ---------------- */
+function $(id){return document.getElementById(id);}
+function esc(s){return (s||'').replace(/[&<>]/g,function(c){return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;';});}
+function toast(msg){
+  var t=$('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('show');},2200);
+}
+function laneLabel(l){ return l==='retired' ? 'Retired' : ('Priority '+(l+1)); }
+function laneBadge(l){ return l==='retired' ? '&#8213;' : (l+1); }
+
+/* robust tap: works around iOS Safari swallowing synthetic click inside
+   nested scroll containers — pair touchend (10px move guard) with click,
+   debounced so both firing once never double-invokes. */
+function wireTap(el,fn){
+  var sx=0,sy=0,moved=false,lastFire=0;
+  el.addEventListener('touchstart',function(e){
+    var t=e.touches[0]; sx=t.clientX; sy=t.clientY; moved=false;
+  },{passive:true});
+  el.addEventListener('touchmove',function(e){
+    var t=e.touches[0];
+    if(Math.abs(t.clientX-sx)>10||Math.abs(t.clientY-sy)>10) moved=true;
+  },{passive:true});
+  el.addEventListener('touchend',function(e){
+    if(moved) return;
+    var now=Date.now(); if(now-lastFire<350) return; lastFire=now;
+    e.preventDefault(); fn(e);
+  },{passive:false});
+  el.addEventListener('click',function(e){
+    var now=Date.now(); if(now-lastFire<350) return; lastFire=now;
+    fn(e);
+  });
+}
+
+/* ---------------- lane order ---------------- */
+function laneOrder(){
+  var arr=[]; for(var i=0;i<S.numLanes;i++) arr.push(i);
+  arr.push('retired'); return arr;
+}
+function notesForLane(l){
+  return S.notes.filter(function(n){return n.lane===l;}).sort(function(a,b){return b.updated-a.updated;});
+}
+
+/* ---------------- rendering ---------------- */
+var currentMode='normal';
+
+function render(){
+  var stage=$('stage');
+  stage.className='stage-'+currentMode;
+  var order=laneOrder();
+  var html='';
+  order.forEach(function(l){
+    var list=notesForLane(l);
+    html+='<div class="lane'+(l==='retired'?' retired':'')+'" data-lane="'+l+'">'
+        +'<div class="lane-head"><div class="lane-badge">'+laneBadge(l)+'</div>'
+        +'<div class="lane-title">'+laneLabel(l)+'</div>'
+        +'<div class="lane-count">'+list.length+'</div></div>';
+    if(!list.length){
+      html+='<div class="lane-empty">'+(l==='retired'?'nothing retired yet':'no notes here')+'</div>';
+    }else{
+      html+='<div class="lane-track-wrap"><div class="lane-track">';
+      list.forEach(function(n,i){
+        var style = currentMode==='fan' ? ' style="--r:'+((i%2===0?-1:1)*(2+(i%3)))+'deg;z-index:'+i+'"' : '';
+        var bodyHtml = n.text.trim() ? esc(n.text) : '<span style="color:var(--muted)">(empty note)</span>';
+        html+='<div class="card" data-id="'+n.id+'"'+style+'>'
+            +'<div class="card-text">'+bodyHtml+'</div>';
+        if(n.media && n.media.length){
+          html+='<div class="card-media-strip">';
+          n.media.slice(0,4).forEach(function(m){
+            if(m.type==='image') html+='<img src="'+m.src+'">';
+            else html+='<div class="vchip">&#9654;</div>';
+          });
+          html+='</div>';
+        }
+        html+='<div class="card-foot"><span>'+timeAgo(n.updated)+'</span></div>';
+        html+='</div>';
+      });
+      html+='</div></div>';
+    }
+    html+='</div>';
+  });
+  stage.innerHTML=html;
+  wireCardTaps();
+}
+
+function timeAgo(ts){
+  var s=Math.floor((Date.now()-ts)/1000);
+  if(s<60) return 'just now';
+  var m=Math.floor(s/60); if(m<60) return m+'m ago';
+  var h=Math.floor(m/60); if(h<24) return h+'h ago';
+  var d=Math.floor(h/24); if(d<30) return d+'d ago';
+  return Math.floor(d/30)+'mo ago';
+}
+
+function wireCardTaps(){
+  document.querySelectorAll('.card').forEach(function(el){
+    wireTap(el,function(){ openCard(parseInt(el.getAttribute('data-id'),10)); });
+  });
+}
+
+/* ---------------- mode toggle ---------------- */
+document.querySelectorAll('.mode-btn').forEach(function(btn){
+  wireTap(btn,function(){
+    currentMode=btn.getAttribute('data-mode');
+    document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.toggle('on',b===btn);});
+    S.mode=currentMode; save(); render();
+  });
+});
+
+/* ---------------- card editor ---------------- */
+var editingId=null, draftMedia=[];
+
+function populateLaneSelect(sel, cur){
+  sel.innerHTML='';
+  laneOrder().forEach(function(l){
+    var o=document.createElement('option');
+    o.value=l; o.textContent=laneLabel(l);
+    if(l===cur) o.selected=true;
+    sel.appendChild(o);
+  });
+}
+
+function openCard(id){
+  var n = id!=null ? S.notes.find(function(x){return x.id===id;}) : null;
+  editingId = n ? n.id : null;
+  draftMedia = n ? n.media.slice() : [];
+  $('cardHeadTitle').textContent = n ? laneLabel(n.lane) : 'New note';
+  $('cardText').value = n ? n.text : '';
+  populateLaneSelect($('laneSelect'), n ? n.lane : (lastAddLane!=null?lastAddLane:0));
+  renderMediaGrid();
+  renderCardActions(n);
+  $('cardOverlay').classList.remove('hidden');
+  setTimeout(function(){$('cardText').focus();},60);
+}
+function closeCard(){ $('cardOverlay').classList.add('hidden'); editingId=null; draftMedia=[]; }
+
+function renderMediaGrid(){
+  var g=$('mediaGrid'); g.innerHTML='';
+  draftMedia.forEach(function(m,i){
+    var d=document.createElement('div');
+    d.className='media-item'+(m.type!=='image'?' vid':'');
+    d.innerHTML = m.type==='image' ? '<img src="'+m.src+'">' : '&#127909;';
+    if(m.type!=='image'){ d.title='Tap to open video link'; wireTap(d,function(){ window.open(m.src,'_blank'); }); }
+    var rm=document.createElement('div'); rm.className='rm'; rm.innerHTML='&times;';
+    wireTap(rm,function(e){ if(e&&e.stopPropagation)e.stopPropagation(); draftMedia.splice(i,1); renderMediaGrid(); });
+    d.appendChild(rm);
+    g.appendChild(d);
+  });
+}
+wireTap($('addPhotoBtn'), function(){ $('photoInput').click(); });
+$('photoInput').addEventListener('change', function(e){
+  var f=e.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){ draftMedia.push({type:'image',src:r.result}); renderMediaGrid(); };
+  r.readAsDataURL(f);
+  e.target.value='';
+});
+wireTap($('addVideoBtn'), function(){
+  var url=prompt('Paste a video or YouTube link:');
+  if(!url) return;
+  draftMedia.push({type:'video', src:url.trim()});
+  renderMediaGrid();
+});
+
+function renderCardActions(n){
+  var box=$('cardActions'); box.innerHTML='';
+  function mk(cls,label,fn){
+    var b=document.createElement('button'); b.className='act-btn '+cls; b.textContent=label;
+    wireTap(b,fn); return b;
+  }
+  if(n){
+    function doDelete(){
+      if(confirm('Delete this note for good?')){
+        S.notes=S.notes.filter(function(x){return x.id!==n.id;});
+        save(); closeCard(); render(); toast('Deleted');
+      }
+    }
+    /* save any in-progress text/media edits first, then apply the lane change
+       to that same note object, so promote/demote/retire never discards edits */
+    function withSave(mutateLane, msg){
+      return function(){
+        persistDraft();
+        mutateLane();
+        n.updated=Date.now(); save(); closeCard(); render(); toast(msg);
+      };
+    }
+    if(n.lane==='retired'){
+      box.appendChild(mk('promote full','&#8593; Revive to lowest priority',
+        withSave(function(){ n.lane=S.numLanes-1; },'Revived')));
+      box.appendChild(mk('delete full','Delete', doDelete));
+    }else{
+      if(n.lane>0){
+        box.appendChild(mk('promote','&#8593; Promote',
+          withSave(function(){ n.lane--; },'Promoted')));
+      }else{
+        box.appendChild(mk('promote','Top priority',function(){}));
+      }
+      if(n.lane<S.numLanes-1){
+        box.appendChild(mk('','&#8595; Demote',
+          withSave(function(){ n.lane++; },'Demoted')));
+      }else{
+        box.appendChild(mk('','Lowest priority',function(){}));
+      }
+      box.appendChild(mk('retire','Retire',
+        withSave(function(){ n.lane='retired'; },'Retired')));
+      box.appendChild(mk('delete','Delete', doDelete));
+    }
+  }
+}
+
+var lastAddLane=0;
+wireTap($('fab'), function(){ openCard(null); });
+
+/* save on close via explicit save handled inline: attach a save-on-textarea-blur is not ideal,
+   so give the sheet a save action bound to overlay tap outside handled separately. We add a
+   dedicated save path: any change to text/lane/media persists on sheet close. */
+function persistDraft(){
+  var text=$('cardText').value;
+  var lane=$('laneSelect').value;
+  lane = lane==='retired' ? 'retired' : parseInt(lane,10);
+  if(editingId==null){
+    if(!text.trim() && !draftMedia.length) return;
+    var n={id:S.nextId++, text:text, lane:lane, media:draftMedia.slice(), created:Date.now(), updated:Date.now()};
+    S.notes.push(n);
+    lastAddLane=lane;
+  }else{
+    var n2=S.notes.find(function(x){return x.id===editingId;});
+    if(n2){ n2.text=text; n2.lane=lane; n2.media=draftMedia.slice(); n2.updated=Date.now(); }
+  }
+  save();
+}
+wireTap($('cardClose'), function(){ persistDraft(); closeCard(); render(); });
+/* also persist when tapping outside the sheet */
+$('cardOverlay').addEventListener('click', function(e){
+  if(e.target===$('cardOverlay')){ persistDraft(); closeCard(); render(); }
+});
+
+/* ---------------- search ---------------- */
+wireTap($('searchBtn'), function(){
+  $('searchOverlay').classList.remove('hidden');
+  $('searchInput').value=''; renderSearch('');
+  setTimeout(function(){$('searchInput').focus();},60);
+});
+wireTap($('searchClose'), function(){ $('searchOverlay').classList.add('hidden'); });
+$('searchOverlay').addEventListener('click', function(e){ if(e.target===$('searchOverlay')) $('searchOverlay').classList.add('hidden'); });
+$('searchInput').addEventListener('input', function(e){ renderSearch(e.target.value); });
+
+function renderSearch(q){
+  var box=$('searchResults'); q=q.trim().toLowerCase();
+  if(!q){ box.innerHTML='<div class="no-results">start typing to search your notes</div>'; return; }
+  var res=S.notes.filter(function(n){return n.text.toLowerCase().indexOf(q)>-1;})
+                 .sort(function(a,b){return b.updated-a.updated;});
+  if(!res.length){ box.innerHTML='<div class="no-results">no notes match "'+esc(q)+'"</div>'; return; }
+  box.innerHTML='';
+  res.forEach(function(n){
+    var row=document.createElement('div'); row.className='result-row';
+    row.innerHTML='<div class="rtext">'+esc(n.text)+'</div><div class="rlane">'+laneLabel(n.lane)+'</div>';
+    wireTap(row,function(){ $('searchOverlay').classList.add('hidden'); openCard(n.id); });
+    box.appendChild(row);
+  });
+}
+
+/* ---------------- settings ---------------- */
+wireTap($('settingsBtn'), function(){
+  $('laneCountLabel').textContent=S.numLanes;
+  $('settingsOverlay').classList.remove('hidden');
+});
+wireTap($('settingsClose'), function(){ $('settingsOverlay').classList.add('hidden'); });
+$('settingsOverlay').addEventListener('click', function(e){ if(e.target===$('settingsOverlay')) $('settingsOverlay').classList.add('hidden'); });
+
+wireTap($('laneMinus'), function(){
+  if(S.numLanes<=1) return;
+  S.numLanes--;
+  S.notes.forEach(function(n){ if(n.lane!=='retired' && n.lane>=S.numLanes) n.lane=S.numLanes-1; });
+  $('laneCountLabel').textContent=S.numLanes; save(); render();
+});
+wireTap($('lanePlus'), function(){
+  if(S.numLanes>=9) return;
+  S.numLanes++; $('laneCountLabel').textContent=S.numLanes; save(); render();
+});
+
+wireTap($('exportBtn'), function(){
+  var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  var d=new Date(); var stamp=d.toISOString().slice(0,10);
+  a.href=url; a.download='meditation-orbit-'+stamp+'.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  toast('Backup downloaded');
+});
+wireTap($('importBtn'), function(){ $('fileImport').click(); });
+$('fileImport').addEventListener('change', function(e){
+  var f=e.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var data=JSON.parse(r.result);
+      if(!data || !Array.isArray(data.notes)) throw new Error('bad file');
+      if(confirm('Import will replace your current notes ('+S.notes.length+' notes) with this backup ('+data.notes.length+' notes). Continue?')){
+        S=Object.assign(defaultState(),data);
+        currentMode=S.mode||'normal';
+        document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===currentMode);});
+        save(); render(); $('settingsOverlay').classList.add('hidden');
+        toast('Backup imported');
+      }
+    }catch(err){ toast('Could not read that backup file'); }
+  };
+  r.readAsText(f);
+  e.target.value='';
+});
+wireTap($('clearBtn'), function(){
+  if(confirm('Delete ALL notes? This cannot be undone — export a backup first if unsure.')){
+    S.notes=[]; save(); render(); $('settingsOverlay').classList.add('hidden'); toast('Cleared');
+  }
+});
+
+/* ---------------- boot ---------------- */
+currentMode=S.mode||'normal';
+document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===currentMode);});
+render();
+
+})();
+</script>
+</body>
+</html>
