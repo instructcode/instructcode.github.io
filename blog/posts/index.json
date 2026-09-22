@@ -1,5 +1,13 @@
 [
   {
+    "slug": "new-world",
+    "title": "New World",
+    "date": "2026-09-22",
+    "tags": [],
+    "draft": false,
+    "excerpt": "Used claude AI, mostly opus 5 and 5.5, some fable to make this and sister sites. check out the features from clicking the red icon to getting a more scenic view…"
+  },
+  {
     "slug": "first-contact",
     "title": "First contact",
     "date": "2026-09-21",
