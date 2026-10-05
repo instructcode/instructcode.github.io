@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-09-18T19:00:18.632Z",
+  "exported": "2026-10-05T20:34:47.412Z",
   "jokes": [
     {
       "variants": [],
@@ -7656,6 +7656,8 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9108,
       "type": "joke",
       "body": "i rate this conversation zero out of ten _____(maybe blow jobs).  or ten out of ten for torture sessions or synonymous equivalents like twn out of ten ironmaiden booth sessions. ive had conversations with crazy people ive enjoyed more than this.  thats where u stand in the heirarchy of people id rather hang out with.  refering to daft lady trying to talk at me about politics",
@@ -7670,8 +7672,69 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9109,
+      "type": "joke",
+      "body": "i hate people.\nother person people arent bad maybe u suck.\nuhh dude u just interuptted me.  like i was trying to communicate something.  like thats cool but maybe u should ask why i said that instead of coming to a conclusion.  like if u want to use my statement as springboard to narcisistic judge me thats cool but its sorta like some dude using the holocaust museum to say jews are horrible.  like ummm okay",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9110,
+      "type": "joke",
+      "body": "",
+      "punch": "",
+      "tags": [
+        "t1781356251323"
+      ],
+      "md": null,
+      "mt": "image",
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false,
+      "gestureCat": "cringe"
+    },
+    {
+      "id": 9111,
+      "type": "joke",
+      "body": "ohh noo i caught the gay.  how?  i put on a pink shirt.  oh jesus it spreads that way.  yup.  get it out of me or give me some dick.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": true,
       "_shower": false
     }
   ],
@@ -7926,7 +7989,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 234
+      "si": 318
     },
     {
       "id": "l2",
@@ -7935,7 +7998,7 @@
         "dark"
       ],
       "color": "#ff6b8a",
-      "si": 17
+      "si": 16
     },
     {
       "id": "l3",
@@ -7944,7 +8007,7 @@
         "wordplay"
       ],
       "color": "#6bffcc",
-      "si": 20
+      "si": 43
     },
     {
       "id": "l4",
@@ -7954,7 +8017,7 @@
         "irony"
       ],
       "color": "#ffb86b",
-      "si": 4
+      "si": 0
     },
     {
       "id": "l5",
@@ -7963,7 +8026,7 @@
         "absurd"
       ],
       "color": "#ff6bff",
-      "si": 19
+      "si": 30
     },
     {
       "id": "l6",
@@ -7972,7 +8035,7 @@
         "observational"
       ],
       "color": "#7bc8ff",
-      "si": 39
+      "si": 35
     },
     {
       "id": "l7",
@@ -7981,7 +8044,7 @@
         "deadpan"
       ],
       "color": "#d0d0ff",
-      "si": 18
+      "si": 17
     },
     {
       "id": "l8",
@@ -7990,7 +8053,7 @@
         "self_deprecating"
       ],
       "color": "#ffb0c8",
-      "si": 25
+      "si": 6
     },
     {
       "id": "l9",
@@ -7999,7 +8062,7 @@
         "surreal"
       ],
       "color": "#c8b0ff",
-      "si": 8
+      "si": 0
     },
     {
       "id": "l10",
@@ -8008,7 +8071,7 @@
         "misdirection"
       ],
       "color": "#b0ffd0",
-      "si": 24
+      "si": 1
     },
     {
       "id": "l11",
@@ -8017,7 +8080,7 @@
         "riff"
       ],
       "color": "#ffdd6b",
-      "si": 3
+      "si": 5
     },
     {
       "id": "l_mimic",
@@ -8069,7 +8132,7 @@
         "t1781356251323"
       ],
       "color": "#c8a0ff",
-      "si": 10,
+      "si": 1,
       "isGestureLane": true,
       "so": []
     },
@@ -8078,7 +8141,7 @@
       "lbl": "Test",
       "tags": [],
       "color": "rgb(107, 186, 255)",
-      "si": 222,
+      "si": 246,
       "so": [
         {
           "variants": [
@@ -8464,7 +8527,7 @@
         "sfx"
       ],
       "color": "#6bffcc",
-      "si": 5,
+      "si": 2,
       "isSfxLane": true,
       "so": [
         {
