@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-10-05T20:34:47.412Z",
+  "exported": "2026-10-15T15:56:38.359Z",
   "jokes": [
     {
       "variants": [],
@@ -7719,9 +7719,68 @@
       "gestureCat": "cringe"
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9111,
       "type": "joke",
       "body": "ohh noo i caught the gay.  how?  i put on a pink shirt.  oh jesus it spreads that way.  yup.  get it out of me or give me some dick.",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9112,
+      "type": "joke",
+      "body": "fruity poopy loops.  fruit loops.  scoop sum poop into ur fruity loops",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "id": 9113,
+      "type": "joke",
+      "body": "u think like a priest. I like it. I’m deranged like that myself.\n\ni can’t kill my opponent (within thirty turns of poking their face with one damage) but they can never kill me. so I’ll win eventually, In two hours. let’s give my opponent a 2 hour break from life. my treat.\n\ncontinued priest fan fiction (horror section): only way to leave my priest madhouse early is for the opponent to agree to give the priest a win.  whos that charitable?  no one but priest players, its obvious cause half of them heal ur face on turn two as proof of their magnanimity.\n\nthe priest signals to the opponent.  shhhhh stay with menin this game ill keep u alive longer like in a vegatable state patient.  this game isnur vacation from the horrible outsidew. world",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "id": 9114,
+      "type": "joke",
+      "body": "guy version of guys looking at girls boob.  u got a protrusion in ur pants.  no not a big boner.  but u got a mega thick jammed backed wallet in ur pocket.  it creates a mega stiffy, uhh.. pocket.  the girl talking to u is so. ice and sweet.  but she keeps eyefucking ur pocket.",
       "punch": "",
       "tags": [],
       "md": null,
@@ -7989,7 +8048,7 @@
       "lbl": "All",
       "tags": [],
       "color": "#7b6fff",
-      "si": 318
+      "si": 55
     },
     {
       "id": "l2",
