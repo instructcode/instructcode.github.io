@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-10-19T14:13:58.768Z",
+  "exported": "2026-10-19T17:10:27.852Z",
   "jokes": [
     {
       "variants": [],
@@ -7799,9 +7799,29 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9115,
       "type": "joke",
       "body": "where were u?\ndunno mustve been in a drunkin stupor.\nwell better than being drunk and stupid.\nnot my joke but a good one",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "id": 9116,
+      "type": "joke",
+      "body": "ur in the wrong bathroom sir.  not in new york im not.  all bathrooms are multigender and besides i identify as a women so u can suck my shedick bitch",
       "punch": "",
       "tags": [],
       "md": null,
