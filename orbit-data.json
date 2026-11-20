@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-11-18T14:44:37.216Z",
+  "exported": "2026-11-20T10:44:01.883Z",
   "jokes": [
     {
       "variants": [],
@@ -7999,9 +7999,49 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9125,
       "type": "joke",
       "body": "nothingburger blown up into a hindenburger that explodes in catastrophic fashion over the head of the person the inflated the balloon could be a great AI cartoon video",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9126,
+      "type": "joke",
+      "body": "bullshit artists.  new term.  dunno how ti unravel it.  but basically it amounts to people who cover u in bullshit and call it a good thing.  u cant pun em down either.  like good luck getting them to stip or getting the community around them to acknowledge hey this isnt art nor is it a good thing.  but they duck and dive and juke that realization or label.  maybe bullshit gymnists might be better",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "id": 9127,
+      "type": "joke",
+      "body": "if some one drops a title on u as if thats suppose to mean something after they be passive aggressive like hey im director of sanitation internsl affairs af desk one.  im like cool story bro im president of me.",
       "punch": "",
       "tags": [],
       "md": null,
