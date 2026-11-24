@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-11-24T01:26:42.610Z",
+  "exported": "2026-11-24T19:37:11.431Z",
   "jokes": [
     {
       "variants": [],
@@ -8105,6 +8105,8 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9130,
       "type": "joke",
       "body": "how to tell people they are fat without telling them they are fat.    hey man no turkey for u,  come on looks like u already had ur fair share of turkey the last couple of thanksgivings.  what u eat thanksgiving every day?",
@@ -8119,8 +8121,46 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_wip": true,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9131,
+      "type": "joke",
+      "body": "u wanna know why god is so difficult to follow.  its cause at best his communication is miming and guess what i suck at pictionary okay.  just straight talk god.  similarly man the bible is such a mess with seemingly contradictory passages like i stopped trying to get justice because some bible verse said justice is gods alone.  and turn the other cheek.  so guess im super hyper meek now.  but no its vengeance is god alone.  still dont know how to manage turn the other cheak.  but the vengeance book probably says justice in certain translations.  ohh boy when god supplied a black utility.  well thought that was satan but maybe its just god.  oh boy.  but its still all a mime and i cant read mimes.  im autistic.  oh also i prioritize mercy over justice cause so many rules arent taught well or parented or changes so who really has a good understanding of most rules.  like i didnt understand proportionality till last few years….  i cant hold people to the form of justice without commhnication and mercy upfront frontloaded because of thaf",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "id": 9132,
+      "type": "joke",
+      "body": "jewish sabbath its wrong to do work.  so lazy police go around penalizing those who arent lazy.    lazy bum ur good broz. liven sabbath every day 24/7.\nfuck that hard worker.  pot heads patrol",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": false,
       "_shower": false
     }
   ],
