@@ -1,7 +1,7 @@
 {
   "_orbit_data": true,
   "version": 4,
-  "exported": "2026-11-20T10:44:01.883Z",
+  "exported": "2026-11-24T01:26:21.593Z",
   "jokes": [
     {
       "variants": [],
@@ -8039,6 +8039,8 @@
       "_shower": false
     },
     {
+      "variants": [],
+      "links": [],
       "id": 9127,
       "type": "joke",
       "body": "if some one drops a title on u as if thats suppose to mean something after they be passive aggressive like hey im director of sanitation internsl affairs af desk one.  im like cool story bro im president of me.",
@@ -8053,8 +8055,72 @@
       "context": null,
       "notes": null,
       "image": null,
-      "variants": [],
       "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9128,
+      "type": "joke",
+      "body": "im president if jeffreyville nice to meet u.  i elected myself.  a cute way to communicate titles are meaningless",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": false,
+      "_shower": false
+    },
+    {
+      "variants": [],
+      "links": [],
+      "id": 9129,
+      "type": "joke",
+      "body": "https://youtu.be/I4UWXQje6Lk\n\nthe setup is expert it builds on ambiguity that creates absurd scenarios.  lets talk about something disturbing—>u aint banging ur sister r u (cause thats disturbing)—>question about whats going on going back to the vague subject matter of disturbing or now perverted—> its not perverted (cause one person is having a conversation about the subject matter and another person is having a conversation about banging ur sister and these get confused as answers—>banging ur sister is perverted (embarrasing cause other people overhear and assume it sounds like hes banging his sister.  the humor of this situation exists at these crevices.  its what drives the while situatio",
+      "punch": "",
+      "tags": [
+        "ambiguity_harvesting",
+        "observational",
+        "meditation",
+        "notes",
+        "style"
+      ],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "_wip": true,
+      "_shower": false
+    },
+    {
+      "id": 9130,
+      "type": "joke",
+      "body": "how to tell people they are fat without telling them they are fat.    hey man no turkey for u,  come on looks like u already had ur fair share of turkey the last couple of thanksgivings.  what u eat thanksgiving every day?",
+      "punch": "",
+      "tags": [],
+      "md": null,
+      "mt": null,
+      "mu": null,
+      "mu_is_image": false,
+      "yt_start": null,
+      "yt_end": null,
+      "context": null,
+      "notes": null,
+      "image": null,
+      "variants": [],
+      "_wip": true,
       "_shower": false
     }
   ],
